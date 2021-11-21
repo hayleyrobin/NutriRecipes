@@ -10,6 +10,7 @@
 		61B3D4082749E28700E54FA6 /* RecommendationsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B3D4072749E28700E54FA6 /* RecommendationsResult.swift */; };
 		61B3D40A2749E78300E54FA6 /* RecommendationsResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61B3D4092749E78300E54FA6 /* RecommendationsResultCell.xib */; };
 		61B3D40C2749EA9000E54FA6 /* RecommendationsResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B3D40B2749EA9000E54FA6 /* RecommendationsResultCell.swift */; };
+		61B3D40E274A068000E54FA6 /* NoRecipesFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61B3D40D274A068000E54FA6 /* NoRecipesFoundCell.xib */; };
 		61CECFC92739B40E006E804E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CECFC82739B40E006E804E /* AppDelegate.swift */; };
 		61CECFCB2739B40E006E804E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CECFCA2739B40E006E804E /* SceneDelegate.swift */; };
 		61CECFCD2739B40E006E804E /* RecommendationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CECFCC2739B40E006E804E /* RecommendationsViewController.swift */; };
@@ -22,6 +23,7 @@
 		61B3D4072749E28700E54FA6 /* RecommendationsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsResult.swift; sourceTree = "<group>"; };
 		61B3D4092749E78300E54FA6 /* RecommendationsResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendationsResultCell.xib; sourceTree = "<group>"; };
 		61B3D40B2749EA9000E54FA6 /* RecommendationsResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsResultCell.swift; sourceTree = "<group>"; };
+		61B3D40D274A068000E54FA6 /* NoRecipesFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoRecipesFoundCell.xib; sourceTree = "<group>"; };
 		61CECFC52739B40E006E804E /* NutriRecipies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutriRecipies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61CECFC82739B40E006E804E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61CECFCA2739B40E006E804E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				61B3D4072749E28700E54FA6 /* RecommendationsResult.swift */,
 				61B3D4092749E78300E54FA6 /* RecommendationsResultCell.xib */,
 				61B3D40B2749EA9000E54FA6 /* RecommendationsResultCell.swift */,
+				61B3D40D274A068000E54FA6 /* NoRecipesFoundCell.xib */,
 			);
 			path = NutriRecipies;
 			sourceTree = "<group>";
@@ -133,6 +136,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61B3D40E274A068000E54FA6 /* NoRecipesFoundCell.xib in Resources */,
 				61CECFD52739B421006E804E /* LaunchScreen.storyboard in Resources */,
 				61CECFD22739B421006E804E /* Assets.xcassets in Resources */,
 				61CECFD02739B40E006E804E /* Main.storyboard in Resources */,

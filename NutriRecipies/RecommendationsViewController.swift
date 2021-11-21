@@ -7,14 +7,27 @@ class RecommendationsViewController: UIViewController{
     var searchResults = [RecommendationsResult]() // fake array for data
     var hasSearched = false
     
+    struct TableView {
+      struct CellIdentifiers {
+        static let recommendationsResultCell = "RecommendationsResultCell"
+        static let noRecipesFoundCell = "NoRecipesFoundCell"
+      }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.becomeFirstResponder() // dismiss keyboard
 
        tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         
-        let cellNib = UINib(nibName: "RecommendationsResultCell", bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: "RecommendationsResultCell")
+        var cellNib = UINib(nibName: TableView.CellIdentifiers.recommendationsResultCell, bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.recommendationsResultCell)
+        cellNib = UINib(nibName: TableView.CellIdentifiers.noRecipesFoundCell, bundle: nil)
+        tableView.register(
+          cellNib,
+          forCellReuseIdentifier: TableView.CellIdentifiers.noRecipesFoundCell)
+
 
         }
     
@@ -60,23 +73,21 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "RecommendationsResultCell"
-        let cell = tableView.dequeueReusableCell(
-          withIdentifier: cellIdentifier,
-        for: indexPath) as! RecommendationsResultCell
+
         if searchResults.count == 0 {
-          cell.recipeNameLabel!.text = "(Nothing found)"
-          cell.recipeDescriptionLabel!.text = ""
-        } else {
+          return tableView.dequeueReusableCell(
+            withIdentifier: TableView.CellIdentifiers.noRecipesFoundCell,for: indexPath)
+        }else {
+            let cell = tableView.dequeueReusableCell(
+              withIdentifier: TableView.CellIdentifiers.recommendationsResultCell,
+            for: indexPath) as! RecommendationsResultCell
+            
             let searchResult = searchResults[indexPath.row]
             cell.recipeNameLabel!.text = searchResult.recipeName
             cell.recipeDescriptionLabel!.text = searchResult.recipeDescription
+            return cell
         }
-
-        return cell
-
-
-    }
+}
     // deselect row with animation
     func tableView(
       _ tableView: UITableView,
