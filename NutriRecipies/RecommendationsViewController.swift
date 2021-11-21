@@ -12,6 +12,10 @@ class RecommendationsViewController: UIViewController{
         searchBar.becomeFirstResponder() // dismiss keyboard
 
        tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        
+        let cellNib = UINib(nibName: "RecommendationsResultCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "RecommendationsResultCell")
+
         }
     
 
@@ -57,19 +61,16 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "RecommendationsResultCell"
-        var cell: UITableViewCell! = tableView.dequeueReusableCell(
-          withIdentifier: cellIdentifier)
-        if cell == nil{
-          cell = UITableViewCell(
-            style: .subtitle, reuseIdentifier: cellIdentifier)
-        }
+        let cell = tableView.dequeueReusableCell(
+          withIdentifier: cellIdentifier,
+        for: indexPath) as! RecommendationsResultCell
         if searchResults.count == 0 {
-          cell.textLabel!.text = "(Nothing found)"
-          cell.detailTextLabel!.text = ""
+          cell.recipeNameLabel!.text = "(Nothing found)"
+          cell.recipeDescriptionLabel!.text = ""
         } else {
             let searchResult = searchResults[indexPath.row]
-            cell.textLabel!.text = searchResult.recipeName
-            cell.detailTextLabel!.text = searchResult.recipeDescription
+            cell.recipeNameLabel!.text = searchResult.recipeName
+            cell.recipeDescriptionLabel!.text = searchResult.recipeDescription
         }
 
         return cell
