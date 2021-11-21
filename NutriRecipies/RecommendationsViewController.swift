@@ -30,25 +30,54 @@ class RecommendationsViewController: UIViewController{
 
 
         }
+    // MARK: - Helper Methods
     
+    // URL object for API string
+    func recipeURL(searchText: String) -> URL {
+        // all the special characters(#,*,space) are escaped
+        let encodedText = searchText.addingPercentEncoding(
+            withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        
+        let urlString = String(
+        format: "https://api.edamam.com/api/recipes/v2?type=public&q=%@&app_id=6c3d1b83&app_key=76150e06464b0459d3ddb0985514e64a", encodedText)
+        let url = URL(string: urlString)
+        return url!
+    }
+    
+    // returns string object with the data received from the server from URL
+    func performStoreRequest(with url: URL) -> String? {
+        do {
+            return try String(contentsOf: url, encoding: .utf8)
+        }
+        catch {
+            print("Download Error: \(error.localizedDescription)")
+            return nil
+        }
+    }
 
 }
 // MARK:- Search Bar Delegate
 extension RecommendationsViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
     {
-        searchBar.resignFirstResponder() // dismiss keyboard
-        searchResults = []
-        if searchBar.text! != "Tomato"{
-        for i in 0...2{
-            let searchResult = RecommendationsResult()
-              searchResult.recipeName = String(format: "Fake Result %d for", i)
-              searchResult.recipeDescription = searchBar.text!
-              searchResults.append(searchResult)
+        if !searchBar.text!.isEmpty
+        {
+            searchBar.resignFirstResponder() // dismiss keyboard
+            hasSearched = true
+            searchResults = []
+            
+            // get URL object from API
+            let url = recipeURL(searchText: searchBar.text!)
+            print("URL: '\(url)'")
+            
+            // returns the JSON data that is received from the server URL
+            if let jsonString = performStoreRequest(with: url)
+            {
+              print("Received JSON string '\(jsonString)'")
             }
+
+            tableView.reloadData()
         }
-        hasSearched = true
-        tableView.reloadData()
     }
     // extend search bar to status area
     func position(for bar: UIBarPositioning) -> UIBarPosition{
@@ -87,7 +116,7 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
             cell.recipeDescriptionLabel!.text = searchResult.recipeDescription
             return cell
         }
-}
+    }
     // deselect row with animation
     func tableView(
       _ tableView: UITableView,

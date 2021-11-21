@@ -58,7 +58,7 @@
     </scenes>
     <resources>
         <namedColor name="SearchBar">
-            <color red="0.95499998331069946" green="0.31700000166893005" blue="0.14200000464916229" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.95499998331069946" green="0.5" blue="0.14200000464916229" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
