@@ -7,19 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		61B3D4082749E28700E54FA6 /* RecommendationsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B3D4072749E28700E54FA6 /* RecommendationsResult.swift */; };
+		61B3D40A2749E78300E54FA6 /* RecommendationsResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61B3D4092749E78300E54FA6 /* RecommendationsResultCell.xib */; };
+		61B3D40C2749EA9000E54FA6 /* RecommendationsResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B3D40B2749EA9000E54FA6 /* RecommendationsResultCell.swift */; };
 		61CECFC92739B40E006E804E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CECFC82739B40E006E804E /* AppDelegate.swift */; };
 		61CECFCB2739B40E006E804E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CECFCA2739B40E006E804E /* SceneDelegate.swift */; };
-		61CECFCD2739B40E006E804E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CECFCC2739B40E006E804E /* ViewController.swift */; };
+		61CECFCD2739B40E006E804E /* RecommendationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CECFCC2739B40E006E804E /* RecommendationsViewController.swift */; };
 		61CECFD02739B40E006E804E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61CECFCE2739B40E006E804E /* Main.storyboard */; };
 		61CECFD22739B421006E804E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61CECFD12739B421006E804E /* Assets.xcassets */; };
 		61CECFD52739B421006E804E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61CECFD32739B421006E804E /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		61B3D4072749E28700E54FA6 /* RecommendationsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsResult.swift; sourceTree = "<group>"; };
+		61B3D4092749E78300E54FA6 /* RecommendationsResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendationsResultCell.xib; sourceTree = "<group>"; };
+		61B3D40B2749EA9000E54FA6 /* RecommendationsResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsResultCell.swift; sourceTree = "<group>"; };
 		61CECFC52739B40E006E804E /* NutriRecipies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutriRecipies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61CECFC82739B40E006E804E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61CECFCA2739B40E006E804E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		61CECFCC2739B40E006E804E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		61CECFCC2739B40E006E804E /* RecommendationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsViewController.swift; sourceTree = "<group>"; };
 		61CECFCF2739B40E006E804E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		61CECFD12739B421006E804E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61CECFD42739B421006E804E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,11 +64,14 @@
 			children = (
 				61CECFC82739B40E006E804E /* AppDelegate.swift */,
 				61CECFCA2739B40E006E804E /* SceneDelegate.swift */,
-				61CECFCC2739B40E006E804E /* ViewController.swift */,
+				61CECFCC2739B40E006E804E /* RecommendationsViewController.swift */,
 				61CECFCE2739B40E006E804E /* Main.storyboard */,
 				61CECFD12739B421006E804E /* Assets.xcassets */,
 				61CECFD32739B421006E804E /* LaunchScreen.storyboard */,
 				61CECFD62739B421006E804E /* Info.plist */,
+				61B3D4072749E28700E54FA6 /* RecommendationsResult.swift */,
+				61B3D4092749E78300E54FA6 /* RecommendationsResultCell.xib */,
+				61B3D40B2749EA9000E54FA6 /* RecommendationsResultCell.swift */,
 			);
 			path = NutriRecipies;
 			sourceTree = "<group>";
@@ -127,6 +136,7 @@
 				61CECFD52739B421006E804E /* LaunchScreen.storyboard in Resources */,
 				61CECFD22739B421006E804E /* Assets.xcassets in Resources */,
 				61CECFD02739B40E006E804E /* Main.storyboard in Resources */,
+				61B3D40A2749E78300E54FA6 /* RecommendationsResultCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,9 +147,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61CECFCD2739B40E006E804E /* ViewController.swift in Sources */,
+				61CECFCD2739B40E006E804E /* RecommendationsViewController.swift in Sources */,
 				61CECFC92739B40E006E804E /* AppDelegate.swift in Sources */,
+				61B3D40C2749EA9000E54FA6 /* RecommendationsResultCell.swift in Sources */,
 				61CECFCB2739B40E006E804E /* SceneDelegate.swift in Sources */,
+				61B3D4082749E28700E54FA6 /* RecommendationsResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
