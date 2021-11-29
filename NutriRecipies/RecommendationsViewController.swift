@@ -6,11 +6,17 @@ class RecommendationsViewController: UIViewController{
     @IBOutlet var tableView: UITableView!
     var searchResults = [RecommendationsResult]() // fake array for data
     var hasSearched = false
+    var isLoading = false
+    var dataTask: URLSessionDataTask?
+
+
     
     struct TableView {
       struct CellIdentifiers {
         static let recommendationsResultCell = "RecommendationsResultCell"
         static let noRecipesFoundCell = "NoRecipesFoundCell"
+        static let loadingCell = "LoadingCell"
+
       }
     }
     
@@ -23,10 +29,18 @@ class RecommendationsViewController: UIViewController{
         
         var cellNib = UINib(nibName: TableView.CellIdentifiers.recommendationsResultCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.recommendationsResultCell)
+       
         cellNib = UINib(nibName: TableView.CellIdentifiers.noRecipesFoundCell, bundle: nil)
         tableView.register(
           cellNib,
           forCellReuseIdentifier: TableView.CellIdentifiers.noRecipesFoundCell)
+
+        cellNib = UINib(
+          nibName: TableView.CellIdentifiers.loadingCell,
+          bundle: nil)
+        tableView.register(
+          cellNib,
+          forCellReuseIdentifier: TableView.CellIdentifiers.loadingCell)
 
 
         }
@@ -45,14 +59,41 @@ class RecommendationsViewController: UIViewController{
     }
     
     // returns string object with the data received from the server from URL
-    func performStoreRequest(with url: URL) -> String? {
+    func performStoreRequest(with url: URL) -> Data? {
         do {
-            return try String(contentsOf: url, encoding: .utf8)
+            return try Data(contentsOf: url)
         }
         catch {
             print("Download Error: \(error.localizedDescription)")
             return nil
         }
+    }
+    
+    func parse(data: Data) -> [RecommendationsResult] {
+      do {
+        let decoder = JSONDecoder()
+        let result = try decoder.decode(
+          ResultArray.self, from: data)
+        
+        return result.hits
+        
+      } catch {
+        print("JSON Error: \(error)")
+        return []
+      }
+    }
+    // presents an alert controller with an error message.
+    func showNetworkError() {
+      let alert = UIAlertController(
+        title: "Whoops...",
+        message: "There was an error accessing the iTunes Store." +
+        " Please try again.",
+        preferredStyle: .alert)
+      
+      let action = UIAlertAction(
+        title: "OK", style: .default, handler: nil)
+      alert.addAction(action)
+      present(alert, animated: true, completion: nil)
     }
 
 }
@@ -63,20 +104,51 @@ extension RecommendationsViewController: UISearchBarDelegate{
         if !searchBar.text!.isEmpty
         {
             searchBar.resignFirstResponder() // dismiss keyboard
+            dataTask?.cancel()
+            isLoading = true
+            tableView.reloadData()
+            
             hasSearched = true
             searchResults = []
             
             // get URL object from API
             let url = recipeURL(searchText: searchBar.text!)
             print("URL: '\(url)'")
-            
-            // returns the JSON data that is received from the server URL
-            if let jsonString = performStoreRequest(with: url)
-            {
-              print("Received JSON string '\(jsonString)'")
+            if let data = performStoreRequest(with: url) {
+              let results = parse(data: data)
+              print("Got results: \(results)")              
             }
+    
+            
+            let session = URLSession.shared
+            // returns the JSON data that is received from the server URL
+            dataTask = session.dataTask(with: url, completionHandler: {
+                data, response, error in
+                if let error = error as NSError?, error.code == -999 {
+                  return 
+                } else if let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200 {
+                    if let data = data {
+                      self.searchResults = self.parse(data: data)
+                      //self.searchResults.sort(by: <)
+                      DispatchQueue.main.async {
+                        self.isLoading = false
+                        self.tableView.reloadData()
+                      }
+                      return
+                    }
 
-            tableView.reloadData()
+                } else {
+                  print("Failure! \(response!)")
+                }
+                DispatchQueue.main.async {
+                  self.hasSearched = false
+                  self.isLoading = false
+                  self.tableView.reloadData()
+                  self.showNetworkError()
+                }
+              })
+            dataTask?.resume()
         }
     }
     // extend search bar to status area
@@ -92,9 +164,11 @@ extension RecommendationsViewController: UISearchBarDelegate{
 extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !hasSearched{
-            return 0}
-        else if searchResults.count == 0{
+        if isLoading {
+          return 1
+        } else if !hasSearched {
+            return 0
+        } else if searchResults.count == 0{
             return 1
         } else{
        return searchResults.count
@@ -102,8 +176,16 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        if searchResults.count == 0 {
+        if isLoading {
+          let cell = tableView.dequeueReusableCell(
+            withIdentifier: TableView.CellIdentifiers.loadingCell,
+            for: indexPath)
+              
+          let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
+          spinner.startAnimating()
+          return cell
+        }
+        else if searchResults.count == 0 {
           return tableView.dequeueReusableCell(
             withIdentifier: TableView.CellIdentifiers.noRecipesFoundCell,for: indexPath)
         }else {
@@ -112,8 +194,8 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
             for: indexPath) as! RecommendationsResultCell
             
             let searchResult = searchResults[indexPath.row]
-            cell.recipeNameLabel!.text = searchResult.recipeName
-            cell.recipeDescriptionLabel!.text = searchResult.recipeDescription
+            cell.recipeNameLabel!.text = searchResult.recipe.label
+            cell.recipeDescriptionLabel!.text = searchResult.recipe.source
             return cell
         }
     }
@@ -129,7 +211,7 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
       _ tableView: UITableView,
       willSelectRowAt indexPath: IndexPath
     ) -> IndexPath? {
-      if searchResults.count == 0 {
+        if searchResults.count == 0 || isLoading {
         return nil
       } else{
         return indexPath
