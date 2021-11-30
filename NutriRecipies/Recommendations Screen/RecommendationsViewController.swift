@@ -196,6 +196,8 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
             let searchResult = searchResults[indexPath.row]
             cell.recipeNameLabel!.text = searchResult.recipe.label
             cell.recipeDescriptionLabel!.text = searchResult.recipe.source
+
+            cell.configure(for: searchResult)
             return cell
         }
     }
