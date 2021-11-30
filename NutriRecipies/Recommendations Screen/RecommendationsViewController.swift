@@ -4,7 +4,8 @@ import UIKit
 class RecommendationsViewController: UIViewController{
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
-    var searchResults = [RecommendationsResult]() // fake array for data
+    var searchResults = [RecommendationsResult]() //  array for data
+    var trendingResults = [TrendingResults]()
     var hasSearched = false
     var isLoading = false
     var dataTask: URLSessionDataTask?
@@ -19,6 +20,7 @@ class RecommendationsViewController: UIViewController{
 
       }
     }
+    //"https://api.edamam.com/api/recipes/v2?type=public&q=Recommended&app_id=6c3d1b83&app_key=76150e06464b0459d3ddb0985514e64a"
     
     
     override func viewDidLoad() {
@@ -42,6 +44,10 @@ class RecommendationsViewController: UIViewController{
           cellNib,
           forCellReuseIdentifier: TableView.CellIdentifiers.loadingCell)
 
+        if !hasSearched {
+            trendingResults = TrendingRecipes.trendingRecipies()
+            print(trendingResults)
+        }
 
         }
     // MARK: - Helper Methods
@@ -51,7 +57,7 @@ class RecommendationsViewController: UIViewController{
         // all the special characters(#,*,space) are escaped
         let encodedText = searchText.addingPercentEncoding(
             withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        
+
         let urlString = String(
         format: "https://api.edamam.com/api/recipes/v2?type=public&q=%@&app_id=6c3d1b83&app_key=76150e06464b0459d3ddb0985514e64a", encodedText)
         let url = URL(string: urlString)
@@ -167,7 +173,7 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
         if isLoading {
           return 1
         } else if !hasSearched {
-            return 0
+            return trendingResults.count
         } else if searchResults.count == 0{
             return 1
         } else{
@@ -185,7 +191,7 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
           spinner.startAnimating()
           return cell
         }
-        else if searchResults.count == 0 {
+        else if hasSearched && searchResults.count == 0 {
           return tableView.dequeueReusableCell(
             withIdentifier: TableView.CellIdentifiers.noRecipesFoundCell,for: indexPath)
         }else {
@@ -193,11 +199,21 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
               withIdentifier: TableView.CellIdentifiers.recommendationsResultCell,
             for: indexPath) as! RecommendationsResultCell
             
-            let searchResult = searchResults[indexPath.row]
-            cell.recipeNameLabel!.text = searchResult.recipe.label
-            cell.recipeDescriptionLabel!.text = searchResult.recipe.source
+            if hasSearched{
+                let searchResult = searchResults[indexPath.row]
+                cell.recipeNameLabel!.text = searchResult.recipe.label
+                cell.recipeDescriptionLabel!.text = searchResult.recipe.source
 
-            cell.configure(for: searchResult)
+                cell.configure(for: searchResult)
+            }
+            else{
+                let trendingResult = trendingResults[indexPath.row]
+                cell.recipeNameLabel!.text = trendingResult.recipe.label
+                cell.recipeDescriptionLabel!.text = trendingResult.recipe.source
+                
+                cell.configures(for: trendingResult)
+            }
+            
             return cell
         }
     }
