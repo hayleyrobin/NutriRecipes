@@ -45,12 +45,10 @@ extension TrendingRecipes {
             let url = URL(string: "https://api.edamam.com/api/recipes/v2?type=public&q=Trending&app_id=6c3d1b83&app_key=76150e06464b0459d3ddb0985514e64a"),
             let data = try? Data(contentsOf: url)
         else {
-            print("hello")
             return []
         }
         
         do {
-            print("good")
           let decoder = JSONDecoder()
             let result = try decoder.decode(TrendingRecipes.self, from: data)
             return result.hits

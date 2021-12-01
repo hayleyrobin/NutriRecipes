@@ -46,7 +46,6 @@ class RecommendationsViewController: UIViewController{
 
         if !hasSearched {
             trendingResults = TrendingRecipes.trendingRecipies()
-            print(trendingResults)
         }
 
         }
@@ -235,6 +234,10 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
         return indexPath
       }
     }
-    
+    // Create a standard header that includes the returned text.
+    func tableView(_ tableView: UITableView, titleForHeaderInSection
+                                section: Int) -> String? {
+       return "Trending Recipes"
+    }
     
 }

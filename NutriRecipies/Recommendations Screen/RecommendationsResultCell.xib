@@ -19,7 +19,7 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="51c-V6-5We">
                         <rect key="frame" x="6" y="1.5" width="104" height="77"/>
-                        <color key="tintColor" systemColor="systemGrayColor"/>
+                        <color key="tintColor" systemColor="systemGray5Color"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="104" id="4HE-fA-HkU"/>
                             <constraint firstAttribute="height" constant="80" id="Zq8-b5-MRG"/>
@@ -28,13 +28,13 @@
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkT-wc-Lst">
                         <rect key="frame" x="118" y="16" width="241" height="22"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <fontDescription key="fontDescription" name="Galvji" family="Galvji" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0im-2n-b9b">
                         <rect key="frame" x="118" y="46" width="241" height="16"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" name="Galvji" family="Galvji" pointSize="15"/>
                         <color key="textColor" name="ArtistName"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -51,6 +51,7 @@
                     <constraint firstItem="0im-2n-b9b" firstAttribute="top" secondItem="RkT-wc-Lst" secondAttribute="bottom" constant="8" id="opd-Zm-O4V"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" name="AccentColor"/>
             <connections>
                 <outlet property="recipeDescriptionLabel" destination="0im-2n-b9b" id="xYA-S4-X9h"/>
                 <outlet property="recipeImageView" destination="51c-V6-5We" id="pBJ-S6-JzW"/>
@@ -61,11 +62,14 @@
     </objects>
     <resources>
         <image name="square" catalog="system" width="128" height="114"/>
+        <namedColor name="AccentColor">
+            <color red="0.88599997758865356" green="0.47499999403953552" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="ArtistName">
             <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dzr-Zj-pt9">
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dzr-Zj-pt9">
                         <rect key="frame" x="139" y="30" width="95.5" height="20"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXq-9c-Eex">
@@ -31,6 +31,12 @@
                         </subviews>
                     </stackView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="dzr-Zj-pt9" firstAttribute="top" secondItem="uVo-fx-ujR" secondAttribute="top" constant="30" id="269-YX-JJl"/>
+                    <constraint firstItem="dzr-Zj-pt9" firstAttribute="leading" secondItem="uVo-fx-ujR" secondAttribute="leading" constant="139" id="4xV-7S-GzW"/>
+                    <constraint firstAttribute="bottom" secondItem="dzr-Zj-pt9" secondAttribute="bottom" constant="30" id="S2e-oF-jXu"/>
+                    <constraint firstAttribute="trailing" secondItem="dzr-Zj-pt9" secondAttribute="trailing" constant="140.5" id="zpm-vg-Apl"/>
+                </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="102.17391304347827" y="73.660714285714278"/>
         </tableViewCell>
