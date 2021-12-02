@@ -171,13 +171,45 @@
                                     <outlet property="servingsLabel" destination="Cif-wb-3eP" id="Iln-tO-qi5"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientsListCell" rowHeight="146" id="irs-m3-3Yu">
-                                <rect key="frame" x="0.0" y="363.5" width="414" height="146"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientsListCell" rowHeight="65" id="irs-m3-3Yu" customClass="IngredientsViewCell" customModule="NutriRecipies" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="363.5" width="414" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="irs-m3-3Yu" id="p3E-Pi-W1i">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="146"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7I-X7-cC5">
+                                            <rect key="frame" x="95" y="22" width="299" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VC0-83-Wfy">
+                                            <rect key="frame" x="39" y="16.5" width="34" height="31"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="34" id="4VP-Rx-nXV"/>
+                                                <constraint firstAttribute="height" constant="32" id="OsT-Mb-PdB"/>
+                                            </constraints>
+                                            <color key="tintColor" name="RecipeName"/>
+                                            <state key="normal" title="" image="plus" catalog="system" backgroundImage="circle">
+                                                <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="I7I-X7-cC5" firstAttribute="trailing" secondItem="p3E-Pi-W1i" secondAttribute="trailingMargin" id="7MJ-fP-bd2"/>
+                                        <constraint firstItem="I7I-X7-cC5" firstAttribute="top" secondItem="p3E-Pi-W1i" secondAttribute="topMargin" constant="11" id="8pW-BR-Nyo"/>
+                                        <constraint firstItem="VC0-83-Wfy" firstAttribute="leading" secondItem="p3E-Pi-W1i" secondAttribute="leadingMargin" constant="19" id="JaK-mc-g05"/>
+                                        <constraint firstItem="I7I-X7-cC5" firstAttribute="leading" secondItem="VC0-83-Wfy" secondAttribute="trailing" constant="22" id="Nfm-se-ROL"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="VC0-83-Wfy" secondAttribute="bottom" constant="6" id="ZPw-j5-bHA"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="I7I-X7-cC5" secondAttribute="bottom" constant="11" id="b2J-4g-1fB"/>
+                                        <constraint firstItem="VC0-83-Wfy" firstAttribute="top" secondItem="p3E-Pi-W1i" secondAttribute="topMargin" constant="5" id="zk3-aJ-Dsj"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="addIngredientButton" destination="VC0-83-Wfy" id="Y2A-e5-Ra4"/>
+                                    <outlet property="ingredientLabel" destination="I7I-X7-cC5" id="zhg-xQ-bfN"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -193,7 +225,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="circle" catalog="system" width="128" height="121"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square" catalog="system" width="128" height="114"/>
+        <namedColor name="RecipeName">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="SearchBar">
             <color red="0.95499998331069946" green="0.5" blue="0.14200000464916229" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

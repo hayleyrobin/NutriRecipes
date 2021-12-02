@@ -35,12 +35,18 @@ class RecipeDetailViewController: UITableViewController {
         return 2
     }
 
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1{
+            return "Ingredients"
+        }
+        return nil
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
             return 1
         }
         else{
-            return 10
+            return 4
         }
     }
 
