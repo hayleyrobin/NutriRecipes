@@ -8,14 +8,19 @@
 import UIKit
 
 class RecipeDetailViewController: UITableViewController {
-    @IBOutlet var recipeView: UITableView!
-    @IBOutlet weak var recipeImage: UIImageView!
-    @IBOutlet weak var infoView: UIView!
-    @IBOutlet weak var recipeNameLabel: UILabel!
+
+
+    struct TableView {
+      struct CellIdentifiers {
+        static let recipeHeaderCell = "RecipeHeaderCell"
+      }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //let cellNib = UINib(nibName: TableView.CellIdentifiers.recipeHeaderCell, bundle: nil)
+       // tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.recipeHeaderCell)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -27,23 +32,30 @@ class RecipeDetailViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        if section == 0{
+            return 1
+        }
+        else{
+            return 10
+        }
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        if indexPath.section == 0{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeHeaderCell", for: indexPath)
+            return cell
+        }
+        else{
+            let cell2 = tableView.dequeueReusableCell(withIdentifier: "IngredientsListCell", for: indexPath)
+            return cell2
+        }
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
