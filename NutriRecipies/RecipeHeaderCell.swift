@@ -15,6 +15,8 @@ class RecipeHeaderCell: UITableViewCell {
     @IBOutlet weak var servingsLabel: UILabel!
     @IBOutlet weak var caloriesLabel: UILabel!
     @IBOutlet weak var mealTypeLabel: UILabel!
+    var downloadTask: URLSessionDownloadTask?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,5 +27,22 @@ class RecipeHeaderCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+    // MARK: - Helper Methods
+    func configure(for result: RecommendationsResult) {
+        recipeNameLabel.text = result.recipe.label
+
+        if ((result.recipe.label?.isEmpty) == nil) {
+            recipeNameLabel.text = "Unknown"
+        }
+        
+        cookTimeLabel.text = String(format:"%d", result.recipe.totalTime!)
+        servingsLabel.text = String(format: "%i", result.recipe.yield!)
+        caloriesLabel.text = String(format:"%d", result.recipe.calories!)
+        mealTypeLabel.text = result.recipe.mealType.first
+ 
+        recipeImg.image = UIImage(systemName: "square")
+        if let previewURL = URL(string: result.recipe.image!) {
+          downloadTask = recipeImg.loadImage(url: previewURL)
+        }
+    }
 }

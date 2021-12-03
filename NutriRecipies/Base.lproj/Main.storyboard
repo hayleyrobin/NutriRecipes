@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qxd-Zb-hlk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NcC-pc-opo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Recommendations View Controller-->
+        <!--NutriRecipes-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="RecommendationsViewController" customModule="NutriRecipies" customModuleProvider="target" sceneMemberID="viewController">
@@ -35,7 +35,7 @@
                                 </connections>
                             </tableView>
                             <searchBar contentMode="redraw" placeholder="Search Foods, Recipes, Mealtype, etc." translatesAutoresizingMaskIntoConstraints="NO" id="4cl-t4-yVJ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
                                 <color key="barTintColor" name="SearchBar"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -55,14 +55,16 @@
                             <constraint firstAttribute="bottom" secondItem="BMU-ic-ZcO" secondAttribute="bottom" id="u8h-H0-r84"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="NutriRecipes" id="Oy0-d8-tQN"/>
                     <connections>
                         <outlet property="searchBar" destination="4cl-t4-yVJ" id="lJn-KT-2yR"/>
                         <outlet property="tableView" destination="BMU-ic-ZcO" id="ZTm-fx-iIz"/>
+                        <segue destination="Qxd-Zb-hlk" kind="show" identifier="recipeSegue" id="kK2-CT-uLt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-192.75362318840581" y="42.857142857142854"/>
+            <point key="canvasLocation" x="717.39130434782612" y="42.857142857142854"/>
         </scene>
         <!--Recipe Detail View Controller-->
         <scene sceneID="Gqz-WL-cM5">
@@ -218,10 +220,29 @@
                             <outlet property="delegate" destination="Qxd-Zb-hlk" id="2Xf-Ct-eW9"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="SO6-nF-u0q"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AX-ui-Juf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="621.73913043478262" y="42.857142857142854"/>
+            <point key="canvasLocation" x="1531.8840579710145" y="42.857142857142854"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="a8k-5R-LUc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NcC-pc-opo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ckn-tQ-8no">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="wng-aR-pz6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GWP-tg-Taq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-192.75362318840581" y="42.857142857142854"/>
         </scene>
     </scenes>
     <resources>

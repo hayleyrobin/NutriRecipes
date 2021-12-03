@@ -22,5 +22,11 @@ class IngredientsViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    // MARK: - Helper Methods
+    func configure(for result: RecommendationsResult) {
+        let ingredients = result.recipe.ingredientLines
+        
+        ingredientLabel.text = ingredients[0]
 
+    }
 }

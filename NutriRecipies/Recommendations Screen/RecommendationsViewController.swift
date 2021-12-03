@@ -9,8 +9,6 @@ class RecommendationsViewController: UIViewController{
     var hasSearched = false
     var isLoading = false
     var dataTask: URLSessionDataTask?
-
-
     
     struct TableView {
       struct CellIdentifiers {
@@ -25,6 +23,8 @@ class RecommendationsViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
+
         searchBar.becomeFirstResponder() // dismiss keyboard
 
        tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
@@ -48,7 +48,7 @@ class RecommendationsViewController: UIViewController{
             trendingResults = TrendingRecipes.trendingRecipies()
         }
 
-        }
+    }
     // MARK: - Helper Methods
     
     // URL object for API string
@@ -216,19 +216,23 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
             return cell
         }
     }
-    // deselect row with animation
+
     func tableView(
       _ tableView: UITableView,
       didSelectRowAt indexPath: IndexPath
     ) {
-      tableView.deselectRow(at: indexPath, animated: true)
+        let cell = tableView.cellForRow(at: indexPath)
+        // deselect row with animation
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        performSegue(withIdentifier: "recipeSegue", sender: cell)
     }
       // only select rows when actual search results
     func tableView(
       _ tableView: UITableView,
       willSelectRowAt indexPath: IndexPath
     ) -> IndexPath? {
-        if searchResults.count == 0 || isLoading {
+        if (hasSearched && searchResults.count == 0) || isLoading {
         return nil
       } else{
         return indexPath

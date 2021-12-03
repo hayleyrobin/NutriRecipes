@@ -10,19 +10,8 @@ import UIKit
 class RecipeDetailViewController: UITableViewController {
 
 
-    struct TableView {
-      struct CellIdentifiers {
-        static let recipeHeaderCell = "RecipeHeaderCell"
-      }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //let cellNib = UINib(nibName: TableView.CellIdentifiers.recipeHeaderCell, bundle: nil)
-       // tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.recipeHeaderCell)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -31,7 +20,6 @@ class RecipeDetailViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 2
     }
 
@@ -54,10 +42,17 @@ class RecipeDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeHeaderCell", for: indexPath)
+            
+            //cell.configure(for: searchResult)
             return cell
         }
         else{
+            //let searchResult = indexPath.row
             let cell2 = tableView.dequeueReusableCell(withIdentifier: "IngredientsListCell", for: indexPath)
+            
+            
+            //cell2.ingredientNameLabel //searchResult.recipe.label
+            //cell2.configure(for: searchResult)
             return cell2
         }
     }
