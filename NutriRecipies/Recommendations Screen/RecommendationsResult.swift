@@ -38,7 +38,7 @@ struct RecommendationsResult: Codable {
         var mealType = [String?]()
         var dishType = [String?]()
         
-
+        
     }
 }
 

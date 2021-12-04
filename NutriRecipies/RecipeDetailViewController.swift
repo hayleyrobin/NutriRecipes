@@ -36,7 +36,10 @@ class RecipeDetailViewController: UITableViewController {
             return 1
         }
         else{
-            return 4
+            if (searchResult != nil){
+                return searchResult.recipe.ingredientLines.count
+            }
+            return trendingResult.recipe.ingredientLines.count
         }
     }
 
@@ -54,6 +57,13 @@ class RecipeDetailViewController: UITableViewController {
         }
         else{
             let cell2 = tableView.dequeueReusableCell(withIdentifier: "IngredientsListCell", for: indexPath) as! IngredientsViewCell
+            if (searchResult != nil){
+                cell2.ingredientLabel!.text = searchResult.recipe.ingredientLines[indexPath.row]
+            }
+            else{
+                cell2.ingredientLabel!.text = trendingResult.recipe.ingredientLines[indexPath.row]
+            }
+
             //cell2.configure(for: searchResult)
             return cell2
         }

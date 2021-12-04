@@ -37,6 +37,8 @@ class RecipeHeaderCell: UITableViewCell {
         recipeView.layer.borderColor = UIColor.white.cgColor
         recipeView.layer.borderWidth = 2.0
         
+        let cals = result.recipe.calories!/Double(result.recipe.yield!)
+        
         // bold recipe title
         recipeNameLabel.font = UIFont.boldSystemFont(ofSize: recipeNameLabel.font.pointSize)
 
@@ -48,7 +50,7 @@ class RecipeHeaderCell: UITableViewCell {
         
         cookTimeLabel.text = String(format:"%d", result.recipe.totalTime!) + " min"
         servingsLabel.text = String(format: "%i", result.recipe.yield!) + " servings"
-        caloriesLabel.text = String(format:"%d", result.recipe.calories!) + " calories"
+        caloriesLabel.text = String(format:"%d", cals) + " calories"
         mealTypeLabel.text = result.recipe.mealType.first as? String
  
         recipeImg.image = UIImage(systemName: "square")
@@ -64,6 +66,8 @@ class RecipeHeaderCell: UITableViewCell {
         recipeView.layer.borderColor = UIColor.white.cgColor
         recipeView.layer.borderWidth = 2.0
         
+        let cals = result.recipe.calories!/Double(result.recipe.yield!)
+        
         // bold recipe title
         recipeNameLabel.font = UIFont.boldSystemFont(ofSize: recipeNameLabel.font.pointSize)
 
@@ -75,7 +79,7 @@ class RecipeHeaderCell: UITableViewCell {
         
         cookTimeLabel.text = String(format:"%d", result.recipe.totalTime!) + " min"
         servingsLabel.text = String(format: "%i", result.recipe.yield!) + " servings"
-        caloriesLabel.text = String(format:"%d", result.recipe.calories!) + " calories"
+        caloriesLabel.text = String(format:"%d", cals) + " calories"
         mealTypeLabel.text = result.recipe.mealType.first
  
         recipeImg.image = UIImage(systemName: "square")
