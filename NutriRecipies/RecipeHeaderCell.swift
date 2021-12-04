@@ -15,6 +15,7 @@ class RecipeHeaderCell: UITableViewCell {
     @IBOutlet weak var servingsLabel: UILabel!
     @IBOutlet weak var caloriesLabel: UILabel!
     @IBOutlet weak var mealTypeLabel: UILabel!
+    @IBOutlet weak var recipeView: UIView!
     var downloadTask: URLSessionDownloadTask?
     
     override func awakeFromNib() {
@@ -29,15 +30,52 @@ class RecipeHeaderCell: UITableViewCell {
     }
     // MARK: - Helper Methods
     func configure(for result: RecommendationsResult) {
+        //round border for recipe view
+        recipeView.layer.cornerRadius = 10
+        recipeView.clipsToBounds = true
+
+        recipeView.layer.borderColor = UIColor.white.cgColor
+        recipeView.layer.borderWidth = 2.0
+        
+        // bold recipe title
+        recipeNameLabel.font = UIFont.boldSystemFont(ofSize: recipeNameLabel.font.pointSize)
+
         recipeNameLabel.text = result.recipe.label
 
         if ((result.recipe.label?.isEmpty) == nil) {
             recipeNameLabel.text = "Unknown"
         }
         
-        cookTimeLabel.text = String(format:"%d", result.recipe.totalTime!)
-        servingsLabel.text = String(format: "%i", result.recipe.yield!)
-        caloriesLabel.text = String(format:"%d", result.recipe.calories!)
+        cookTimeLabel.text = String(format:"%d", result.recipe.totalTime!) + " min"
+        servingsLabel.text = String(format: "%i", result.recipe.yield!) + " servings"
+        caloriesLabel.text = String(format:"%d", result.recipe.calories!) + " calories"
+        mealTypeLabel.text = result.recipe.mealType.first as? String
+ 
+        recipeImg.image = UIImage(systemName: "square")
+        if let previewURL = URL(string: result.recipe.image!) {
+          downloadTask = recipeImg.loadImage(url: previewURL)
+        }
+    }
+    func configure(for result: TrendingResults) {
+        // round border for recipe view
+        recipeView.layer.cornerRadius = 10
+        recipeView.clipsToBounds = true
+
+        recipeView.layer.borderColor = UIColor.white.cgColor
+        recipeView.layer.borderWidth = 2.0
+        
+        // bold recipe title
+        recipeNameLabel.font = UIFont.boldSystemFont(ofSize: recipeNameLabel.font.pointSize)
+
+        recipeNameLabel.text = result.recipe.label
+
+        if ((result.recipe.label?.isEmpty) == nil) {
+            recipeNameLabel.text = "Unknown"
+        }
+        
+        cookTimeLabel.text = String(format:"%d", result.recipe.totalTime!) + " min"
+        servingsLabel.text = String(format: "%i", result.recipe.yield!) + " servings"
+        caloriesLabel.text = String(format:"%d", result.recipe.calories!) + " calories"
         mealTypeLabel.text = result.recipe.mealType.first
  
         recipeImg.image = UIImage(systemName: "square")
@@ -45,4 +83,5 @@ class RecipeHeaderCell: UITableViewCell {
           downloadTask = recipeImg.loadImage(url: previewURL)
         }
     }
+
 }

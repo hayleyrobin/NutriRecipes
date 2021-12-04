@@ -8,6 +8,8 @@
 import UIKit
 
 class RecipeDetailViewController: UITableViewController {
+    var searchResult: RecommendationsResult!
+    var trendingResult: TrendingResults!
 
 
     override func viewDidLoad() {
@@ -41,21 +43,31 @@ class RecipeDetailViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeHeaderCell", for: indexPath)
-            
-            //cell.configure(for: searchResult)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeHeaderCell", for: indexPath)  as! RecipeHeaderCell
+            if (searchResult != nil){
+                cell.configure(for: searchResult)
+            }
+            else{
+                cell.configure(for: trendingResult)
+            }
             return cell
         }
         else{
-            //let searchResult = indexPath.row
-            let cell2 = tableView.dequeueReusableCell(withIdentifier: "IngredientsListCell", for: indexPath)
-            
-            
-            //cell2.ingredientNameLabel //searchResult.recipe.label
+            let cell2 = tableView.dequeueReusableCell(withIdentifier: "IngredientsListCell", for: indexPath) as! IngredientsViewCell
             //cell2.configure(for: searchResult)
             return cell2
         }
     }
+    
+    // MARK: - Table View Delegates
+    // don't select row
+    override func tableView(
+      _ tableView: UITableView,
+      willSelectRowAt indexPath: IndexPath
+    ) -> IndexPath? {
+      return nil
+    }
+
     
 
     /*

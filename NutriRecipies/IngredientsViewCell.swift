@@ -22,6 +22,7 @@ class IngredientsViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    /*
     // MARK: - Helper Methods
     func configure(for result: RecommendationsResult) {
         let ingredients = result.recipe.ingredientLines
@@ -29,4 +30,18 @@ class IngredientsViewCell: UITableViewCell {
         ingredientLabel.text = ingredients[0]
 
     }
+    // MARK: - Helper Methods
+    func updateUI(for result: RecommendationsResult) {
+        ingredientLabel.text = result.recipe.label
+      
+      if searchResult.artist.isEmpty {
+        artistNameLabel.text = "Unknown"
+      } else {
+        artistNameLabel.text = searchResult.artist
+      }
+      
+      kindLabel.text = searchResult.type
+      genreLabel.text = searchResult.genre
+    }
+ */
 }

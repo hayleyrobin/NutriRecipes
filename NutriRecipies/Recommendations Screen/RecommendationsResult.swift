@@ -29,14 +29,14 @@ struct RecommendationsResult: Codable {
         var image: String?
         var url: String?
         var yield: Int?
-        var dietLabels = [String]()
-        var healthLabels = [String]()
-        var ingredientLines = [String]()
+        var dietLabels = [String?]()
+        var healthLabels = [String?]()
+        var ingredientLines = [String?]()
         var calories: Double?
         var totalTime: Double?
-        var cuisineType = [String]()
-        var mealType = [String]()
-        var dishType = [String]()
+        var cuisineType = [String?]()
+        var mealType = [String?]()
+        var dishType = [String?]()
         
 
     }

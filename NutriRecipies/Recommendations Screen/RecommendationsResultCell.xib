@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="51c-V6-5We">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="51c-V6-5We">
                         <rect key="frame" x="6" y="1.5" width="104" height="77"/>
                         <color key="tintColor" systemColor="systemGray5Color"/>
                         <constraints>
@@ -26,16 +26,16 @@
                         </constraints>
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="ultraLight"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkT-wc-Lst">
-                        <rect key="frame" x="118" y="16" width="241" height="22"/>
-                        <fontDescription key="fontDescription" name="Galvji" family="Galvji" pointSize="18"/>
-                        <nil key="textColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Recipe Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0im-2n-b9b">
+                        <rect key="frame" x="118" y="42" width="241" height="20"/>
+                        <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="15"/>
+                        <color key="textColor" name="ArtistName"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0im-2n-b9b">
-                        <rect key="frame" x="118" y="46" width="241" height="16"/>
-                        <fontDescription key="fontDescription" name="Galvji" family="Galvji" pointSize="15"/>
-                        <color key="textColor" name="ArtistName"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkT-wc-Lst">
+                        <rect key="frame" x="118" y="16" width="257" height="18"/>
+                        <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="18"/>
+                        <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -45,7 +45,7 @@
                     <constraint firstAttribute="trailing" secondItem="0im-2n-b9b" secondAttribute="trailing" constant="16" id="aWN-ru-MGx"/>
                     <constraint firstItem="RkT-wc-Lst" firstAttribute="top" secondItem="Dro-np-4tt" secondAttribute="top" constant="16" id="dBV-Bb-N2r"/>
                     <constraint firstItem="RkT-wc-Lst" firstAttribute="leading" secondItem="51c-V6-5We" secondAttribute="trailing" constant="8" id="kk0-50-7hB"/>
-                    <constraint firstAttribute="trailing" secondItem="RkT-wc-Lst" secondAttribute="trailing" constant="16" id="l9J-XJ-VNQ"/>
+                    <constraint firstAttribute="trailing" secondItem="RkT-wc-Lst" secondAttribute="trailing" id="l9J-XJ-VNQ"/>
                     <constraint firstItem="51c-V6-5We" firstAttribute="leading" secondItem="Dro-np-4tt" secondAttribute="leadingMargin" constant="-14" id="mcB-ZH-ahx"/>
                     <constraint firstItem="RkT-wc-Lst" firstAttribute="leading" secondItem="0im-2n-b9b" secondAttribute="leading" id="odd-tC-7hU"/>
                     <constraint firstItem="0im-2n-b9b" firstAttribute="top" secondItem="RkT-wc-Lst" secondAttribute="bottom" constant="8" id="opd-Zm-O4V"/>

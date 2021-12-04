@@ -49,6 +49,24 @@ class RecommendationsViewController: UIViewController{
         }
 
     }
+
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     if segue.identifier == "recipeSegue" {
+       let recipeViewController = segue.destination as! RecipeDetailViewController
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)
+        if hasSearched{
+            let searchResult = searchResults[indexPath!.row]
+            recipeViewController.searchResult = searchResult
+        }
+        else{
+            let trendingResult = trendingResults[indexPath!.row]
+            recipeViewController.trendingResult = trendingResult
+        }
+     }
+    }
+
     // MARK: - Helper Methods
     
     // URL object for API string
@@ -156,6 +174,18 @@ extension RecommendationsViewController: UISearchBarDelegate{
             dataTask?.resume()
         }
     }
+    
+    // go back to trending page when search is cleared
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            DispatchQueue.main.async {
+                self.hasSearched = false
+                self.isLoading = false
+                self.tableView.reloadData()
+                self.viewDidLoad()
+            }
+        }
+    }
     // extend search bar to status area
     func position(for bar: UIBarPositioning) -> UIBarPosition{
         return.topAttached
@@ -193,7 +223,8 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
         else if hasSearched && searchResults.count == 0 {
           return tableView.dequeueReusableCell(
             withIdentifier: TableView.CellIdentifiers.noRecipesFoundCell,for: indexPath)
-        }else {
+        }
+        else {
             let cell = tableView.dequeueReusableCell(
               withIdentifier: TableView.CellIdentifiers.recommendationsResultCell,
             for: indexPath) as! RecommendationsResultCell
@@ -210,9 +241,8 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
                 cell.recipeNameLabel!.text = trendingResult.recipe.label
                 cell.recipeDescriptionLabel!.text = trendingResult.recipe.source
                 
-                cell.configures(for: trendingResult)
+                cell.configure(for: trendingResult)
             }
-            
             return cell
         }
     }
@@ -241,7 +271,10 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
     // Create a standard header that includes the returned text.
     func tableView(_ tableView: UITableView, titleForHeaderInSection
                                 section: Int) -> String? {
-       return "Trending Recipes"
+        if hasSearched{
+            return "Search Result Recipes"
+        }
+        return "Trending Recipes"
     }
     
 }
