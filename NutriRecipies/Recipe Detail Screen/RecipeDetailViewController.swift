@@ -11,7 +11,8 @@ class RecipeDetailViewController: UITableViewController {
     var searchResult: RecommendationsResult!
     var trendingResult: TrendingResults!
 
-
+    @IBOutlet weak var favoriteRecipeButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

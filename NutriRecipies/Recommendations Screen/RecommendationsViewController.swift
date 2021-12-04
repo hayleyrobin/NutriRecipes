@@ -4,6 +4,7 @@ import UIKit
 class RecommendationsViewController: UIViewController{
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
+  
     var searchResults = [RecommendationsResult]() //  array for data
     var trendingResults = [TrendingResults]()
     var hasSearched = false
