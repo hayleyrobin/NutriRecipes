@@ -7,19 +7,78 @@
 
 import UIKit
 
-class RecipeDetailViewController: UITableViewController {
+protocol RecipeDetailViewControllerDelegate: class {
+    func addItemViewController(
+    _ controller: RecipeDetailViewController,
+    didFinishAdding item: TrendingResults)
+    func addItemViewController(
+    _ controller: RecipeDetailViewController,
+    didFinishAdding item: RecommendationsResult)
+}
+
+
+class RecipeDetailViewController: UITableViewController, UITabBarControllerDelegate {
     var searchResult: RecommendationsResult!
     var trendingResult: TrendingResults!
 
     @IBOutlet weak var favoriteRecipeButton: UIBarButtonItem!
     
+    weak var delegate: RecipeDetailViewControllerDelegate?
+
+    @IBAction func addFav(){
+        
+        
+//        let data = tabBarController?.viewControllers![1] as! UINavigationController
+//        let favTableViewController = data.topViewController as! FavoriteRecipesViewController
+//        if (searchResult != nil){
+//            favTableViewController.searchResult = searchResult
+//        }
+//        else{
+//            favTableViewController.trendingResult = trendingResult
+//        }
+//        tabBarController?.selectedIndex = 1
+        
+//        if (searchResult != nil){
+//            let item = searchResult
+//            delegate?.addItemViewController(self, didFinishAdding: item!)
+//        }
+//        else{
+//            let item = trendingResult
+//    //      item?.recipe = trendingResult.recipe
+//            delegate?.addItemViewController(self, didFinishAdding: item!)
+//        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.delegate = self
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+//        // Instantiate Second View Controller
+//        if let favoriteRecipesController = storyboard?.instantiateViewController(withIdentifier: "FavoriteRecipesController") as? FavoriteRecipesViewController {
+//           // Pass Data
+//            if (searchResult != nil){
+//                favoriteRecipesController.searchResult = searchResult
+//            }
+//            else{
+//                favoriteRecipesController.trendingResult = trendingResult
+//            }
+//        }
     }
+    
 
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if viewController.isKind(of: RecipeDetailViewController.self as AnyClass) {
+            let viewController  = tabBarController.viewControllers?[1] as! FavoriteRecipesViewController
+                if (searchResult != nil){
+                    viewController.searchResult = self.searchResult
+                }
+                else{
+                    viewController.trendingResult = self.trendingResult
+                }
+        }
+
+        return true
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

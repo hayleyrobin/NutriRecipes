@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jHV-79-dh9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uew-8V-pxK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -70,7 +70,7 @@
         <!--Favorite Recipes View Controller-->
         <scene sceneID="vhx-Ky-n4k">
             <objects>
-                <viewController id="jHV-79-dh9" customClass="FavoriteRecipesViewController" customModule="NutriRecipies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoriteRecipesController" id="jHV-79-dh9" customClass="FavoriteRecipesViewController" customModule="NutriRecipies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9g6-Lh-M2n">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -374,10 +374,13 @@
                     <navigationItem key="navigationItem" id="SO6-nF-u0q">
                         <barButtonItem key="rightBarButtonItem" image="heart.fill" catalog="system" style="plain" id="ZmK-WP-PWV">
                             <color key="tintColor" name="SearchBar"/>
+                            <connections>
+                                <action selector="addFav" destination="Qxd-Zb-hlk" id="4y2-Y0-TGT"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="favoriteRecipeButton" destination="ZmK-WP-PWV" id="Jhn-DK-eBs"/>
+                        <outlet property="favoriteRecipeButton" destination="ZmK-WP-PWV" id="90V-hS-osz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AX-ui-Juf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -98,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				61CECFC72739B40E006E804E /* NutriRecipies */,
-				61AE7D33275BE55B00B1C32A /* Favorite Recipes Screen */,
 				61CECFC62739B40E006E804E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -120,9 +119,10 @@
 				61CECFD12739B421006E804E /* Assets.xcassets */,
 				61CECFD32739B421006E804E /* LaunchScreen.storyboard */,
 				61CECFD62739B421006E804E /* Info.plist */,
+				61AE7D33275BE55B00B1C32A /* Favorite Recipes Screen */,
+				61AE7D32275BE53800B1C32A /* Recipe Detail Screen */,
 				614F6AAE27559EF900FEA336 /* Recommendations Screen */,
 				614F6AAC2755978500FEA336 /* UIImageView+DownloadImage.swift */,
-				61AE7D32275BE53800B1C32A /* Recipe Detail Screen */,
 			);
 			path = NutriRecipies;
 			sourceTree = "<group>";
