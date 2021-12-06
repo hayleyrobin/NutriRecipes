@@ -39,7 +39,7 @@ class FavoriteRecipeViewCell: UICollectionViewCell {
             recipeNameLabel.text = "Unknown"
         }
         
-        mealTypeLabel.text = result.recipe.mealType.first
+        mealTypeLabel.text = result.recipe.mealType.first as! String
         sourceLabel.text = result.recipe.source
         
         recipeImg.image = UIImage(systemName: "square")

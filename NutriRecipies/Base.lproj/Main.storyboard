@@ -324,8 +324,59 @@
                                     <outlet property="servingsLabel" destination="Cif-wb-3eP" id="Iln-tO-qi5"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="NutritionCell" rowHeight="49" id="IKa-Fa-PYt" customClass="NutritionViewCell" customModule="NutriRecipies" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="363.5" width="414" height="49"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IKa-Fa-PYt" id="qY1-Fj-cAw" customClass="NutritionViewCell" customModule="NutriRecipies" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oC6-jH-c5D">
+                                            <rect key="frame" x="209" y="7" width="181" height="36"/>
+                                            <color key="backgroundColor" red="0.70241924249999999" green="0.70241924249999999" blue="0.70241924249999999" alpha="0.69803921570000005" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="dPQ-Jk-riv"/>
+                                                <constraint firstAttribute="width" constant="181" id="mnQ-0e-RrW"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <state key="normal" title="Nutrition">
+                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="nutritionButton:" destination="IKa-Fa-PYt" eventType="touchUpInside" id="Ekw-lf-TYu"/>
+                                                <action selector="nutritionButton:" destination="qY1-Fj-cAw" eventType="touchUpInside" id="IIx-8K-MtJ"/>
+                                                <action selector="nutritionButton:" destination="MuM-RH-pmc" eventType="touchUpInside" id="Xgq-3N-gFp"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dish Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIk-gl-UXt">
+                                            <rect key="frame" x="20" y="7" width="181" height="36"/>
+                                            <color key="backgroundColor" red="0.75944380330000005" green="0.75944380330000005" blue="0.75944380330000005" alpha="0.69803921570000005" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="181" id="Fnl-rX-R2n"/>
+                                                <constraint firstAttribute="height" constant="36" id="V49-dI-ztg"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" name="RecipeName"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="oC6-jH-c5D" firstAttribute="top" secondItem="qY1-Fj-cAw" secondAttribute="top" constant="7" id="3jZ-XJ-gDM"/>
+                                        <constraint firstItem="oC6-jH-c5D" firstAttribute="leading" secondItem="IIk-gl-UXt" secondAttribute="trailing" constant="8" symbolic="YES" id="Aph-j6-OsA"/>
+                                        <constraint firstItem="IIk-gl-UXt" firstAttribute="leading" secondItem="qY1-Fj-cAw" secondAttribute="leading" constant="20" symbolic="YES" id="HTs-nm-s0f"/>
+                                        <constraint firstAttribute="bottom" secondItem="IIk-gl-UXt" secondAttribute="bottom" constant="6" id="Q9n-Pi-cWk"/>
+                                        <constraint firstItem="IIk-gl-UXt" firstAttribute="top" secondItem="qY1-Fj-cAw" secondAttribute="top" constant="7" id="R3b-QY-tb2"/>
+                                        <constraint firstAttribute="trailing" secondItem="oC6-jH-c5D" secondAttribute="trailing" constant="24" id="stj-YL-HeH"/>
+                                        <constraint firstItem="oC6-jH-c5D" firstAttribute="leading" secondItem="IIk-gl-UXt" secondAttribute="trailing" constant="8" symbolic="YES" id="wxb-qy-Dqf"/>
+                                        <constraint firstAttribute="bottom" secondItem="oC6-jH-c5D" secondAttribute="bottom" constant="6" id="ySz-C7-uhe"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dishTypeLabel" destination="IIk-gl-UXt" id="xgX-NM-EvO"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="IngredientsListCell" rowHeight="65" id="irs-m3-3Yu" customClass="IngredientsViewCell" customModule="NutriRecipies" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="363.5" width="414" height="65"/>
+                                <rect key="frame" x="0.0" y="412.5" width="414" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="irs-m3-3Yu" id="p3E-Pi-W1i">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
@@ -365,7 +416,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DirectionsCell" rowHeight="103" id="c1U-ke-kgo" customClass="DirectionsViewCell" customModule="NutriRecipies" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="428.5" width="414" height="103"/>
+                                <rect key="frame" x="0.0" y="477.5" width="414" height="103"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c1U-ke-kgo" id="hEw-K9-Ofy">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
@@ -439,6 +490,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AX-ui-Juf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="MuM-RH-pmc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3973.913043478261" y="738.61607142857144"/>
         </scene>

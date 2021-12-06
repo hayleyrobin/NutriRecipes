@@ -42,7 +42,7 @@ class RecommendationsResultCell: UITableViewCell {
             recipeNameLabel.text = "Unknown"
         }
         else {
-            recipeDescriptionLabel.text = String(format: "%@ (%@)", result.recipe.source!, result.recipe.cuisineType.first!)
+            recipeDescriptionLabel.text = String(format: "%@ (%@)", result.recipe.source!, result.recipe.cuisineType.first!!)
         }
         recipeImageView.image = UIImage(systemName: "square")
         if let previewURL = URL(string: result.recipe.image!) {

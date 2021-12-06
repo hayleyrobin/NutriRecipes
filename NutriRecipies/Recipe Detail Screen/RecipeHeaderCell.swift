@@ -80,7 +80,7 @@ class RecipeHeaderCell: UITableViewCell {
         cookTimeLabel.text = String(format:"%d", result.recipe.totalTime!) + " min"
         servingsLabel.text = String(format: "%i", result.recipe.yield!) + " servings"
         caloriesLabel.text = String(format:"%d", cals) + " calories"
-        mealTypeLabel.text = result.recipe.mealType.first
+        mealTypeLabel.text = result.recipe.mealType.first as? String
  
         recipeImg.image = UIImage(systemName: "square")
         if let previewURL = URL(string: result.recipe.image!) {

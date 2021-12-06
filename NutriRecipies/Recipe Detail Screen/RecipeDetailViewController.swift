@@ -60,14 +60,17 @@ class RecipeDetailViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1{
-            return "Ingredients"
+            return "Details"
         }
         else if section == 2{
+            return "Ingredients"
+        }
+        else if section == 3{
             return "Directions"
         }
         return nil
@@ -77,6 +80,9 @@ class RecipeDetailViewController: UITableViewController {
             return 1
         }
         else if(section == 1){
+            return 1
+        }
+        else if(section == 2){
             if (searchResult != nil){
                 return searchResult.recipe.ingredientLines.count
             }
@@ -100,6 +106,17 @@ class RecipeDetailViewController: UITableViewController {
             return cell
         }
         else if indexPath.section == 1{
+            let cell1 = tableView.dequeueReusableCell(withIdentifier: "NutritionCell", for: indexPath) as! NutritionViewCell
+            if (searchResult != nil){
+                cell1.configure(for: searchResult)
+            }
+            else{
+                print(trendingResult.recipe.dietLabels[indexPath.row] as Any)
+                cell1.configure(for: trendingResult)
+            }
+            return cell1
+        }
+        else if indexPath.section == 2{
             let cell2 = tableView.dequeueReusableCell(withIdentifier: "IngredientsListCell", for: indexPath) as! IngredientsViewCell
             if (searchResult != nil){
                 cell2.ingredientLabel!.text = searchResult.recipe.ingredientLines[indexPath.row]
