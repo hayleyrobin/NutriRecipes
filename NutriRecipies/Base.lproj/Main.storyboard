@@ -364,6 +364,61 @@
                                     <outlet property="ingredientLabel" destination="I7I-X7-cC5" id="zhg-xQ-bfN"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DirectionsCell" rowHeight="103" id="c1U-ke-kgo" customClass="DirectionsViewCell" customModule="NutriRecipies" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="428.5" width="414" height="103"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c1U-ke-kgo" id="hEw-K9-Ofy">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7E-MK-gfX">
+                                            <rect key="frame" x="88" y="40" width="239" height="52"/>
+                                            <color key="backgroundColor" name="RecipeName"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="52" id="nvA-6v-6Q8"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Galvji" family="Galvji" pointSize="14"/>
+                                            <state key="normal" title="Recipe Link">
+                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="openInStore" destination="Qxd-Zb-hlk" eventType="touchUpInside" id="mkV-Od-bQJ"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Website" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyO-Oy-4l2">
+                                            <rect key="frame" x="180" y="11" width="169" height="21"/>
+                                            <fontDescription key="fontDescription" name="Galvji" family="Galvji" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Source:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJz-Do-SCf">
+                                            <rect key="frame" x="107" y="11" width="65" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="65" id="70N-rw-UxS"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Galvji" family="Galvji" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="r7E-MK-gfX" firstAttribute="leading" secondItem="hEw-K9-Ofy" secondAttribute="leadingMargin" constant="68" id="3Vl-bz-tra"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="r7E-MK-gfX" secondAttribute="trailing" constant="67" id="3f5-7m-jbX"/>
+                                        <constraint firstItem="OJz-Do-SCf" firstAttribute="leading" secondItem="hEw-K9-Ofy" secondAttribute="leadingMargin" constant="87" id="6Q3-r4-V35"/>
+                                        <constraint firstItem="r7E-MK-gfX" firstAttribute="bottom" secondItem="hEw-K9-Ofy" secondAttribute="bottomMargin" id="Iut-z6-PXq"/>
+                                        <constraint firstItem="OJz-Do-SCf" firstAttribute="top" secondItem="hEw-K9-Ofy" secondAttribute="topMargin" id="KNg-kg-ylq"/>
+                                        <constraint firstItem="dyO-Oy-4l2" firstAttribute="leading" secondItem="OJz-Do-SCf" secondAttribute="trailing" constant="8" id="PHj-I4-bde"/>
+                                        <constraint firstItem="dyO-Oy-4l2" firstAttribute="top" secondItem="hEw-K9-Ofy" secondAttribute="topMargin" id="Sw0-75-mSg"/>
+                                        <constraint firstItem="r7E-MK-gfX" firstAttribute="top" secondItem="OJz-Do-SCf" secondAttribute="bottom" constant="8" id="bvt-vI-1Sv"/>
+                                        <constraint firstItem="r7E-MK-gfX" firstAttribute="top" secondItem="OJz-Do-SCf" secondAttribute="bottom" constant="8" id="gTn-AB-6C6"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="dyO-Oy-4l2" secondAttribute="trailing" constant="45" id="h8H-y2-Prd"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="directionsButton" destination="r7E-MK-gfX" id="BuX-z2-B7r"/>
+                                    <outlet property="sourceLabel" destination="dyO-Oy-4l2" id="4Oo-dI-NaL"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <sections/>
                         <connections>
@@ -385,7 +440,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AX-ui-Juf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3974" y="739"/>
+            <point key="canvasLocation" x="3973.913043478261" y="738.61607142857144"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="IjZ-4H-Pr4">

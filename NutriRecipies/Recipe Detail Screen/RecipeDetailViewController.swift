@@ -17,7 +17,7 @@ protocol RecipeDetailViewControllerDelegate: class {
 }
 
 
-class RecipeDetailViewController: UITableViewController, UITabBarControllerDelegate {
+class RecipeDetailViewController: UITableViewController {
     var searchResult: RecommendationsResult!
     var trendingResult: TrendingResults!
 
@@ -26,18 +26,6 @@ class RecipeDetailViewController: UITableViewController, UITabBarControllerDeleg
     weak var delegate: RecipeDetailViewControllerDelegate?
 
     @IBAction func addFav(){
-        
-        
-//        let data = tabBarController?.viewControllers![1] as! UINavigationController
-//        let favTableViewController = data.topViewController as! FavoriteRecipesViewController
-//        if (searchResult != nil){
-//            favTableViewController.searchResult = searchResult
-//        }
-//        else{
-//            favTableViewController.trendingResult = trendingResult
-//        }
-//        tabBarController?.selectedIndex = 1
-        
 //        if (searchResult != nil){
 //            let item = searchResult
 //            delegate?.addItemViewController(self, didFinishAdding: item!)
@@ -51,43 +39,36 @@ class RecipeDetailViewController: UITableViewController, UITabBarControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.delegate = self
-
-//        // Instantiate Second View Controller
-//        if let favoriteRecipesController = storyboard?.instantiateViewController(withIdentifier: "FavoriteRecipesController") as? FavoriteRecipesViewController {
-//           // Pass Data
-//            if (searchResult != nil){
-//                favoriteRecipesController.searchResult = searchResult
-//            }
-//            else{
-//                favoriteRecipesController.trendingResult = trendingResult
-//            }
-//        }
     }
+    // MARK: - Helper Functions
     
-
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if viewController.isKind(of: RecipeDetailViewController.self as AnyClass) {
-            let viewController  = tabBarController.viewControllers?[1] as! FavoriteRecipesViewController
-                if (searchResult != nil){
-                    viewController.searchResult = self.searchResult
-                }
-                else{
-                    viewController.trendingResult = self.trendingResult
-                }
+    // directions button should take user to the selected recipe's page
+    @IBAction func openInStore() {
+        if(searchResult != nil)
+        {
+            if let url = URL(string: searchResult.recipe.url!) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+          }
         }
-
-        return true
+        else{
+            if let url = URL(string: trendingResult.recipe.url!) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+          }
+        }
     }
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1{
             return "Ingredients"
+        }
+        else if section == 2{
+            return "Directions"
         }
         return nil
     }
@@ -95,11 +76,14 @@ class RecipeDetailViewController: UITableViewController, UITabBarControllerDeleg
         if section == 0{
             return 1
         }
-        else{
+        else if(section == 1){
             if (searchResult != nil){
                 return searchResult.recipe.ingredientLines.count
             }
             return trendingResult.recipe.ingredientLines.count
+        }
+        else{
+            return 1
         }
     }
 
@@ -115,7 +99,7 @@ class RecipeDetailViewController: UITableViewController, UITabBarControllerDeleg
             }
             return cell
         }
-        else{
+        else if indexPath.section == 1{
             let cell2 = tableView.dequeueReusableCell(withIdentifier: "IngredientsListCell", for: indexPath) as! IngredientsViewCell
             if (searchResult != nil){
                 cell2.ingredientLabel!.text = searchResult.recipe.ingredientLines[indexPath.row]
@@ -126,6 +110,16 @@ class RecipeDetailViewController: UITableViewController, UITabBarControllerDeleg
 
             //cell2.configure(for: searchResult)
             return cell2
+        }
+        else{
+            let cell3 = tableView.dequeueReusableCell(withIdentifier: "DirectionsCell", for: indexPath) as! DirectionsViewCell
+            if(searchResult != nil){
+                cell3.configure(for: searchResult)
+            }
+            else{
+                cell3.configure(for: trendingResult)
+            }
+            return cell3
         }
     }
     
