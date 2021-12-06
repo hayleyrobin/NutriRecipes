@@ -9,8 +9,7 @@ import UIKit
 
 class NutritionViewCell: UITableViewCell {
     @IBOutlet var dishTypeLabel: UILabel!
-    @IBAction func nutritionButton(_ sender: Any) {
-    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

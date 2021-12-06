@@ -24,9 +24,7 @@ class RecipeDetailViewController: UITableViewController {
     @IBOutlet weak var favoriteRecipeButton: UIBarButtonItem!
     
     weak var delegate: RecipeDetailViewControllerDelegate?
-
-    @IBAction func addFav(){
-//        if (searchResult != nil){
+    //        if (searchResult != nil){
 //            let item = searchResult
 //            delegate?.addItemViewController(self, didFinishAdding: item!)
 //        }
@@ -35,8 +33,19 @@ class RecipeDetailViewController: UITableViewController {
 //    //      item?.recipe = trendingResult.recipe
 //            delegate?.addItemViewController(self, didFinishAdding: item!)
 //        }
+    
+    @IBAction func addFav(_ sender: Any) {
     }
     
+    @IBAction func nutritionButton() {
+        performSegue(withIdentifier: "ShowNutrition", sender: self)
+    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//      if segue.identifier == "ShowNutrition" {
+//        segue.destination.modalPresentationStyle = .popover
+//      }
+//    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
