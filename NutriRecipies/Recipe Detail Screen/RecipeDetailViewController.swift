@@ -38,13 +38,21 @@ class RecipeDetailViewController: UITableViewController {
     }
     
     @IBAction func nutritionButton() {
-        performSegue(withIdentifier: "ShowNutrition", sender: self)
+        self.performSegue(withIdentifier: "ShowNutrition", sender: self)
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//      if segue.identifier == "ShowNutrition" {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+      if segue.identifier == "ShowNutrition" {
 //        segue.destination.modalPresentationStyle = .popover
-//      }
-//    }
+        let nutritionViewController = segue.destination as! NutrientsViewController
+        if searchResult != nil{
+            nutritionViewController.searchResult = searchResult
+        }
+        else{
+            nutritionViewController.trendingResult = trendingResult
+        }
+        
+      }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,7 +128,7 @@ class RecipeDetailViewController: UITableViewController {
                 cell1.configure(for: searchResult)
             }
             else{
-                print(trendingResult.recipe.dietLabels[indexPath.row] as Any)
+            
                 cell1.configure(for: trendingResult)
             }
             return cell1

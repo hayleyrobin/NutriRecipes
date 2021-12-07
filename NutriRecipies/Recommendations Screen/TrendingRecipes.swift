@@ -155,9 +155,9 @@ struct TrendingResults: Codable {
         }
         
         struct Nutrients: Codable{
-            var label: String?
-            var quantity: Double?
-            var unit: String?
+            var label: String? = ""
+            var quantity: Double? = 0.0
+            var unit: String? = ""
         }
     }
 }
