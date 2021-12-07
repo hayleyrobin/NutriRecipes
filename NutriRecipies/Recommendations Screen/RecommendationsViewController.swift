@@ -9,6 +9,7 @@ class RecommendationsViewController: UIViewController{
     var trendingResults = [TrendingResults]()
     var hasSearched = false
     var isLoading = false
+    var favoriteItems = [FavoriteRecipe]()
     var dataTask: URLSessionDataTask?
     
     struct TableView {

@@ -31,6 +31,9 @@ class RecommendationsResultCell: UITableViewCell {
             recipeDescriptionLabel.text = String(format: "%@ (%@)", result.recipe.source!, result.recipe.cuisineType.first!!)
         }
         recipeImageView.image = UIImage(systemName: "square")
+        recipeImageView.layer.borderWidth = 2
+        recipeImageView.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).cgColor
+        recipeImageView.layer.cornerRadius = 5.0
         if let previewURL = URL(string: result.recipe.image!) {
           downloadTask = recipeImageView.loadImage(url: previewURL)
         }
@@ -45,6 +48,9 @@ class RecommendationsResultCell: UITableViewCell {
             recipeDescriptionLabel.text = String(format: "%@ (%@)", result.recipe.source!, result.recipe.cuisineType.first!!)
         }
         recipeImageView.image = UIImage(systemName: "square")
+        recipeImageView.layer.borderWidth = 2
+        recipeImageView.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).cgColor
+        recipeImageView.layer.cornerRadius = 5.0
         if let previewURL = URL(string: result.recipe.image!) {
           downloadTask = recipeImageView.loadImage(url: previewURL)
         }

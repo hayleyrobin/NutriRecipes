@@ -45,13 +45,13 @@ class BounceAnimationController: NSObject, UIViewControllerAnimatedTransitioning
           }
           UIView.addKeyframe(
             withRelativeStartTime: 0.334,
-            relativeDuration: 0.333) {
+            relativeDuration: 0.2) {
               toView.transform = CGAffineTransform(
                 scaleX: 0.9, y: 0.9)
           }
           UIView.addKeyframe(
             withRelativeStartTime: 0.666,
-            relativeDuration: 0.333) {
+            relativeDuration: 0.2) {
               toView.transform = CGAffineTransform(
                 // restores the view to an undistorted shape.
                 scaleX: 1.0, y: 1.0)

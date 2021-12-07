@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		610C1274275F45D600C9C948 /* BounceAnimationControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610C1273275F45D500C9C948 /* BounceAnimationControler.swift */; };
+		610C1276275F4FA400C9C948 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610C1275275F4FA400C9C948 /* Favorites.swift */; };
 		614F6AAB275436DA00FEA336 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 614F6AAA275436DA00FEA336 /* LoadingCell.xib */; };
 		614F6AAD2755978500FEA336 /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614F6AAC2755978500FEA336 /* UIImageView+DownloadImage.swift */; };
 		614F6AB22755D34200FEA336 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614F6AB12755D34200FEA336 /* RecipeDetailViewController.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		610C1273275F45D500C9C948 /* BounceAnimationControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceAnimationControler.swift; sourceTree = "<group>"; };
+		610C1275275F4FA400C9C948 /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		614F6AAA275436DA00FEA336 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		614F6AAC2755978500FEA336 /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 		614F6AB12755D34200FEA336 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			children = (
 				61AE7D3A275BF40C00B1C32A /* FavoriteRecipesViewController.swift */,
 				61AE7D3C275BFC6500B1C32A /* FavoriteRecipeViewCell.swift */,
+				610C1275275F4FA400C9C948 /* Favorites.swift */,
 			);
 			path = "Favorite Recipes Screen";
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				61AE7D48275DF06200B1C32A /* NutrientsViewController.swift in Sources */,
 				614F6AB42756DBF900FEA336 /* TrendingRecipes.swift in Sources */,
 				610C1274275F45D600C9C948 /* BounceAnimationControler.swift in Sources */,
+				610C1276275F4FA400C9C948 /* Favorites.swift in Sources */,
 				61AE7D3D275BFC6500B1C32A /* FavoriteRecipeViewCell.swift in Sources */,
 				61B3D4082749E28700E54FA6 /* RecommendationsResult.swift in Sources */,
 			);
