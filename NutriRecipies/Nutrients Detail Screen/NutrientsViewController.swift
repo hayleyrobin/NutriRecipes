@@ -93,6 +93,11 @@ class NutrientsViewController: UIViewController {
             updateUI()
         }
     }
+    required init?(coder aDecoder: NSCoder) {
+      super.init(coder: aDecoder)
+      transitioningDelegate = self
+    }
+
     // MARK: - Helper Methods
     
     func updateUI() {
@@ -353,4 +358,13 @@ class NutrientsViewController: UIViewController {
     }
     */
 
+}
+extension NutrientsViewController: UIViewControllerTransitioningDelegate {
+  func animationController(
+    forPresented presented: UIViewController,
+    presenting: UIViewController,
+    source: UIViewController
+  ) -> UIViewControllerAnimatedTransitioning? {
+    return BounceAnimationController()
+  }
 }
