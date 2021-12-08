@@ -1,16 +1,18 @@
 
 import UIKit
 
-class RecommendationsViewController: UIViewController{
+class RecommendationsViewController: UIViewController, UINavigationControllerDelegate{
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
   
     var searchResults = [RecommendationsResult]() //  array for data
     var trendingResults = [TrendingResults]()
+    var searchResultText = ""
     var hasSearched = false
     var isLoading = false
     var favoriteItems = [FavoriteRecipe]()
     var dataTask: URLSessionDataTask?
+    
     
     struct TableView {
       struct CellIdentifiers {
@@ -25,6 +27,16 @@ class RecommendationsViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadChecklistItems()
+//        registerDefaults()
+//        if searchResultText != ""{
+//            searchBar.searchTextField.text = searchResultText
+////            searchController.isActive = true
+////            self.searchController.searchBar.text = searchResultText
+//            tableView.reloadData()
+//        }
+        
         navigationController?.navigationBar.prefersLargeTitles = true
 
         searchBar.becomeFirstResponder() // dismiss keyboard
@@ -51,21 +63,135 @@ class RecommendationsViewController: UIViewController{
         }
 
     }
+    func documentsDirectory() -> URL {
+      let paths = FileManager.default.urls(
+        for: .documentDirectory,
+        in: .userDomainMask)
+      return paths[0]
+    }
+
+    func dataFilePath() -> URL {
+      return documentsDirectory().appendingPathComponent("NutriRecipes.plist")
+    }
+    func saveSearchItems() {
+      let encoder = PropertyListEncoder()
+      do {
+        let data = try encoder.encode(searchResults)
+        try data.write(
+          to: dataFilePath(),
+          options: Data.WritingOptions.atomic)
+      } catch {
+        print("Error encoding item array: \(error.localizedDescription)")
+      }
+    }
+    func loadChecklistItems() {
+      let path = dataFilePath()
+      if let data = try? Data(contentsOf: path) {
+        let decoder = PropertyListDecoder()
+        do {
+            searchResultText = try decoder.decode(
+                String.self,
+            from: data)
+        } catch {
+          print("Error decoding item array: \(error.localizedDescription)")
+        }
+      }
+    }
+
+    /*
+        func registerDefaults() {
+          let dictionary = [ "RecipeIndex": -1 ]
+            UserDefaults.standard.register(defaults: dictionary)
+        }
+        
+        var indexOfSelectedChecklist: Int {
+          get {
+            return UserDefaults.standard.integer(
+              forKey: "RecipeIndex")
+          }
+          set {
+            UserDefaults.standard.set(
+              newValue,
+              forKey: "RecipeIndex")
+          }
+        }
+
+     //    gets called after user presses back button
+        override func viewDidAppear(_ animated: Bool) {
+          super.viewDidAppear(animated)
+
+          navigationController?.delegate = self
+
+          let index = indexOfSelectedChecklist
+            if index != -1{
+            if hasSearched{
+//                let recipe = searchResults[index]
+                let indexPath = IndexPath(row: index, section: 0)
+                let cell = tableView.cellForRow(at: indexPath)
+                performSegue(
+                  withIdentifier: "recipeSegue",
+                  sender: cell)
+            }
+            else{
+//                let recipe = trendingResults[index]
+                let indexPath = IndexPath(row: index, section: 0)
+                let cell = tableView.cellForRow(at: indexPath)
+                self.performSegue(
+                  withIdentifier: "recipeSegue",
+                    sender: cell)
+            }
+
+          }
+        }
+
+
+
+       //  MARK: - Navigation Controller Delegates
+        
+        // called whenever the navigation controller shows a new screen.
+        func navigationController(
+          _ navigationController: UINavigationController,
+          willShow viewController: UIViewController,
+          animated: Bool
+        ) {
+          // Was the back button tapped?
+          if viewController === self {
+            indexOfSelectedChecklist = -1  // no recipe is currently selected.
+          }
+        }
+    
+*/
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      if segue.identifier == "recipeSegue" {
        let recipeViewController = segue.destination as! RecipeDetailViewController
-        let cell = sender as! UITableViewCell
-        let indexPath = tableView.indexPath(for: cell)
-        if hasSearched{
-            let searchResult = searchResults[indexPath!.row]
-            recipeViewController.searchResult = searchResult
+
+        guard let selectedRow = self.tableView.indexPathForSelectedRow else{
+            return
         }
-        else{
-            let trendingResult = trendingResults[indexPath!.row]
-            recipeViewController.trendingResult = trendingResult
+        if let cell = self.tableView.cellForRow(at: selectedRow) {
+            let indexPath = tableView.indexPath(for: cell)
+            if hasSearched{
+                let searchResult = searchResults[indexPath!.row]
+                recipeViewController.searchResult = searchResult
+            }
+            else{
+                let trendingResult = trendingResults[indexPath!.row]
+                recipeViewController.trendingResult = trendingResult
+            }
         }
+//      Other method using UITableViewCell
+//        let cell = sender as! UITableViewCell
+//        let indexPath = tableView.indexPath(for: cell)
+//        if hasSearched{
+//            let searchResult = searchResults[indexPath!.row]
+//            recipeViewController.searchResult = searchResult
+//        }
+//        else{
+//            let trendingResult = trendingResults[indexPath!.row]
+//            recipeViewController.trendingResult = trendingResult
+//        }
      }
     }
 
@@ -124,6 +250,9 @@ class RecommendationsViewController: UIViewController{
 }
 // MARK:- Search Bar Delegate
 extension RecommendationsViewController: UISearchBarDelegate{
+
+    
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
     {
         if !searchBar.text!.isEmpty
@@ -181,12 +310,17 @@ extension RecommendationsViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             DispatchQueue.main.async {
+                self.saveSearchItems()
                 self.hasSearched = false
                 self.isLoading = false
                 self.tableView.reloadData()
                 self.viewDidLoad()
             }
         }
+    }
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchResultText = searchBar.text!
+        self.saveSearchItems()
     }
     // extend search bar to status area
     func position(for bar: UIBarPositioning) -> UIBarPosition{
@@ -253,11 +387,15 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
       _ tableView: UITableView,
       didSelectRowAt indexPath: IndexPath
     ) {
+        // user defaults
+//        indexOfSelectedChecklist = indexPath.row
         let cell = tableView.cellForRow(at: indexPath)
-        // deselect row with animation
-        tableView.deselectRow(at: indexPath, animated: true)
+
+         
         
         performSegue(withIdentifier: "recipeSegue", sender: cell)
+        // deselect row with animation
+        tableView.deselectRow(at: indexPath, animated: true)
     }
       // only select rows when actual search results
     func tableView(
@@ -274,7 +412,7 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, titleForHeaderInSection
                                 section: Int) -> String? {
         if hasSearched{
-            return "Search Result Recipes"
+            return "\(searchResultText) Recipes"
         }
         return "Trending Recipes"
     }
