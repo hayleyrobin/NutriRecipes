@@ -38,16 +38,8 @@ class RecommendationsViewController: UIViewController, RestrictionsControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        loadChecklistItems()
 //        registerDefaults()
-//        if searchResultText != ""{
-//            searchBar.searchTextField.text = searchResultText
-////            searchController.isActive = true
-////            self.searchController.searchBar.text = searchResultText
-//            tableView.reloadData()
-//        }
-        
+
         navigationController?.navigationBar.prefersLargeTitles = true
 
         searchBar.becomeFirstResponder() // dismiss keyboard
@@ -74,40 +66,6 @@ class RecommendationsViewController: UIViewController, RestrictionsControllerDel
         }
 
     }
-//    func documentsDirectory() -> URL {
-//      let paths = FileManager.default.urls(
-//        for: .documentDirectory,
-//        in: .userDomainMask)
-//      return paths[0]
-//    }
-//
-//    func dataFilePath() -> URL {
-//      return documentsDirectory().appendingPathComponent("NutriRecipes.plist")
-//    }
-//    func saveSearchItems() {
-//      let encoder = PropertyListEncoder()
-//      do {
-//        let data = try encoder.encode(searchResults)
-//        try data.write(
-//          to: dataFilePath(),
-//          options: Data.WritingOptions.atomic)
-//      } catch {
-//        print("Error encoding item array: \(error.localizedDescription)")
-//      }
-//    }
-//    func loadChecklistItems() {
-//      let path = dataFilePath()
-//      if let data = try? Data(contentsOf: path) {
-//        let decoder = PropertyListDecoder()
-//        do {
-//            searchResultText = try decoder.decode(
-//                String.self,
-//            from: data)
-//        } catch {
-//          print("Error decoding item array: \(error.localizedDescription)")
-//        }
-//      }
-//    }
 
     /*
         func registerDefaults() {
@@ -194,16 +152,16 @@ class RecommendationsViewController: UIViewController, RestrictionsControllerDel
               }
           }
   //      Other method using UITableViewCell
-  //        let cell = sender as! UITableViewCell
-  //        let indexPath = tableView.indexPath(for: cell)
-  //        if hasSearched{
-  //            let searchResult = searchResults[indexPath!.row]
-  //            recipeViewController.searchResult = searchResult
-  //        }
-  //        else{
-  //            let trendingResult = trendingResults[indexPath!.row]
-  //            recipeViewController.trendingResult = trendingResult
-  //        }
+         /* let cell = sender as! UITableViewCell
+          let indexPath = tableView.indexPath(for: cell)
+          if hasSearched{
+              let searchResult = searchResults[indexPath!.row]
+              recipeViewController.searchResult = searchResult
+          }
+          else{
+              let trendingResult = trendingResults[indexPath!.row]
+              recipeViewController.trendingResult = trendingResult
+          }*/
        }
        else if(segue.identifier == "restrictionsSegue") {
           let nav = segue.destination as! UINavigationController
@@ -241,7 +199,6 @@ class RecommendationsViewController: UIViewController, RestrictionsControllerDel
             let url = URL(string: urlString)
             return url!
         }
-        
     }
     
     // returns string object with the data received from the server from URL
@@ -285,9 +242,6 @@ class RecommendationsViewController: UIViewController, RestrictionsControllerDel
 }
 // MARK:- Search Bar Delegate
 extension RecommendationsViewController: UISearchBarDelegate{
-
-    
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
     {
         if !searchBar.text!.isEmpty
@@ -345,7 +299,6 @@ extension RecommendationsViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             DispatchQueue.main.async {
-//                self.saveSearchItems()
                 self.hasSearched = false
                 self.isLoading = false
                 self.tableView.reloadData()
@@ -355,7 +308,6 @@ extension RecommendationsViewController: UISearchBarDelegate{
     }
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchResultText = searchBar.text!
-//        self.saveSearchItems()
     }
     // extend search bar to status area
     func position(for bar: UIBarPositioning) -> UIBarPosition{
@@ -366,7 +318,6 @@ extension RecommendationsViewController: UISearchBarDelegate{
 // MARK:- Table View Delegate
 
 // handles all the table view related delegate methods.
-
 extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -426,8 +377,6 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
 //        indexOfSelectedChecklist = indexPath.row
         let cell = tableView.cellForRow(at: indexPath)
 
-         
-        
         performSegue(withIdentifier: "recipeSegue", sender: cell)
         // deselect row with animation
         tableView.deselectRow(at: indexPath, animated: true)
@@ -451,5 +400,4 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
         }
         return "Trending Recipes"
     }
-    
 }
