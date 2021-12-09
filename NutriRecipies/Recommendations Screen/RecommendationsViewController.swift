@@ -178,17 +178,28 @@ class RecommendationsViewController: UIViewController, RestrictionsControllerDel
         let encodedText = searchText.addingPercentEncoding(
             withAllowedCharacters: CharacterSet.urlQueryAllowed)!
 
-        var restriction = ""
+        var restriction = [String]()
         for i in restrictions{
             if i.checked{
-                restriction = i.text.lowercased()
-                break
+                restriction.append(i.text.lowercased())
 //                "&health=\(restriction)"
             }
         }
-        if restriction != "" {
-            let urlString = String(
-            format: "https://api.edamam.com/api/recipes/v2?type=public&q=%@&app_id=6c3d1b83&app_key=76150e06464b0459d3ddb0985514e64a&health=\(restriction)", encodedText)
+        if !restriction.isEmpty {
+            var urlString = String(
+            format: "https://api.edamam.com/api/recipes/v2?type=public&q=%@&app_id=6c3d1b83&app_key=76150e06464b0459d3ddb0985514e64a", encodedText)
+            var label = ""
+            
+            for i in restriction{
+                label = i
+                if i == restriction.first{
+                    urlString += "&health=\(label)"
+                }
+                else{
+                    urlString += "&\(label)"
+                }
+                
+            }
             let url = URL(string: urlString)
             print(url!)
             return url!
