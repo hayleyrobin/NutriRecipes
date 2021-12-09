@@ -28,7 +28,7 @@ struct RecommendationsResult: Codable {
         var source: String?
         var image: String?
         var url: String?
-        var yield: Int?
+        var yield: Double?
         var dietLabels = [String?]()
         var healthLabels = [String?]()
         var ingredientLines = [String?]()
