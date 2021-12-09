@@ -1,7 +1,17 @@
 
 import UIKit
 
-class RecommendationsViewController: UIViewController, UINavigationControllerDelegate{
+class RecommendationsViewController: UIViewController, RestrictionsControllerDelegate, UINavigationControllerDelegate{
+    func restrictionsController(_ controller: RestrictionsTableViewController, didFinishAdding item: [ChecklistItem]) {
+        restrictions = item
+//        saveSearchItems()
+        self.dismiss(animated: false, completion: nil)
+
+    }
+    func restrictionsControllerDidCancel(_ controller: RestrictionsTableViewController) {
+        self.dismiss(animated: false, completion: nil)
+    }
+
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
   
@@ -10,6 +20,7 @@ class RecommendationsViewController: UIViewController, UINavigationControllerDel
     var searchResultText = ""
     var hasSearched = false
     var isLoading = false
+    var restrictions = [ChecklistItem]()
     var favoriteItems = [FavoriteRecipe]()
     var dataTask: URLSessionDataTask?
     
@@ -162,51 +173,75 @@ class RecommendationsViewController: UIViewController, UINavigationControllerDel
     
 */
 
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     if segue.identifier == "recipeSegue" {
-       let recipeViewController = segue.destination as! RecipeDetailViewController
+    // MARK:- Navigation
+      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if(segue.identifier == "recipeSegue") {
+         let recipeViewController = segue.destination as! RecipeDetailViewController
 
-        guard let selectedRow = self.tableView.indexPathForSelectedRow else{
-            return
-        }
-        if let cell = self.tableView.cellForRow(at: selectedRow) {
-            let indexPath = tableView.indexPath(for: cell)
-            if hasSearched{
-                let searchResult = searchResults[indexPath!.row]
-                recipeViewController.searchResult = searchResult
-            }
-            else{
-                let trendingResult = trendingResults[indexPath!.row]
-                recipeViewController.trendingResult = trendingResult
-            }
-        }
-//      Other method using UITableViewCell
-//        let cell = sender as! UITableViewCell
-//        let indexPath = tableView.indexPath(for: cell)
-//        if hasSearched{
-//            let searchResult = searchResults[indexPath!.row]
-//            recipeViewController.searchResult = searchResult
-//        }
-//        else{
-//            let trendingResult = trendingResults[indexPath!.row]
-//            recipeViewController.trendingResult = trendingResult
-//        }
-     }
-    }
+          guard let selectedRow = self.tableView.indexPathForSelectedRow
+          else{
+              return
+          }
+          if let cell = self.tableView.cellForRow(at: selectedRow) {
+              let indexPath = tableView.indexPath(for: cell)
+              if hasSearched{
+                  let searchResult = searchResults[indexPath!.row]
+                  recipeViewController.searchResult = searchResult
+              }
+              else{
+                  let trendingResult = trendingResults[indexPath!.row]
+                  recipeViewController.trendingResult = trendingResult
+              }
+          }
+  //      Other method using UITableViewCell
+  //        let cell = sender as! UITableViewCell
+  //        let indexPath = tableView.indexPath(for: cell)
+  //        if hasSearched{
+  //            let searchResult = searchResults[indexPath!.row]
+  //            recipeViewController.searchResult = searchResult
+  //        }
+  //        else{
+  //            let trendingResult = trendingResults[indexPath!.row]
+  //            recipeViewController.trendingResult = trendingResult
+  //        }
+       }
+       else if(segue.identifier == "restrictionsSegue") {
+          let nav = segue.destination as! UINavigationController
+          let destination = nav.topViewController as! RestrictionsTableViewController
+          destination.delegate = self
+       }
+      }
 
-    // MARK: - Helper Methods
+    // MARK:- Helper Methods
     
     // URL object for API string
-    func recipeURL(searchText: String) -> URL {
+    func recipeURL(searchText: String) -> URL{
         // all the special characters(#,*,space) are escaped
         let encodedText = searchText.addingPercentEncoding(
             withAllowedCharacters: CharacterSet.urlQueryAllowed)!
 
-        let urlString = String(
-        format: "https://api.edamam.com/api/recipes/v2?type=public&q=%@&app_id=6c3d1b83&app_key=76150e06464b0459d3ddb0985514e64a", encodedText)
-        let url = URL(string: urlString)
-        return url!
+        var restriction = ""
+        for i in restrictions{
+            if i.checked{
+                restriction = i.text.lowercased()
+                break
+//                "&health=\(restriction)"
+            }
+        }
+        if restriction != "" {
+            let urlString = String(
+            format: "https://api.edamam.com/api/recipes/v2?type=public&q=%@&app_id=6c3d1b83&app_key=76150e06464b0459d3ddb0985514e64a&health=\(restriction)", encodedText)
+            let url = URL(string: urlString)
+            print(url!)
+            return url!
+        }
+        else{
+            let urlString = String(
+            format: "https://api.edamam.com/api/recipes/v2?type=public&q=%@&app_id=6c3d1b83&app_key=76150e06464b0459d3ddb0985514e64a", encodedText)
+            let url = URL(string: urlString)
+            return url!
+        }
+        
     }
     
     // returns string object with the data received from the server from URL
@@ -237,7 +272,7 @@ class RecommendationsViewController: UIViewController, UINavigationControllerDel
     func showNetworkError() {
       let alert = UIAlertController(
         title: "Whoops...",
-        message: "There was an error accessing the iTunes Store." +
+        message: "There was an error accessing the recipes." +
         " Please try again.",
         preferredStyle: .alert)
       
