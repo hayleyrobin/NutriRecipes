@@ -39,7 +39,7 @@ class RecommendationsViewController: UIViewController, RestrictionsControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadChecklistItems()
+//        loadChecklistItems()
 //        registerDefaults()
 //        if searchResultText != ""{
 //            searchBar.searchTextField.text = searchResultText
@@ -74,40 +74,40 @@ class RecommendationsViewController: UIViewController, RestrictionsControllerDel
         }
 
     }
-    func documentsDirectory() -> URL {
-      let paths = FileManager.default.urls(
-        for: .documentDirectory,
-        in: .userDomainMask)
-      return paths[0]
-    }
-
-    func dataFilePath() -> URL {
-      return documentsDirectory().appendingPathComponent("NutriRecipes.plist")
-    }
-    func saveSearchItems() {
-      let encoder = PropertyListEncoder()
-      do {
-        let data = try encoder.encode(searchResults)
-        try data.write(
-          to: dataFilePath(),
-          options: Data.WritingOptions.atomic)
-      } catch {
-        print("Error encoding item array: \(error.localizedDescription)")
-      }
-    }
-    func loadChecklistItems() {
-      let path = dataFilePath()
-      if let data = try? Data(contentsOf: path) {
-        let decoder = PropertyListDecoder()
-        do {
-            searchResultText = try decoder.decode(
-                String.self,
-            from: data)
-        } catch {
-          print("Error decoding item array: \(error.localizedDescription)")
-        }
-      }
-    }
+//    func documentsDirectory() -> URL {
+//      let paths = FileManager.default.urls(
+//        for: .documentDirectory,
+//        in: .userDomainMask)
+//      return paths[0]
+//    }
+//
+//    func dataFilePath() -> URL {
+//      return documentsDirectory().appendingPathComponent("NutriRecipes.plist")
+//    }
+//    func saveSearchItems() {
+//      let encoder = PropertyListEncoder()
+//      do {
+//        let data = try encoder.encode(searchResults)
+//        try data.write(
+//          to: dataFilePath(),
+//          options: Data.WritingOptions.atomic)
+//      } catch {
+//        print("Error encoding item array: \(error.localizedDescription)")
+//      }
+//    }
+//    func loadChecklistItems() {
+//      let path = dataFilePath()
+//      if let data = try? Data(contentsOf: path) {
+//        let decoder = PropertyListDecoder()
+//        do {
+//            searchResultText = try decoder.decode(
+//                String.self,
+//            from: data)
+//        } catch {
+//          print("Error decoding item array: \(error.localizedDescription)")
+//        }
+//      }
+//    }
 
     /*
         func registerDefaults() {
@@ -345,7 +345,7 @@ extension RecommendationsViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             DispatchQueue.main.async {
-                self.saveSearchItems()
+//                self.saveSearchItems()
                 self.hasSearched = false
                 self.isLoading = false
                 self.tableView.reloadData()
@@ -355,7 +355,7 @@ extension RecommendationsViewController: UISearchBarDelegate{
     }
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchResultText = searchBar.text!
-        self.saveSearchItems()
+//        self.saveSearchItems()
     }
     // extend search bar to status area
     func position(for bar: UIBarPositioning) -> UIBarPosition{
