@@ -56,7 +56,15 @@
                             <constraint firstAttribute="bottom" secondItem="BMU-ic-ZcO" secondAttribute="bottom" id="u8h-H0-r84"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="NutriRecipes" id="Oy0-d8-tQN"/>
+                    <navigationItem key="navigationItem" title="NutriRecipes" id="Oy0-d8-tQN">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="LR0-IG-ecM">
+                            <color key="tintColor" name="RecipeName"/>
+                            <connections>
+                                <action selector="restrictionsButton" destination="BYZ-38-t0r" id="eVF-xO-a4i"/>
+                                <segue destination="Wkl-I4-9tw" kind="show" identifier="restrictionsSegue" id="6Oz-U0-Em8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="4cl-t4-yVJ" id="lJn-KT-2yR"/>
                         <outlet property="tableView" destination="BMU-ic-ZcO" id="ZTm-fx-iIz"/>
@@ -213,6 +221,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQD-QU-Vmq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4328" y="13"/>
+        </scene>
+        <!--Restrictions-->
+        <scene sceneID="69X-b1-UGU">
+            <objects>
+                <tableViewController id="r3N-Jm-7NB" customClass="RestrictionsTableViewController" customModule="NutriRecipies" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="zp8-r2-Hvx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="RestrictionsCell" rowHeight="64" id="iZc-Qu-GZt" customClass="RestrictionsTableViewCell" customModule="NutriRecipies" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iZc-Qu-GZt" id="axz-E6-Ygk">
+                                    <rect key="frame" x="0.0" y="0.0" width="373.5" height="64"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fat-free" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6YN-oU-J8Y">
+                                            <rect key="frame" x="20" y="21" width="347" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="347" id="VcO-0r-QJf"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="6YN-oU-J8Y" firstAttribute="centerY" secondItem="axz-E6-Ygk" secondAttribute="centerY" id="TIc-yA-0yb"/>
+                                        <constraint firstItem="6YN-oU-J8Y" firstAttribute="top" secondItem="axz-E6-Ygk" secondAttribute="topMargin" constant="10" id="blY-Re-V62"/>
+                                        <constraint firstItem="6YN-oU-J8Y" firstAttribute="leading" secondItem="axz-E6-Ygk" secondAttribute="leading" constant="20" id="f1X-X2-uSW"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="restrictionsLabel" destination="6YN-oU-J8Y" id="2EL-l1-VkR"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="r3N-Jm-7NB" id="H3f-yU-Ryo"/>
+                            <outlet property="delegate" destination="r3N-Jm-7NB" id="sBW-mb-Rj6"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Restrictions" id="sgK-Vd-iqF">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="zTs-DX-Zzu">
+                            <connections>
+                                <action selector="cancelButton" destination="r3N-Jm-7NB" id="0Tp-47-ZmW"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="JtZ-Jf-2Xd">
+                            <connections>
+                                <action selector="doneButton" destination="r3N-Jm-7NB" id="XYo-ls-eqk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mX6-12-Jxd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3976.811594202899" y="721.875"/>
         </scene>
         <!--Recipe Detail View Controller-->
         <scene sceneID="Gqz-WL-cM5">
@@ -487,7 +554,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AX-ui-Juf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3973.913043478261" y="738.61607142857144"/>
+            <point key="canvasLocation" x="4884.057971014493" y="738.61607142857144"/>
         </scene>
         <!--Nutrients View Controller-->
         <scene sceneID="Jm0-w5-nYK">
@@ -862,7 +929,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nz2-x2-Fpw">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="liq-EJ-cQ1">
                                         <rect key="frame" x="0.0" y="66" width="32" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
@@ -973,7 +1040,7 @@
                         <outlet property="phosphorousGramsLabel" destination="GOt-ZX-zx2" id="EjA-OS-58p"/>
                         <outlet property="phosphorousPercentLabel" destination="R8M-mF-1N3" id="aQ3-SS-C58"/>
                         <outlet property="polySatGramsLabel" destination="J4x-gv-maw" id="JQa-uV-0C5"/>
-                        <outlet property="polySatPercentLabel" destination="Nz2-x2-Fpw" id="JMt-IU-a5f"/>
+                        <outlet property="polySatPercentLabel" destination="liq-EJ-cQ1" id="wdX-lt-9zI"/>
                         <outlet property="potassiumGramsLabel" destination="ILe-pi-Dbj" id="sCW-ki-8gV"/>
                         <outlet property="potassiumPercentLabel" destination="O6R-cE-NYz" id="abg-74-RZ6"/>
                         <outlet property="proteinGramsLabel" destination="sr6-v2-4FV" id="6n2-a5-fp9"/>
@@ -1005,7 +1072,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MMh-Np-y7I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4789.8550724637689" y="721.875"/>
+            <point key="canvasLocation" x="5700" y="721.875"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="IjZ-4H-Pr4">
@@ -1062,6 +1129,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d5R-vT-X5n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4328" y="-666"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iWO-mW-DdP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wkl-I4-9tw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="OlP-Yq-tDI"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9JJ-TE-kGU">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="r3N-Jm-7NB" kind="relationship" relationship="rootViewController" id="yya-qt-EtT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="miz-1u-WzM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3066.666666666667" y="721.875"/>
         </scene>
     </scenes>
     <color key="tintColor" name="AccentColor"/>

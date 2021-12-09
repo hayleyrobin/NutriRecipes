@@ -15,6 +15,9 @@
 		614F6AB42756DBF900FEA336 /* TrendingRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614F6AB32756DBF900FEA336 /* TrendingRecipes.swift */; };
 		614F6AC3275815C800FEA336 /* RecipeHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614F6AC1275815C800FEA336 /* RecipeHeaderCell.swift */; };
 		614F6AC627587B8100FEA336 /* IngredientsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614F6AC527587B8100FEA336 /* IngredientsViewCell.swift */; };
+		619772BD2761BC0400E9C529 /* RestrictionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619772BC2761BC0300E9C529 /* RestrictionsTableViewController.swift */; };
+		619772BF2761C26700E9C529 /* RestrictionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619772BE2761C26700E9C529 /* RestrictionsTableViewCell.swift */; };
+		619772C12761D6AF00E9C529 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619772C02761D6AE00E9C529 /* ChecklistItem.swift */; };
 		61AE7D3B275BF40C00B1C32A /* FavoriteRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AE7D3A275BF40C00B1C32A /* FavoriteRecipesViewController.swift */; };
 		61AE7D3D275BFC6500B1C32A /* FavoriteRecipeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AE7D3C275BFC6500B1C32A /* FavoriteRecipeViewCell.swift */; };
 		61AE7D41275DC65B00B1C32A /* DirectionsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AE7D40275DC65B00B1C32A /* DirectionsViewCell.swift */; };
@@ -41,6 +44,9 @@
 		614F6AB32756DBF900FEA336 /* TrendingRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRecipes.swift; sourceTree = "<group>"; };
 		614F6AC1275815C800FEA336 /* RecipeHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeHeaderCell.swift; sourceTree = "<group>"; };
 		614F6AC527587B8100FEA336 /* IngredientsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsViewCell.swift; sourceTree = "<group>"; };
+		619772BC2761BC0300E9C529 /* RestrictionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestrictionsTableViewController.swift; sourceTree = "<group>"; };
+		619772BE2761C26700E9C529 /* RestrictionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestrictionsTableViewCell.swift; sourceTree = "<group>"; };
+		619772C02761D6AE00E9C529 /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		61AE7D3A275BF40C00B1C32A /* FavoriteRecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipesViewController.swift; sourceTree = "<group>"; };
 		61AE7D3C275BFC6500B1C32A /* FavoriteRecipeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeViewCell.swift; sourceTree = "<group>"; };
 		61AE7D40275DC65B00B1C32A /* DirectionsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsViewCell.swift; sourceTree = "<group>"; };
@@ -83,6 +89,16 @@
 				61CECFCC2739B40E006E804E /* RecommendationsViewController.swift */,
 			);
 			path = "Recommendations Screen";
+			sourceTree = "<group>";
+		};
+		619772BB2761BBD100E9C529 /* Restrictions Screen */ = {
+			isa = PBXGroup;
+			children = (
+				619772BC2761BC0300E9C529 /* RestrictionsTableViewController.swift */,
+				619772BE2761C26700E9C529 /* RestrictionsTableViewCell.swift */,
+				619772C02761D6AE00E9C529 /* ChecklistItem.swift */,
+			);
+			path = "Restrictions Screen";
 			sourceTree = "<group>";
 		};
 		61AE7D32275BE53800B1C32A /* Recipe Detail Screen */ = {
@@ -145,6 +161,7 @@
 				61AE7D32275BE53800B1C32A /* Recipe Detail Screen */,
 				614F6AAE27559EF900FEA336 /* Recommendations Screen */,
 				61AE7D46275DF02500B1C32A /* Nutrients Detail Screen */,
+				619772BB2761BBD100E9C529 /* Restrictions Screen */,
 				614F6AAC2755978500FEA336 /* UIImageView+DownloadImage.swift */,
 			);
 			path = NutriRecipies;
@@ -231,13 +248,16 @@
 				61AE7D45275DCF6700B1C32A /* NutritionViewCell.swift in Sources */,
 				61AE7D41275DC65B00B1C32A /* DirectionsViewCell.swift in Sources */,
 				61B3D40C2749EA9000E54FA6 /* RecommendationsResultCell.swift in Sources */,
+				619772BD2761BC0400E9C529 /* RestrictionsTableViewController.swift in Sources */,
 				614F6AC627587B8100FEA336 /* IngredientsViewCell.swift in Sources */,
 				614F6AC3275815C800FEA336 /* RecipeHeaderCell.swift in Sources */,
+				619772C12761D6AF00E9C529 /* ChecklistItem.swift in Sources */,
 				61CECFCB2739B40E006E804E /* SceneDelegate.swift in Sources */,
 				61AE7D48275DF06200B1C32A /* NutrientsViewController.swift in Sources */,
 				614F6AB42756DBF900FEA336 /* TrendingRecipes.swift in Sources */,
 				610C1274275F45D600C9C948 /* BounceAnimationControler.swift in Sources */,
 				610C1276275F4FA400C9C948 /* Favorites.swift in Sources */,
+				619772BF2761C26700E9C529 /* RestrictionsTableViewCell.swift in Sources */,
 				61AE7D3D275BFC6500B1C32A /* FavoriteRecipeViewCell.swift in Sources */,
 				61B3D4082749E28700E54FA6 /* RecommendationsResult.swift in Sources */,
 			);
