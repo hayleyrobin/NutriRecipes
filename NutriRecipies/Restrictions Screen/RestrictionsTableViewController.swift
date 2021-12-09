@@ -21,17 +21,12 @@ class RestrictionsTableViewController: UITableViewController {
     var delegate: RestrictionsControllerDelegate?
 
     @IBAction func cancelButton() {
-
         delegate?.restrictionsControllerDidCancel(self)
-        print("yer")
     }
     @IBAction func doneButton() {
 
         let itemArray = items
         delegate?.restrictionsController(self, didFinishAdding: itemArray)
-        print("no")
-        print(itemArray)
-
     }
 
     var items = [ChecklistItem]()
@@ -58,7 +53,6 @@ class RestrictionsTableViewController: UITableViewController {
             items.append(rLabels)
         }
         loadChecklistItems()
-
     }
     func configureCheckmark(
       for cell: UITableViewCell,
@@ -121,7 +115,6 @@ class RestrictionsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RestrictionsCell", for: indexPath) as! RestrictionsTableViewCell
@@ -129,7 +122,6 @@ class RestrictionsTableViewController: UITableViewController {
         configureText(for: cell, with: item)
         configureCheckmark(for: cell, with: item)
         
-
         return cell
     }
 
@@ -143,7 +135,7 @@ class RestrictionsTableViewController: UITableViewController {
           item.checked.toggle()
           configureCheckmark(for: cell, with: item)
         }
-      tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         saveChecklistItems()
     }
 

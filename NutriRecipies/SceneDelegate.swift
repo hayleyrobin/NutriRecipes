@@ -12,13 +12,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
     // MARK: - Helper Methods
-//    func saveData() {
-//        let tab = window!.rootViewController as! UITabBarController
-//        let nav = tab.viewControllers![0] as! UINavigationController
-//        let controller = nav.viewControllers[0] as! RecommendationsViewController
+    func saveData() {
+        let tab = window!.rootViewController as! UITabBarController
+        let nav = tab.viewControllers![0] as! UINavigationController
+        let controller = nav.viewControllers[0] as! RestrictionsTableViewController
+        print(controller)
+//        let cont = controller.viewc
 //            controller.saveSearchItems()
-//
-//    }
+
+    }
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -33,7 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
-//        saveData()
+        saveData()
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -55,7 +57,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
-//        saveData()
+        saveData()
     }
 
 

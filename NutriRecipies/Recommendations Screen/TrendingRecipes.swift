@@ -18,11 +18,8 @@ struct TrendingResults: Codable {
     var recipe: Recipe
    // let _links: [String: [String: String]]?
     
-    struct Recipe: Codable, CustomStringConvertible
+    struct Recipe: Codable
     {
-        var description: String {
-            return "\nResult - Name: \(label ?? "None"), Description: \(source ?? "None")"
-        }
         var label: String?
         var source: String?
         var image: String?

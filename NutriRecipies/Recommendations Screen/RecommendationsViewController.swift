@@ -64,7 +64,6 @@ class RecommendationsViewController: UIViewController, RestrictionsControllerDel
         if !hasSearched {
             trendingResults = TrendingRecipes.trendingRecipies()
         }
-
     }
 
     /*
@@ -182,7 +181,6 @@ class RecommendationsViewController: UIViewController, RestrictionsControllerDel
         for i in restrictions{
             if i.checked{
                 restriction.append(i.text.lowercased())
-//                "&health=\(restriction)"
             }
         }
         if !restriction.isEmpty {
@@ -198,7 +196,6 @@ class RecommendationsViewController: UIViewController, RestrictionsControllerDel
                 else{
                     urlString += "&\(label)"
                 }
-                
             }
             let url = URL(string: urlString)
             print(url!)
