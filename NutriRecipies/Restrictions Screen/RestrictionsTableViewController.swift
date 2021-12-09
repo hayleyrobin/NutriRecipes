@@ -57,6 +57,7 @@ class RestrictionsTableViewController: UITableViewController {
             rLabels.text = i
             items.append(rLabels)
         }
+        loadChecklistItems()
 
     }
     func configureCheckmark(
@@ -76,40 +77,40 @@ class RestrictionsTableViewController: UITableViewController {
         let label = cell.viewWithTag(100) as! UILabel
         label.text = item.text
     }
-//    func documentsDirectory() -> URL {
-//      let paths = FileManager.default.urls(
-//        for: .documentDirectory,
-//        in: .userDomainMask)
-//      return paths[0]
-//    }
-//
-//    func dataFilePath() -> URL {
-//      return documentsDirectory().appendingPathComponent("NutriRecipes.plist")
-//    }
-//    func saveChecklistItems() {
-//      let encoder = PropertyListEncoder()
-//      do {
-//        let data = try encoder.encode(items)
-//        try data.write(
-//          to: dataFilePath(),
-//          options: Data.WritingOptions.atomic)
-//      } catch {
-//        print("Error encoding item array: \(error.localizedDescription)")
-//      }
-//    }
-//    func loadChecklistItems() {
-//      let path = dataFilePath()
-//      if let data = try? Data(contentsOf: path) {
-//        let decoder = PropertyListDecoder()
-//        do {
-//            items = try decoder.decode(
-//                [ChecklistItem].self,
-//            from: data)
-//        } catch {
-//          print("Error decoding item array: \(error.localizedDescription)")
-//        }
-//      }
-//    }
+    func documentsDirectory() -> URL {
+      let paths = FileManager.default.urls(
+        for: .documentDirectory,
+        in: .userDomainMask)
+      return paths[0]
+    }
+
+    func dataFilePath() -> URL {
+      return documentsDirectory().appendingPathComponent("NutriRecipes.plist")
+    }
+    func saveChecklistItems() {
+      let encoder = PropertyListEncoder()
+      do {
+        let data = try encoder.encode(items)
+        try data.write(
+          to: dataFilePath(),
+          options: Data.WritingOptions.atomic)
+      } catch {
+        print("Error encoding item array: \(error.localizedDescription)")
+      }
+    }
+    func loadChecklistItems() {
+      let path = dataFilePath()
+      if let data = try? Data(contentsOf: path) {
+        let decoder = PropertyListDecoder()
+        do {
+            items = try decoder.decode(
+                [ChecklistItem].self,
+            from: data)
+        } catch {
+          print("Error decoding item array: \(error.localizedDescription)")
+        }
+      }
+    }
 
     // MARK: - Table view data source
 
@@ -143,6 +144,7 @@ class RestrictionsTableViewController: UITableViewController {
           configureCheckmark(for: cell, with: item)
         }
       tableView.deselectRow(at: indexPath, animated: true)
+        saveChecklistItems()
     }
 
     /*
