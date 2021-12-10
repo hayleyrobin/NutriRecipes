@@ -17,11 +17,12 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
   
     var searchResults = [SearchRecipesResult]() //  array for data
     var trendingResults = [TrendingResults]()
+    var recommendedResults = [RecommendationResults]()
     var searchResultText = ""
     var hasSearched = false
     var isLoading = false
     var restrictions = [ChecklistItem]()
-    var favoriteItems = [FavoriteRecipe]()
+//    var favoriteItems = [FavoriteRecipe]()
     var dataTask: URLSessionDataTask?
     
     
@@ -30,10 +31,9 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
         static let searchRecipesResultCell = "SearchRecipesResultCell"
         static let noRecipesFoundCell = "NoRecipesFoundCell"
         static let loadingCell = "LoadingCell"
-
+//        static let recommendationResultCell = "RecommendationResultCell"
       }
     }
-    //"https://api.edamam.com/api/recipes/v2?type=public&q=Recommended&app_id=6c3d1b83&app_key=76150e06464b0459d3ddb0985514e64a"
     
     
     override func viewDidLoad() {
@@ -61,7 +61,15 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
           cellNib,
           forCellReuseIdentifier: TableView.CellIdentifiers.loadingCell)
 
+//        cellNib = UINib(
+//            nibName: TableView.CellIdentifiers.recommendationResultCell,
+//          bundle: nil)
+//        tableView.register(
+//          cellNib,
+//          forCellReuseIdentifier: TableView.CellIdentifiers.recommendationResultCell)
+        
         if !hasSearched {
+            recommendedResults = RecommendationRecipes.recommendationRecipies()
             trendingResults = TrendingRecipes.trendingRecipies()
         }
     }
@@ -328,16 +336,28 @@ extension SearchRecipesViewController: UISearchBarDelegate{
 // handles all the table view related delegate methods.
 extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSource
 {
+     func numberOfSections(in tableView: UITableView) -> Int {
+        if !hasSearched{
+            return 2
+        }
+        else{
+            return 1
+        }
+    }
+ 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isLoading {
           return 1
-        } else if !hasSearched {
+        }
+        else if !hasSearched && section == 0{
+            return 1
+        } else if !hasSearched && section == 1{
             return trendingResults.count
         } else if searchResults.count == 0{
             return 1
         } else{
-       return searchResults.count
-     }
+           return searchResults.count
+         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -355,26 +375,47 @@ extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSourc
             withIdentifier: TableView.CellIdentifiers.noRecipesFoundCell,for: indexPath)
         }
         else {
-            let cell = tableView.dequeueReusableCell(
-              withIdentifier: TableView.CellIdentifiers.searchRecipesResultCell,
-            for: indexPath) as! SearchRecipesResultCell
-            
             if hasSearched{
+                let cell = tableView.dequeueReusableCell(
+                  withIdentifier: TableView.CellIdentifiers.searchRecipesResultCell,
+                for: indexPath) as! SearchRecipesResultCell
+                
                 let searchResult = searchResults[indexPath.row]
                 cell.recipeNameLabel!.text = searchResult.recipe.label
                 cell.recipeDescriptionLabel!.text = searchResult.recipe.source
 
                 cell.configure(for: searchResult)
+                return cell
             }
             else{
-                let trendingResult = trendingResults[indexPath.row]
-                cell.recipeNameLabel!.text = trendingResult.recipe.label
-                cell.recipeDescriptionLabel!.text = trendingResult.recipe.source
-                
-                cell.configure(for: trendingResult)
+                if indexPath.section == 0 && !hasSearched{
+                    let cell = tableView.dequeueReusableCell(
+                        withIdentifier: "RecommendedTableViewCell", for: indexPath) as! RecommendedTableViewCell
+                    cell.recommendedRecipe = recommendedResults
+                    
+                    return cell
+                }
+                else{
+                    let cell = tableView.dequeueReusableCell(
+                      withIdentifier: TableView.CellIdentifiers.searchRecipesResultCell,
+                    for: indexPath) as! SearchRecipesResultCell
+                    
+                    let trendingResult = trendingResults[indexPath.row]
+                    cell.recipeNameLabel!.text = trendingResult.recipe.label
+                    cell.recipeDescriptionLabel!.text = trendingResult.recipe.source
+                    
+                    cell.configure(for: trendingResult)
+                    return cell
+                }
             }
-            return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 && !hasSearched {
+            return 327
+        }
+        return UITableView.automaticDimension // automatic cell size
     }
 
     func tableView(
@@ -383,11 +424,14 @@ extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSourc
     ) {
         // user defaults
 //        indexOfSelectedChecklist = indexPath.row
-        let cell = tableView.cellForRow(at: indexPath)
+        if (!hasSearched && indexPath.section != 0 ) || hasSearched{
+            let cell = tableView.cellForRow(at: indexPath)
 
-        performSegue(withIdentifier: "recipeSegue", sender: cell)
-        // deselect row with animation
-        tableView.deselectRow(at: indexPath, animated: true)
+            performSegue(withIdentifier: "recipeSegue", sender: cell)
+            // deselect row with animation
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+
     }
       // only select rows when actual search results
     func tableView(
@@ -405,6 +449,9 @@ extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSourc
                                 section: Int) -> String? {
         if hasSearched{
             return "\(searchResultText) Recipes"
+        }
+        else if !hasSearched && section == 0{
+            return "Recommended Recipes"
         }
         return "Trending Recipes"
     }
