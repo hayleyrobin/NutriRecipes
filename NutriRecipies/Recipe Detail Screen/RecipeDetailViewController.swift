@@ -21,7 +21,7 @@ class RecipeDetailViewController: UITableViewController {
     var searchResult: RecommendationsResult!
     var trendingResult: TrendingResults!
 
-    @IBOutlet weak var favoriteRecipeButton: UIBarButtonItem!
+
     
     weak var delegate: RecipeDetailViewControllerDelegate?
     //        if (searchResult != nil){
@@ -42,7 +42,6 @@ class RecipeDetailViewController: UITableViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       if segue.identifier == "ShowNutrition" {
-//        segue.destination.modalPresentationStyle = .popover
         let nutritionViewController = segue.destination as! NutrientsViewController
         if searchResult != nil{
             nutritionViewController.searchResult = searchResult
@@ -50,7 +49,15 @@ class RecipeDetailViewController: UITableViewController {
         else{
             nutritionViewController.trendingResult = trendingResult
         }
-        
+      }
+      else if segue.identifier == "favoritesSegue"{
+          let favoritesViewController = segue.destination as! FavoriteRecipesViewController
+        if searchResult != nil{
+            favoritesViewController.searchResult = searchResult
+        }
+        else{
+            favoritesViewController.trendingResult = trendingResult
+        }
       }
     }
 
@@ -124,12 +131,12 @@ class RecipeDetailViewController: UITableViewController {
         }
         else if indexPath.section == 1{
             let cell1 = tableView.dequeueReusableCell(withIdentifier: "NutritionCell", for: indexPath) as! NutritionViewCell
-            if (searchResult != nil){
-                cell1.configure(for: searchResult)
-            }
-            else{
-                cell1.configure(for: trendingResult)
-            }
+//            if (searchResult != nil){
+//                cell1.configure(for: searchResult)
+//            }
+//            else{
+//                cell1.configure(for: trendingResult)
+//            }
             return cell1
         }
         else if indexPath.section == 2{

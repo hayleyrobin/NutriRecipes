@@ -22,7 +22,6 @@ class FavoriteRecipesViewController: UIViewController, RecipeDetailViewControlle
     }
     
 
-    @IBOutlet weak var favoritesHeaderView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var searchResult:  RecommendationsResult!
@@ -60,7 +59,7 @@ class FavoriteRecipesViewController: UIViewController, RecipeDetailViewControlle
 extension FavoriteRecipesViewController: UICollectionViewDelegate, UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

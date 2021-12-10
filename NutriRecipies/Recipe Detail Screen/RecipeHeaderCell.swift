@@ -15,6 +15,7 @@ class RecipeHeaderCell: UITableViewCell {
     @IBOutlet weak var servingsLabel: UILabel!
     @IBOutlet weak var caloriesLabel: UILabel!
     @IBOutlet weak var mealTypeLabel: UILabel!
+    @IBOutlet weak var dishTypeLabel: UILabel!
     @IBOutlet weak var recipeView: UIView!
     var downloadTask: URLSessionDownloadTask?
     
@@ -42,14 +43,20 @@ class RecipeHeaderCell: UITableViewCell {
         recipeNameLabel.text = result.recipe.label
 
         if ((result.recipe.label?.isEmpty) == nil) {
-            recipeNameLabel.text = "Unknown"
+            recipeNameLabel.text = ""
         }
         
         cookTimeLabel.text = String(format:"%.0f", result.recipe.totalTime!) + " min"
         servingsLabel.text = String(format: "%.0f", result.recipe.yield!) + " servings"
         caloriesLabel.text = String(format:"%.0f", cals) + " calories"
         mealTypeLabel.text = result.recipe.mealType.first as? String
- 
+        if result.recipe.dietLabels.isEmpty{
+            dishTypeLabel.text = "Unknown"
+        }
+        else{
+            dishTypeLabel.text = result.recipe.dishType.first as? String
+        }
+        
         recipeImg.image = UIImage(systemName: "square")
         if let previewURL = URL(string: result.recipe.image!) {
           downloadTask = recipeImg.loadImage(url: previewURL)
@@ -78,6 +85,12 @@ class RecipeHeaderCell: UITableViewCell {
         servingsLabel.text = String(format: "%.0f", result.recipe.yield!) + " servings"
         caloriesLabel.text = String(format:"%.0f", cals) + " calories"
         mealTypeLabel.text = result.recipe.mealType.first as? String
+        if result.recipe.dishType.isEmpty{
+            dishTypeLabel.text = ""
+        }
+        else{
+            dishTypeLabel.text = result.recipe.dishType.first as? String
+        }
  
         recipeImg.image = UIImage(systemName: "square")
         if let previewURL = URL(string: result.recipe.image!) {
