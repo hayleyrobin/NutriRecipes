@@ -14,7 +14,7 @@ class FavoriteRecipeViewCell: UICollectionViewCell {
     @IBOutlet weak var recipeImg: UIImageView!
     var downloadTask: URLSessionDownloadTask?
     
-    func configure(for result: RecommendationsResult){
+    func configure(for result: SearchRecipesResult){
         
         recipeNameLabel.text = result.recipe.label
 

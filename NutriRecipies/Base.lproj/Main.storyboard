@@ -13,7 +13,7 @@
         <!--NutriRecipes-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="RecommendationsViewController" customModule="NutriRecipies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SearchRecipesViewController" customModule="NutriRecipies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1058,7 +1058,6 @@
         <!--Favorite-->
         <scene sceneID="mjw-HP-GzR">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="d5R-vT-X5n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3aV-JS-Hop" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Favorite" image="heart.fill" catalog="system" id="Syg-ds-MGk"/>
                     <toolbarItems/>
@@ -1071,6 +1070,7 @@
                         <segue destination="jHV-79-dh9" kind="relationship" relationship="rootViewController" id="YWZ-QJ-Xtk"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d5R-vT-X5n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4328" y="-666"/>
         </scene>

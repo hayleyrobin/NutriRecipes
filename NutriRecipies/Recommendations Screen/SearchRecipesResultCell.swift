@@ -1,5 +1,5 @@
 //
-//  RecommendationsResultCell.swift
+//  SearchRecipesResultCell.swift
 //  NutriRecipies
 //
 //  Created by Hayley Robinson on 11/20/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecommendationsResultCell: UITableViewCell {
+class SearchRecipesResultCell: UITableViewCell {
 
     @IBOutlet var recipeNameLabel: UILabel!
     @IBOutlet var recipeDescriptionLabel: UILabel!
@@ -21,7 +21,7 @@ class RecommendationsResultCell: UITableViewCell {
         selectedBackgroundView = selectedView
     }
     // MARK: - Helper Methods
-    func configure(for result: RecommendationsResult) {
+    func configure(for result: SearchRecipesResult) {
         recipeNameLabel.text = result.recipe.label
 
         if ((result.recipe.label?.isEmpty) == nil) {

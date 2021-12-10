@@ -1,7 +1,7 @@
 
 import UIKit
 
-class RecommendationsViewController: UIViewController, RestrictionsControllerDelegate, UINavigationControllerDelegate{
+class SearchRecipesViewController: UIViewController, RestrictionsControllerDelegate, UINavigationControllerDelegate{
     func restrictionsController(_ controller: RestrictionsTableViewController, didFinishAdding item: [ChecklistItem]) {
         restrictions = item
 //        saveSearchItems()
@@ -15,7 +15,7 @@ class RecommendationsViewController: UIViewController, RestrictionsControllerDel
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
   
-    var searchResults = [RecommendationsResult]() //  array for data
+    var searchResults = [SearchRecipesResult]() //  array for data
     var trendingResults = [TrendingResults]()
     var searchResultText = ""
     var hasSearched = false
@@ -27,7 +27,7 @@ class RecommendationsViewController: UIViewController, RestrictionsControllerDel
     
     struct TableView {
       struct CellIdentifiers {
-        static let recommendationsResultCell = "RecommendationsResultCell"
+        static let searchRecipesResultCell = "SearchRecipesResultCell"
         static let noRecipesFoundCell = "NoRecipesFoundCell"
         static let loadingCell = "LoadingCell"
 
@@ -46,8 +46,8 @@ class RecommendationsViewController: UIViewController, RestrictionsControllerDel
 
        tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         
-        var cellNib = UINib(nibName: TableView.CellIdentifiers.recommendationsResultCell, bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.recommendationsResultCell)
+        var cellNib = UINib(nibName: TableView.CellIdentifiers.searchRecipesResultCell, bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.searchRecipesResultCell)
        
         cellNib = UINib(nibName: TableView.CellIdentifiers.noRecipesFoundCell, bundle: nil)
         tableView.register(
@@ -220,7 +220,7 @@ class RecommendationsViewController: UIViewController, RestrictionsControllerDel
         }
     }
     
-    func parse(data: Data) -> [RecommendationsResult] {
+    func parse(data: Data) -> [SearchRecipesResult] {
       do {
         let decoder = JSONDecoder()
         let result = try decoder.decode(
@@ -249,7 +249,7 @@ class RecommendationsViewController: UIViewController, RestrictionsControllerDel
 
 }
 // MARK:- Search Bar Delegate
-extension RecommendationsViewController: UISearchBarDelegate{
+extension SearchRecipesViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
     {
         if !searchBar.text!.isEmpty
@@ -326,7 +326,7 @@ extension RecommendationsViewController: UISearchBarDelegate{
 // MARK:- Table View Delegate
 
 // handles all the table view related delegate methods.
-extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSource
+extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isLoading {
@@ -356,8 +356,8 @@ extension RecommendationsViewController: UITableViewDelegate, UITableViewDataSou
         }
         else {
             let cell = tableView.dequeueReusableCell(
-              withIdentifier: TableView.CellIdentifiers.recommendationsResultCell,
-            for: indexPath) as! RecommendationsResultCell
+              withIdentifier: TableView.CellIdentifiers.searchRecipesResultCell,
+            for: indexPath) as! SearchRecipesResultCell
             
             if hasSearched{
                 let searchResult = searchResults[indexPath.row]

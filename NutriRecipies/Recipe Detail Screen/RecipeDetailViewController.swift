@@ -13,12 +13,12 @@ protocol RecipeDetailViewControllerDelegate: class {
     didFinishAdding item: TrendingResults)
     func addItemViewController(
     _ controller: RecipeDetailViewController,
-    didFinishAdding item: RecommendationsResult)
+    didFinishAdding item: SearchRecipesResult)
 }
 
 
 class RecipeDetailViewController: UITableViewController {
-    var searchResult: RecommendationsResult!
+    var searchResult: SearchRecipesResult!
     var trendingResult: TrendingResults!
 
 

@@ -18,7 +18,7 @@ class NutritionViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-   // func configure(for result: RecommendationsResult) {
+   // func configure(for result: SearchRecipesResult) {
         
    // }
     //func configure(for result: TrendingResults) {

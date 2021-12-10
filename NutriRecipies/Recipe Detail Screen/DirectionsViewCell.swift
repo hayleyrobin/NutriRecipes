@@ -20,7 +20,7 @@ class DirectionsViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-    func configure(for result: RecommendationsResult) {
+    func configure(for result: SearchRecipesResult) {
         sourceLabel.text = result.recipe.source
     }
     func configure(for result: TrendingResults) {

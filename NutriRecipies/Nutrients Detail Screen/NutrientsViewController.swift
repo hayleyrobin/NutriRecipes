@@ -9,7 +9,7 @@ import UIKit
 
 class NutrientsViewController: UIViewController {
     
-    var searchResult: RecommendationsResult!
+    var searchResult: SearchRecipesResult!
 //    {didSet{
 //        updateUI()
 //    }}

@@ -17,14 +17,14 @@ class FavoriteRecipesViewController: UIViewController, RecipeDetailViewControlle
         navigationController?.popViewController(animated: true)
     }
 
-    func addItemViewController(_ controller: RecipeDetailViewController, didFinishAdding item: RecommendationsResult) {
+    func addItemViewController(_ controller: RecipeDetailViewController, didFinishAdding item: SearchRecipesResult) {
         navigationController?.popViewController(animated: true)
     }
     
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var searchResult:  RecommendationsResult!
+    var searchResult:  SearchRecipesResult!
     var trendingResult: TrendingResults!
     var favRecipes = [Any]()
 //    @IBAction func removeFav(){

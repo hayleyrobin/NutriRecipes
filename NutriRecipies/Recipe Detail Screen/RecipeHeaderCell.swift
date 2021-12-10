@@ -27,7 +27,7 @@ class RecipeHeaderCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     // MARK: - Helper Methods
-    func configure(for result: RecommendationsResult) {
+    func configure(for result: SearchRecipesResult) {
         //round border for recipe view
         recipeView.layer.cornerRadius = 10
         recipeView.clipsToBounds = true

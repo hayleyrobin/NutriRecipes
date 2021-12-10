@@ -1,5 +1,5 @@
 //
-//  RecommendationsResult.swift
+//  SearchRecipesResult.swift
 //  NutriRecipies
 //
 //  Created by Hayley Robinson on 11/20/21.
@@ -12,10 +12,10 @@ struct ResultArray: Codable {
     var to: Int
     var count: Int
     var _links: [String: [String: String]]
-    var hits = [RecommendationsResult]()
+    var hits = [SearchRecipesResult]()
 }
 
-struct RecommendationsResult: Codable {
+struct SearchRecipesResult: Codable {
     var recipe: Recipe
    // let _links: [String: [String: String]]?
     
