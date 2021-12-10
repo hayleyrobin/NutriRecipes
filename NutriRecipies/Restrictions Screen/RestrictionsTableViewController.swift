@@ -81,6 +81,7 @@ class RestrictionsTableViewController: UITableViewController {
     func dataFilePath() -> URL {
       return documentsDirectory().appendingPathComponent("NutriRecipes.plist")
     }
+    // save which restriction items the user picks
     func saveChecklistItems() {
       let encoder = PropertyListEncoder()
       do {
@@ -92,6 +93,7 @@ class RestrictionsTableViewController: UITableViewController {
         print("Error encoding item array: \(error.localizedDescription)")
       }
     }
+    // load users' restriction items
     func loadChecklistItems() {
       let path = dataFilePath()
       if let data = try? Data(contentsOf: path) {
