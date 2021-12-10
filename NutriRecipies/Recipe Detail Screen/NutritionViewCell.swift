@@ -17,8 +17,6 @@ class NutritionViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     func configure(for result: RecommendationsResult) {
         if result.recipe.dishType.isEmpty{
@@ -27,7 +25,6 @@ class NutritionViewCell: UITableViewCell {
         else{
             dishTypeLabel.text = result.recipe.dishType.first as? String
         }
-
     }
     func configure(for result: TrendingResults) {
 

@@ -20,12 +20,10 @@ class RecipeHeaderCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
     // MARK: - Helper Methods
     func configure(for result: RecommendationsResult) {
@@ -36,7 +34,7 @@ class RecipeHeaderCell: UITableViewCell {
         recipeView.layer.borderColor = UIColor.white.cgColor
         recipeView.layer.borderWidth = 2.0
         
-        let cals = result.recipe.calories!/Double(result.recipe.yield!)
+        let cals = (result.recipe.calories! / Double(result.recipe.yield!))
         
         // bold recipe title
         recipeNameLabel.font = UIFont.boldSystemFont(ofSize: recipeNameLabel.font.pointSize)
@@ -47,9 +45,9 @@ class RecipeHeaderCell: UITableViewCell {
             recipeNameLabel.text = "Unknown"
         }
         
-        cookTimeLabel.text = String(format:"%d", result.recipe.totalTime!) + " min"
-        servingsLabel.text = String(format: "%i", result.recipe.yield!) + " servings"
-        caloriesLabel.text = String(format:"%d", cals) + " calories"
+        cookTimeLabel.text = String(format:"%.0f", result.recipe.totalTime!) + " min"
+        servingsLabel.text = String(format: "%.0f", result.recipe.yield!) + " servings"
+        caloriesLabel.text = String(format:"%.0f", cals) + " calories"
         mealTypeLabel.text = result.recipe.mealType.first as? String
  
         recipeImg.image = UIImage(systemName: "square")
@@ -65,7 +63,7 @@ class RecipeHeaderCell: UITableViewCell {
         recipeView.layer.borderColor = UIColor.white.cgColor
         recipeView.layer.borderWidth = 2.0
         
-        let cals = result.recipe.calories!/Double(result.recipe.yield!)
+        let cals = (result.recipe.calories! / Double(result.recipe.yield!))
         
         // bold recipe title
         recipeNameLabel.font = UIFont.boldSystemFont(ofSize: recipeNameLabel.font.pointSize)
@@ -76,9 +74,9 @@ class RecipeHeaderCell: UITableViewCell {
             recipeNameLabel.text = "Unknown"
         }
         
-        cookTimeLabel.text = String(format:"%d", result.recipe.totalTime!) + " min"
-        servingsLabel.text = String(format: "%i", result.recipe.yield!) + " servings"
-        caloriesLabel.text = String(format:"%d", cals) + " calories"
+        cookTimeLabel.text = String(format:"%.0f", result.recipe.totalTime!) + " min"
+        servingsLabel.text = String(format: "%.0f", result.recipe.yield!) + " servings"
+        caloriesLabel.text = String(format:"%.0f", cals) + " calories"
         mealTypeLabel.text = result.recipe.mealType.first as? String
  
         recipeImg.image = UIImage(systemName: "square")

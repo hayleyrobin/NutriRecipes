@@ -113,7 +113,7 @@ class RecipeDetailViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeHeaderCell", for: indexPath)  as! RecipeHeaderCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeHeaderCell", for: indexPath) as! RecipeHeaderCell
             if (searchResult != nil){
                 cell.configure(for: searchResult)
             }
@@ -128,7 +128,6 @@ class RecipeDetailViewController: UITableViewController {
                 cell1.configure(for: searchResult)
             }
             else{
-            
                 cell1.configure(for: trendingResult)
             }
             return cell1
@@ -141,7 +140,6 @@ class RecipeDetailViewController: UITableViewController {
             else{
                 cell2.ingredientLabel!.text = trendingResult.recipe.ingredientLines[indexPath.row]
             }
-
             //cell2.configure(for: searchResult)
             return cell2
         }
