@@ -131,7 +131,7 @@ class RecipeHeaderCell: UITableViewCell {
         caloriesLabel.text = String(format:"%.0f", cals) + " calories"
         mealTypeLabel.text = (result.recipe.mealType.first as? String)?.capitalizingFirstLetter()
         if result.recipe.dietLabels.isEmpty{
-            dishTypeLabel.text = "Unknown"
+            dishTypeLabel.text = ""
         }
         else{
             dishTypeLabel.text = (result.recipe.dishType.first as? String)?.capitalizingFirstLetter()

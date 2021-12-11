@@ -91,7 +91,7 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
 
       let index = UserDefaults.standard.integer(
         forKey: "RecipesIndex")
-        let indexPath = IndexPath(row: index, section: 0)
+        let indexPath = IndexPath(row: index, section: 1)
       if index != -1 {
         if !hasSearched && indexPath.section == 1{
             let cell = tableView.cellForRow(at: indexPath)
