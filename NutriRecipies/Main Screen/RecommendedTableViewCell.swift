@@ -7,19 +7,21 @@
 
 import UIKit
 
+typealias DidSelectRecipeClosure = ((_ index: Int?) -> Void)
 class RecommendedTableViewCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    var index: Int?
+    var didSelectRecipeClosure: DidSelectRecipeClosure?
     
     var recommendedRecipe: [RecommendationResults]? {
         didSet{
             collectionView.reloadData()
-            print("pp")
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        print("boo")
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -39,15 +41,14 @@ extension RecommendedTableViewCell: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendedCollectionViewCell", for: indexPath) as! RecommendedCollectionViewCell
-        print("yy")
         let result = recommendedRecipe![indexPath.row]
-        print("yer")
         cell.configure(for: result)
-        print("lll")
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 193, height: 304)
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        didSelectRecipeClosure?(indexPath.row)
+    }
 }

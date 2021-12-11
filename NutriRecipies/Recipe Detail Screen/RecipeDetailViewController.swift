@@ -20,7 +20,7 @@ protocol RecipeDetailViewControllerDelegate: class {
 class RecipeDetailViewController: UITableViewController {
     var searchResult: SearchRecipesResult!
     var trendingResult: TrendingResults!
-
+    var recommendedResult: RecommendationResults!
 
     
     weak var delegate: RecipeDetailViewControllerDelegate?
@@ -46,9 +46,12 @@ class RecipeDetailViewController: UITableViewController {
         if searchResult != nil{
             nutritionViewController.searchResult = searchResult
         }
-        else{
+        else if trendingResult != nil{
             nutritionViewController.trendingResult = trendingResult
         }
+//        else{
+//            nutritionViewController.recommendedResult = recommendedResult
+//        }
       }
       else if segue.identifier == "favoritesSegue"{
           let favoritesViewController = segue.destination as! FavoriteRecipesViewController
@@ -72,12 +75,17 @@ class RecipeDetailViewController: UITableViewController {
         {
             if let url = URL(string: searchResult.recipe.url!) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
-          }
+            }
         }
-        else{
+        else if(trendingResult != nil){
             if let url = URL(string: trendingResult.recipe.url!) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
-          }
+            }
+        }
+        else{
+            if let url = URL(string: recommendedResult.recipe.url!) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
         }
     }
 
@@ -110,7 +118,12 @@ class RecipeDetailViewController: UITableViewController {
             if (searchResult != nil){
                 return searchResult.recipe.ingredientLines.count
             }
-            return trendingResult.recipe.ingredientLines.count
+            else if(trendingResult != nil){
+                return trendingResult.recipe.ingredientLines.count
+            }
+            else{
+                return recommendedResult.recipe.ingredientLines.count
+            }
         }
         else{
             return 1
@@ -124,8 +137,11 @@ class RecipeDetailViewController: UITableViewController {
             if (searchResult != nil){
                 cell.configure(for: searchResult)
             }
-            else{
+            else if (trendingResult != nil){
                 cell.configure(for: trendingResult)
+            }
+            else {
+                cell.configure(for: recommendedResult)
             }
             return cell
         }
@@ -144,10 +160,12 @@ class RecipeDetailViewController: UITableViewController {
             if (searchResult != nil){
                 cell2.ingredientLabel!.text = searchResult.recipe.ingredientLines[indexPath.row]
             }
-            else{
+            else if (trendingResult != nil){
                 cell2.ingredientLabel!.text = trendingResult.recipe.ingredientLines[indexPath.row]
             }
-            //cell2.configure(for: searchResult)
+            else{
+                cell2.ingredientLabel!.text = recommendedResult.recipe.ingredientLines[indexPath.row]
+            }
             return cell2
         }
         else{
@@ -155,8 +173,11 @@ class RecipeDetailViewController: UITableViewController {
             if(searchResult != nil){
                 cell3.configure(for: searchResult)
             }
-            else{
+            else if(trendingResult != nil){
                 cell3.configure(for: trendingResult)
+            }
+            else{
+                cell3.configure(for: recommendedResult)
             }
             return cell3
         }

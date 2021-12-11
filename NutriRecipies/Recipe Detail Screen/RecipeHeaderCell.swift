@@ -97,5 +97,40 @@ class RecipeHeaderCell: UITableViewCell {
           downloadTask = recipeImg.loadImage(url: previewURL)
         }
     }
+    func configure(for result: RecommendationResults) {
+        //round border for recipe view
+        recipeView.layer.cornerRadius = 10
+        recipeView.clipsToBounds = true
+
+        recipeView.layer.borderColor = UIColor.white.cgColor
+        recipeView.layer.borderWidth = 2.0
+        
+        let cals = (result.recipe.calories! / Double(result.recipe.yield!))
+        
+        // bold recipe title
+        recipeNameLabel.font = UIFont.boldSystemFont(ofSize: recipeNameLabel.font.pointSize)
+
+        recipeNameLabel.text = result.recipe.label
+
+        if ((result.recipe.label?.isEmpty) == nil) {
+            recipeNameLabel.text = ""
+        }
+        
+        cookTimeLabel.text = String(format:"%.0f", result.recipe.totalTime!) + " min"
+        servingsLabel.text = String(format: "%.0f", result.recipe.yield!) + " servings"
+        caloriesLabel.text = String(format:"%.0f", cals) + " calories"
+        mealTypeLabel.text = result.recipe.mealType.first as? String
+        if result.recipe.dietLabels.isEmpty{
+            dishTypeLabel.text = "Unknown"
+        }
+        else{
+            dishTypeLabel.text = result.recipe.dishType.first as? String
+        }
+        
+        recipeImg.image = UIImage(systemName: "square")
+        if let previewURL = URL(string: result.recipe.image!) {
+          downloadTask = recipeImg.loadImage(url: previewURL)
+        }
+    }
 
 }

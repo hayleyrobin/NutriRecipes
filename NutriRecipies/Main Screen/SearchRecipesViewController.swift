@@ -60,13 +60,6 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
         tableView.register(
           cellNib,
           forCellReuseIdentifier: TableView.CellIdentifiers.loadingCell)
-
-//        cellNib = UINib(
-//            nibName: TableView.CellIdentifiers.recommendationResultCell,
-//          bundle: nil)
-//        tableView.register(
-//          cellNib,
-//          forCellReuseIdentifier: TableView.CellIdentifiers.recommendationResultCell)
         
         if !hasSearched {
             recommendedResults = RecommendationRecipes.recommendationRecipies()
@@ -137,7 +130,15 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
         }
     
 */
-
+    // instantiate detail recipe for collection view cell
+    func moveOnRecipeDetail(index: Int) {
+        guard let detailViewController = storyboard?.instantiateViewController(identifier: "RecipeDetailViewController") as? RecipeDetailViewController
+        else{
+            return
+        }
+        detailViewController.recommendedResult = recommendedResults[index]
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
     // MARK:- Navigation
       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if(segue.identifier == "recipeSegue") {
@@ -392,7 +393,13 @@ extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSourc
                     let cell = tableView.dequeueReusableCell(
                         withIdentifier: "RecommendedTableViewCell", for: indexPath) as! RecommendedTableViewCell
                     cell.recommendedRecipe = recommendedResults
-                    
+                    cell.index = indexPath.row
+                    cell.didSelectRecipeClosure = { rIndex in
+                        if let recipeIndex = rIndex{
+                            self.moveOnRecipeDetail(index: recipeIndex)
+                        }
+                        
+                    }
                     return cell
                 }
                 else{

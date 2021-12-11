@@ -26,4 +26,7 @@ class DirectionsViewCell: UITableViewCell {
     func configure(for result: TrendingResults) {
         sourceLabel.text = result.recipe.source
     }
+    func configure(for result: RecommendationResults) {
+        sourceLabel.text = result.recipe.source
+    }
 }
