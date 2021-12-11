@@ -42,7 +42,7 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        registerDefaults()
+        registerDefaults()
 
         navigationController?.navigationBar.prefersLargeTitles = true
         searchBar.becomeFirstResponder() // dismiss keyboard
