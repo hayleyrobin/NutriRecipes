@@ -1,3 +1,9 @@
+/*
+ Search Bar Source:
+ https://www.raywenderlich.com/4363809-uisearchcontroller-tutorial-getting-started#c-rate
+ Automatic Cell Size: https://www.hackingwithswift.com/example-code/uikit/how-to-make-uitableviewcells-auto-resize-to-their-content
+ Segue without sender UITableViewCell using didSelectForRowAtIndexPath: https://github.com/CEWendel/SWTableViewCell/issues/18
+ */
 
 import UIKit
 
@@ -34,7 +40,6 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
       }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        registerDefaults()
@@ -63,7 +68,6 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
             trendingResults = TrendingRecipes.trendingRecipies()
         }
     }
-
     /*
         func registerDefaults() {
           let dictionary = [ "RecipeIndex": -1 ]
@@ -106,7 +110,6 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
                   withIdentifier: "recipeSegue",
                     sender: cell)
             }
-
           }
         }
      //  MARK: - Navigation Controller Delegates
@@ -238,18 +241,17 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
     }
     // presents an alert controller with an error message.
     func showNetworkError() {
-      let alert = UIAlertController(
-        title: "Whoops...",
-        message: "There was an error accessing the recipes." +
-        " Please try again.",
-        preferredStyle: .alert)
-      
-      let action = UIAlertAction(
-        title: "OK", style: .default, handler: nil)
-      alert.addAction(action)
-      present(alert, animated: true, completion: nil)
-    }
+        let alert = UIAlertController(
+            title: "Whoops...",
+            message: "There was an error accessing the recipes." +
+            " Please try again.",
+            preferredStyle: .alert)
 
+        let action = UIAlertAction(
+            title: "OK", style: .default, handler: nil)
+            alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
 }
 // MARK:- Search Bar Delegate
 extension SearchRecipesViewController: UISearchBarDelegate{
@@ -273,7 +275,6 @@ extension SearchRecipesViewController: UISearchBarDelegate{
               print("Got results: \(results)")              
             }
     
-            
             let session = URLSession.shared
             // returns the JSON data that is received from the server URL
             dataTask = session.dataTask(with: url, completionHandler: {
@@ -291,7 +292,6 @@ extension SearchRecipesViewController: UISearchBarDelegate{
                       }
                       return
                     }
-
                 } else {
                   print("Failure! \(response!)")
                 }
@@ -351,8 +351,8 @@ extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSourc
         } else if searchResults.count == 0{
             return 1
         } else{
-           return searchResults.count
-         }
+            return searchResults.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -431,17 +431,15 @@ extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSourc
             // deselect row with animation
             tableView.deselectRow(at: indexPath, animated: true)
         }
-
     }
       // only select rows when actual search results
     func tableView(
       _ tableView: UITableView,
-      willSelectRowAt indexPath: IndexPath
-    ) -> IndexPath? {
+      willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if (hasSearched && searchResults.count == 0) || isLoading {
-        return nil
-      } else{
-        return indexPath
+            return nil
+        } else{
+            return indexPath
       }
     }
     // Create a standard header that includes the returned text.

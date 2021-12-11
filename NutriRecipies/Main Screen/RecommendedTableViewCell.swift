@@ -5,6 +5,7 @@
 //  Created by Hayley Robinson on 12/10/21.
 //
 
+
 import UIKit
 
 typealias DidSelectRecipeClosure = ((_ index: Int?) -> Void)
@@ -29,7 +30,6 @@ class RecommendedTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
 }
 extension RecommendedTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

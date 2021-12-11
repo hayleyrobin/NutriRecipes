@@ -17,14 +17,12 @@ protocol RestrictionsControllerDelegate: class {
 }
 
 class RestrictionsTableViewController: UITableViewController {
-
     var delegate: RestrictionsControllerDelegate?
 
     @IBAction func cancelButton() {
         delegate?.restrictionsControllerDidCancel(self)
     }
     @IBAction func doneButton() {
-
         let itemArray = items
         delegate?.restrictionsController(self, didFinishAdding: itemArray)
     }

@@ -3,7 +3,9 @@
 //  NutriRecipies
 //
 //  Created by Hayley Robinson on 11/29/21.
-//
+//  Table View Sections Source: https://letcreateanapp.com/2021/04/15/how-to-create-uitableview-with-sections-in-swift-5/
+//  Rounded Corners for View Source: https://www.hackingwithswift.com/example-code/calayer/how-to-round-the-corners-of-a-uiview
+//  Print Ingredients Array to Label: https://stackoverflow.com/questions/45211496/how-to-print-array-in-label
 
 import UIKit
 
@@ -55,13 +57,13 @@ class RecipeDetailViewController: UITableViewController {
       }
       else if segue.identifier == "favoritesSegue"{
           let favoritesViewController = segue.destination as! FavoriteRecipesViewController
-        if searchResult != nil{
-            favoritesViewController.searchResult = searchResult
+            if searchResult != nil{
+                favoritesViewController.searchResult = searchResult
+            }
+            else{
+                favoritesViewController.trendingResult = trendingResult
+            }
         }
-        else{
-            favoritesViewController.trendingResult = trendingResult
-        }
-      }
     }
 
     override func viewDidLoad() {

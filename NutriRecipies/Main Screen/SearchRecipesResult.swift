@@ -3,7 +3,7 @@
 //  NutriRecipies
 //
 //  Created by Hayley Robinson on 11/20/21.
-//
+//  Struct Source: https://forums.swift.org/t/decode-a-json-object-of-unknown-format-into-a-dictionary-with-decodable-in-swift-4/6138/8
 
 import Foundation
 
