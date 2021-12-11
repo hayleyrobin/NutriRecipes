@@ -37,8 +37,8 @@ class RecipeDetailViewController: UITableViewController {
 //            delegate?.addItemViewController(self, didFinishAdding: item!)
 //        }
     
-    @IBAction func addFav(_ sender: Any) {
-    }
+//    @IBAction func addFav(_ sender: Any) {
+//    }
     
     @IBAction func nutritionButton() {
         self.performSegue(withIdentifier: "ShowNutrition", sender: self)
@@ -56,7 +56,7 @@ class RecipeDetailViewController: UITableViewController {
             nutritionViewController.recommendationResult = recommendedResult
         }
       }
-      else if segue.identifier == "favoritesSegue"{
+      /*else if segue.identifier == "favoritesSegue"{
           let favoritesViewController = segue.destination as! FavoriteRecipesViewController
             if searchResult != nil{
                 favoritesViewController.searchResult = searchResult
@@ -64,7 +64,7 @@ class RecipeDetailViewController: UITableViewController {
             else{
                 favoritesViewController.trendingResult = trendingResult
             }
-        }
+        }*/
     }
 
     override func viewDidLoad() {

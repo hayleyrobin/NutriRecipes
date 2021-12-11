@@ -52,12 +52,12 @@ class RecipeHeaderCell: UITableViewCell {
         cookTimeLabel.text = String(format:"%.0f", result.recipe.totalTime!) + " min"
         servingsLabel.text = String(format: "%.0f", result.recipe.yield!) + " servings"
         caloriesLabel.text = String(format:"%.0f", cals) + " calories"
-        mealTypeLabel.text = result.recipe.mealType.first as? String
+        mealTypeLabel.text = (result.recipe.mealType.first as? String)?.capitalizingFirstLetter()
         if result.recipe.dietLabels.isEmpty{
             dishTypeLabel.text = "Unknown"
         }
         else{
-            dishTypeLabel.text = result.recipe.dishType.first as? String
+            dishTypeLabel.text = (result.recipe.dishType.first as? String)?.capitalizingFirstLetter()
         }
         
         recipeImg.image = UIImage(systemName: "square")
@@ -87,12 +87,12 @@ class RecipeHeaderCell: UITableViewCell {
         cookTimeLabel.text = String(format:"%.0f", result.recipe.totalTime!) + " min"
         servingsLabel.text = String(format: "%.0f", result.recipe.yield!) + " servings"
         caloriesLabel.text = String(format:"%.0f", cals) + " calories"
-        mealTypeLabel.text = result.recipe.mealType.first as? String
+        mealTypeLabel.text = (result.recipe.mealType.first as? String)?.capitalizingFirstLetter()
         if result.recipe.dishType.isEmpty{
             dishTypeLabel.text = ""
         }
         else{
-            dishTypeLabel.text = result.recipe.dishType.first as? String
+            dishTypeLabel.text = (result.recipe.dishType.first as? String)?.capitalizingFirstLetter()
         }
  
         recipeImg.image = UIImage(systemName: "square")
@@ -120,14 +120,21 @@ class RecipeHeaderCell: UITableViewCell {
         }
         
         cookTimeLabel.text = String(format:"%.0f", result.recipe.totalTime!) + " min"
-        servingsLabel.text = String(format: "%.0f", result.recipe.yield!) + " servings"
+        var servings = ""
+        if result.recipe.yield == 1.0{
+            servings = " serving"
+        }
+        else{
+            servings = " servings"
+        }
+        servingsLabel.text = String(format: "%.0f", result.recipe.yield!) + servings
         caloriesLabel.text = String(format:"%.0f", cals) + " calories"
-        mealTypeLabel.text = result.recipe.mealType.first as? String
+        mealTypeLabel.text = (result.recipe.mealType.first as? String)?.capitalizingFirstLetter()
         if result.recipe.dietLabels.isEmpty{
             dishTypeLabel.text = "Unknown"
         }
         else{
-            dishTypeLabel.text = result.recipe.dishType.first as? String
+            dishTypeLabel.text = (result.recipe.dishType.first as? String)?.capitalizingFirstLetter()
         }
         
         recipeImg.image = UIImage(systemName: "square")

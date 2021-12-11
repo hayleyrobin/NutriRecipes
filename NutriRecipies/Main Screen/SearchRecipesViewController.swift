@@ -451,4 +451,13 @@ extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSourc
         }
         return "Trending Recipes"
     }
+//    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
+//        view.tintColor = UIColor.systemGray5
+//        let header = view as! UITableViewHeaderFooterView
+//        header.textLabel?.textColor = UIColor.white
+//
+//    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 35.0
+//    }
 }

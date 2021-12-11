@@ -485,16 +485,16 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oC6-jH-c5D">
-                                            <rect key="frame" x="0.0" y="7" width="414" height="36"/>
-                                            <color key="backgroundColor" red="0.70241924249999999" green="0.70241924249999999" blue="0.70241924249999999" alpha="0.69803921570000005" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oC6-jH-c5D">
+                                            <rect key="frame" x="20" y="18" width="317" height="31"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="414" id="lN1-6T-Nwh"/>
-                                                <constraint firstAttribute="height" constant="36" id="qp7-F3-zR4"/>
+                                                <constraint firstAttribute="width" constant="317" id="lN1-6T-Nwh"/>
+                                                <constraint firstAttribute="height" constant="31" id="qp7-F3-zR4"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <state key="normal" title="Nutrition Facts">
-                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                            <inset key="imageEdgeInsets" minX="300" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="Nutritional Facts" image="chevron.down" catalog="system">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
                                                 <action selector="nutritionButton" destination="Qxd-Zb-hlk" eventType="touchUpInside" id="NrM-NF-CPl"/>
@@ -503,10 +503,10 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="oC6-jH-c5D" firstAttribute="top" secondItem="qY1-Fj-cAw" secondAttribute="top" constant="7" id="50i-PG-Mfx"/>
-                                        <constraint firstAttribute="bottom" secondItem="oC6-jH-c5D" secondAttribute="bottom" constant="6" id="L9X-Kf-hJq"/>
-                                        <constraint firstItem="oC6-jH-c5D" firstAttribute="leading" secondItem="qY1-Fj-cAw" secondAttribute="leading" id="fZE-Vv-LNg"/>
-                                        <constraint firstAttribute="trailing" secondItem="oC6-jH-c5D" secondAttribute="trailing" id="kUe-8E-iLX"/>
+                                        <constraint firstItem="oC6-jH-c5D" firstAttribute="top" secondItem="qY1-Fj-cAw" secondAttribute="top" constant="18" id="50i-PG-Mfx"/>
+                                        <constraint firstAttribute="bottom" secondItem="oC6-jH-c5D" secondAttribute="bottom" id="L9X-Kf-hJq"/>
+                                        <constraint firstItem="oC6-jH-c5D" firstAttribute="leading" secondItem="qY1-Fj-cAw" secondAttribute="leading" constant="20" id="fZE-Vv-LNg"/>
+                                        <constraint firstAttribute="trailing" secondItem="oC6-jH-c5D" secondAttribute="trailing" constant="77" id="kUe-8E-iLX"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -612,15 +612,7 @@
                             <outlet property="delegate" destination="Qxd-Zb-hlk" id="2Xf-Ct-eW9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="SO6-nF-u0q">
-                        <barButtonItem key="rightBarButtonItem" image="heart.fill" catalog="system" style="plain" id="ZmK-WP-PWV">
-                            <color key="tintColor" name="SearchBar"/>
-                            <connections>
-                                <action selector="addFav:" destination="Qxd-Zb-hlk" id="5NJ-3e-h8Q"/>
-                                <segue destination="jHV-79-dh9" kind="show" identifier="favoritesSegue" id="sh6-9P-cZS"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="SO6-nF-u0q"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AX-ui-Juf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1202,11 +1194,9 @@
             <point key="canvasLocation" x="3066.666666666667" y="721.875"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="YWZ-QJ-Xtk"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" name="AccentColor"/>
     <resources>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="plus" catalog="system" width="128" height="113"/>

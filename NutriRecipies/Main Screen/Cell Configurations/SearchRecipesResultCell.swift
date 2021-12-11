@@ -5,6 +5,10 @@
 //  Created by Hayley Robinson on 11/20/21.
 //
 
+/*
+Capitalize First Letter of String: https://www.hackingwithswift.com/example-code/strings/how-to-capitalize-the-first-letter-of-a-string
+ */
+
 import UIKit
 
 class SearchRecipesResultCell: UITableViewCell {
@@ -28,7 +32,7 @@ class SearchRecipesResultCell: UITableViewCell {
             recipeNameLabel.text = "Unknown"
         }
         else {
-            recipeDescriptionLabel.text = String(format: "%@ (%@)", result.recipe.source!, result.recipe.cuisineType.first!!)
+            recipeDescriptionLabel.text = String(format: "%@ (%@)", result.recipe.source!, (result.recipe.cuisineType.first!!).capitalizingFirstLetter())
         }
         recipeImageView.image = UIImage(systemName: "square")
         recipeImageView.layer.borderWidth = 2
@@ -45,7 +49,7 @@ class SearchRecipesResultCell: UITableViewCell {
             recipeNameLabel.text = "Unknown"
         }
         else {
-            recipeDescriptionLabel.text = String(format: "%@ (%@)", result.recipe.source!, result.recipe.cuisineType.first!!)
+            recipeDescriptionLabel.text = String(format: "%@ (%@)", result.recipe.source!, (result.recipe.cuisineType.first!!).capitalizingFirstLetter())
         }
         recipeImageView.image = UIImage(systemName: "square")
         recipeImageView.layer.borderWidth = 2
@@ -59,4 +63,13 @@ class SearchRecipesResultCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+}
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
 }

@@ -38,7 +38,7 @@ class RecommendedCollectionViewCell: UICollectionViewCell {
         if ((result.recipe.label?.isEmpty) == nil) {
             recipeNameLabel.text = "Unknown"
         }
-        mealTypeLabel.text = result.recipe.mealType.first as? String
+        mealTypeLabel.text = (result.recipe.mealType.first as? String)?.capitalizingFirstLetter()
         sourceLabel.text = result.recipe.source
         
         recipeImg.image = UIImage(systemName: "square")
