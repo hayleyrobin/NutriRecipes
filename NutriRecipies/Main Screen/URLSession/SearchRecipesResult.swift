@@ -3,7 +3,10 @@
 //  NutriRecipies
 //
 //  Created by Hayley Robinson on 11/20/21.
-//  Struct Source: https://forums.swift.org/t/decode-a-json-object-of-unknown-format-into-a-dictionary-with-decodable-in-swift-4/6138/8
+
+/*
+ Struct Source: https://forums.swift.org/t/decode-a-json-object-of-unknown-format-into-a-dictionary-with-decodable-in-swift-4/6138/8
+*/
 
 import Foundation
 
@@ -19,11 +22,11 @@ struct SearchRecipesResult: Codable {
     var recipe: Recipe
    // let _links: [String: [String: String]]?
     
-    struct Recipe: Codable, CustomStringConvertible
+    struct Recipe: Codable
     {
-        var description: String {
-            return "\nResult - Name: \(label ?? "None"), Description: \(source ?? "None"), Fat: \(String(describing: totalNutrients.fat))"
-        }
+//        var description: String {
+//            return "\nResult - Name: \(label ?? "None"), Description: \(source ?? "None"), Fat: \(String(describing: totalNutrients.fat))"
+//        }
         var label: String?
         var source: String?
         var image: String?

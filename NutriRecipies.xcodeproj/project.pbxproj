@@ -84,16 +84,12 @@
 		614F6AAE27559EF900FEA336 /* Main Screen */ = {
 			isa = PBXGroup;
 			children = (
+				61B435F427643FF80070BE89 /* Cell Configurations */,
+				61B435F327643FC40070BE89 /* URLSession */,
 				61B3D40D274A068000E54FA6 /* NoRecipesFoundCell.xib */,
 				614F6AAA275436DA00FEA336 /* LoadingCell.xib */,
 				61B3D4092749E78300E54FA6 /* SearchRecipesResultCell.xib */,
-				61B3D40B2749EA9000E54FA6 /* SearchRecipesResultCell.swift */,
-				61B3D4072749E28700E54FA6 /* SearchRecipesResult.swift */,
-				614F6AB32756DBF900FEA336 /* TrendingRecipes.swift */,
 				61CECFCC2739B40E006E804E /* SearchRecipesViewController.swift */,
-				617D2DF227632743001A9C61 /* RecommendationRecipes.swift */,
-				617D2DEE276326B1001A9C61 /* RecommendedCollectionViewCell.swift */,
-				617D2DF42763C9AB001A9C61 /* RecommendedTableViewCell.swift */,
 			);
 			path = "Main Screen";
 			sourceTree = "<group>";
@@ -137,6 +133,26 @@
 				610C1273275F45D500C9C948 /* BounceAnimationControler.swift */,
 			);
 			path = "Nutrients Detail Screen";
+			sourceTree = "<group>";
+		};
+		61B435F327643FC40070BE89 /* URLSession */ = {
+			isa = PBXGroup;
+			children = (
+				61B3D4072749E28700E54FA6 /* SearchRecipesResult.swift */,
+				617D2DF227632743001A9C61 /* RecommendationRecipes.swift */,
+				614F6AB32756DBF900FEA336 /* TrendingRecipes.swift */,
+			);
+			path = URLSession;
+			sourceTree = "<group>";
+		};
+		61B435F427643FF80070BE89 /* Cell Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				61B3D40B2749EA9000E54FA6 /* SearchRecipesResultCell.swift */,
+				617D2DEE276326B1001A9C61 /* RecommendedCollectionViewCell.swift */,
+				617D2DF42763C9AB001A9C61 /* RecommendedTableViewCell.swift */,
+			);
+			path = "Cell Configurations";
 			sourceTree = "<group>";
 		};
 		61CECFBC2739B40E006E804E = {

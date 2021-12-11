@@ -3,7 +3,10 @@
 //  NutriRecipies
 //
 //  Created by Hayley Robinson on 12/10/21.
-//
+
+/*
+    CollectionViewCell Inside a TableViewCell: https://www.youtube.com/watch?v=o5bNgjlp3zk
+ */
 
 
 import UIKit

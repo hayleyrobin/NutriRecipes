@@ -7,17 +7,16 @@
 
 import UIKit
 
-class SearchRecipesViewController: UIViewController, RestrictionsControllerDelegate, UINavigationControllerDelegate{
+class SearchRecipesViewController: UIViewController, RestrictionsControllerDelegate, UINavigationControllerDelegate
+    {
     func restrictionsController(_ controller: RestrictionsTableViewController, didFinishAdding item: [ChecklistItem]) {
         restrictions = item
 //        saveSearchItems()
         self.dismiss(animated: false, completion: nil)
-
     }
     func restrictionsControllerDidCancel(_ controller: RestrictionsTableViewController) {
         self.dismiss(animated: false, completion: nil)
     }
-
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
   
@@ -285,7 +284,6 @@ extension SearchRecipesViewController: UISearchBarDelegate{
                   httpResponse.statusCode == 200 {
                     if let data = data {
                       self.searchResults = self.parse(data: data)
-                      //self.searchResults.sort(by: <)
                       DispatchQueue.main.async {
                         self.isLoading = false
                         self.tableView.reloadData()
@@ -332,7 +330,7 @@ extension SearchRecipesViewController: UISearchBarDelegate{
 extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSource
 {
      func numberOfSections(in tableView: UITableView) -> Int {
-        if !hasSearched{
+        if !hasSearched && !isLoading && searchResults.count == 0{
             return 2
         }
         else{
@@ -413,7 +411,7 @@ extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 && !hasSearched {
-            return 327
+            return 327 // fixed size
         }
         return UITableView.automaticDimension // automatic cell size
     }
