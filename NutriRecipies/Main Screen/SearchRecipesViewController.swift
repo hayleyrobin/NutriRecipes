@@ -91,13 +91,18 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
 
       let index = UserDefaults.standard.integer(
         forKey: "RecipesIndex")
-        let indexPath = IndexPath(row: index, section: 1)
+        
       if index != -1 {
-        if !hasSearched && indexPath.section == 1{
+
+        if !hasSearched && (IndexPath(row: index, section: 1).section != 0){
+            let indexPath = IndexPath(row: index, section: 1)
             let cell = tableView.cellForRow(at: indexPath)
             self.performSegue(
               withIdentifier: "recipeSegue",
                 sender: cell)
+        }
+        else if !hasSearched && (IndexPath(row: index, section: 0).section == 0){
+                self.moveOnRecipeDetail(index: index)
         }
 //        else {
 //            let checklist = trendingResults[index]
@@ -109,66 +114,6 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
       }
     }
 
-
-    /*
-        func registerDefaults() {
-          let dictionary = [ "RecipeIndex": -1 ]
-            UserDefaults.standard.register(defaults: dictionary)
-        }
-        
-        var indexOfSelectedChecklist: Int {
-          get {
-            return UserDefaults.standard.integer(
-              forKey: "RecipeIndex")
-          }
-          set {
-            UserDefaults.standard.set(
-              newValue,
-              forKey: "RecipeIndex")
-          }
-        }
-
-     //    gets called after user presses back button
-        override func viewDidAppear(_ animated: Bool) {
-          super.viewDidAppear(animated)
-
-          navigationController?.delegate = self
-
-          let index = indexOfSelectedChecklist
-            if index != -1{
-            if hasSearched{
-//                let recipe = searchResults[index]
-                let indexPath = IndexPath(row: index, section: 0)
-                let cell = tableView.cellForRow(at: indexPath)
-                performSegue(
-                  withIdentifier: "recipeSegue",
-                  sender: cell)
-            }
-            else{
-//                let recipe = trendingResults[index]
-                let indexPath = IndexPath(row: index, section: 0)
-                let cell = tableView.cellForRow(at: indexPath)
-                self.performSegue(
-                  withIdentifier: "recipeSegue",
-                    sender: cell)
-            }
-          }
-        }
-     //  MARK: - Navigation Controller Delegates
-        
-        // called whenever the navigation controller shows a new screen.
-        func navigationController(
-          _ navigationController: UINavigationController,
-          willShow viewController: UIViewController,
-          animated: Bool
-        ) {
-          // Was the back button tapped?
-          if viewController === self {
-            indexOfSelectedChecklist = -1  // no recipe is currently selected.
-          }
-        }
-    
-*/
     // MARK:- Navigation
       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if(segue.identifier == "recipeSegue") {

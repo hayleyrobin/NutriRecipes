@@ -52,6 +52,9 @@ extension RecommendedTableViewCell: UICollectionViewDelegate, UICollectionViewDa
         return CGSize(width: 193, height: 304)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        UserDefaults.standard.set(
+            indexPath.row,
+            forKey: "RecipesIndex")
         didSelectRecipeClosure?(indexPath.row)
     }
 }
