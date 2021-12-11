@@ -31,7 +31,6 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
         static let searchRecipesResultCell = "SearchRecipesResultCell"
         static let noRecipesFoundCell = "NoRecipesFoundCell"
         static let loadingCell = "LoadingCell"
-//        static let recommendationResultCell = "RecommendationResultCell"
       }
     }
     
@@ -41,10 +40,8 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
 //        registerDefaults()
 
         navigationController?.navigationBar.prefersLargeTitles = true
-
         searchBar.becomeFirstResponder() // dismiss keyboard
-
-       tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         
         var cellNib = UINib(nibName: TableView.CellIdentifiers.searchRecipesResultCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.searchRecipesResultCell)
@@ -112,10 +109,7 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
 
           }
         }
-
-
-
-       //  MARK: - Navigation Controller Delegates
+     //  MARK: - Navigation Controller Delegates
         
         // called whenever the navigation controller shows a new screen.
         func navigationController(
@@ -130,15 +124,6 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
         }
     
 */
-    // instantiate detail recipe for collection view cell
-    func moveOnRecipeDetail(index: Int) {
-        guard let detailViewController = storyboard?.instantiateViewController(identifier: "RecipeDetailViewController") as? RecipeDetailViewController
-        else{
-            return
-        }
-        detailViewController.recommendedResult = recommendedResults[index]
-        navigationController?.pushViewController(detailViewController, animated: true)
-    }
     // MARK:- Navigation
       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if(segue.identifier == "recipeSegue") {
@@ -177,7 +162,16 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
           destination.delegate = self
        }
       }
-
+    
+    // instantiate detail recipe for collection view cell
+    func moveOnRecipeDetail(index: Int) {
+        guard let detailViewController = storyboard?.instantiateViewController(identifier: "RecipeDetailViewController") as? RecipeDetailViewController
+        else{
+            return
+        }
+        detailViewController.recommendedResult = recommendedResults[index]
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
     // MARK:- Helper Methods
     
     // URL object for API string
@@ -398,7 +392,6 @@ extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSourc
                         if let recipeIndex = rIndex{
                             self.moveOnRecipeDetail(index: recipeIndex)
                         }
-                        
                     }
                     return cell
                 }

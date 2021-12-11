@@ -29,7 +29,6 @@ class FavoriteRecipeViewCell: UICollectionViewCell {
         if let previewURL = URL(string: result.recipe.image!) {
           downloadTask = recipeImg.loadImage(url: previewURL)
         }
-
     }
     
     func configure(for result: TrendingResults){

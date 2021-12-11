@@ -21,7 +21,6 @@ class FavoriteRecipesViewController: UIViewController, RecipeDetailViewControlle
         navigationController?.popViewController(animated: true)
     }
     
-
     @IBOutlet weak var collectionView: UICollectionView!
     
     var searchResult:  SearchRecipesResult!
@@ -34,11 +33,7 @@ class FavoriteRecipesViewController: UIViewController, RecipeDetailViewControlle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
     }
-
-
 //    // MARK: - Navigation
 //    override func prepare(
 //      for segue: UIStoryboardSegue,
@@ -49,8 +44,6 @@ class FavoriteRecipesViewController: UIViewController, RecipeDetailViewControlle
 //            controller.delegate = self
 //      }
 //    }
-//
-
 }
 // MARK:- Collection View Delegate
 
@@ -73,8 +66,6 @@ extension FavoriteRecipesViewController: UICollectionViewDelegate, UICollectionV
         else if (trendingResult != nil){
             cell.configure(for: trendingResult)
         }
-        
-        
         return cell
     }
     

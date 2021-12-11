@@ -8,13 +8,10 @@
 import UIKit
 
 class NutritionViewCell: UITableViewCell {
-    @IBOutlet var dishTypeLabel: UILabel!
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

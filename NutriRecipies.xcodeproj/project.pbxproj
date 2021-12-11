@@ -35,7 +35,6 @@
 		61CECFCD2739B40E006E804E /* SearchRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CECFCC2739B40E006E804E /* SearchRecipesViewController.swift */; };
 		61CECFD02739B40E006E804E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61CECFCE2739B40E006E804E /* Main.storyboard */; };
 		61CECFD22739B421006E804E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61CECFD12739B421006E804E /* Assets.xcassets */; };
-		61CECFD52739B421006E804E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61CECFD32739B421006E804E /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,7 +67,6 @@
 		61CECFCC2739B40E006E804E /* SearchRecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipesViewController.swift; sourceTree = "<group>"; };
 		61CECFCF2739B40E006E804E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		61CECFD12739B421006E804E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		61CECFD42739B421006E804E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61CECFD62739B421006E804E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,7 +162,6 @@
 				61CECFCA2739B40E006E804E /* SceneDelegate.swift */,
 				61CECFCE2739B40E006E804E /* Main.storyboard */,
 				61CECFD12739B421006E804E /* Assets.xcassets */,
-				61CECFD32739B421006E804E /* LaunchScreen.storyboard */,
 				61CECFD62739B421006E804E /* Info.plist */,
 				61AE7D33275BE55B00B1C32A /* Favorite Recipes Screen */,
 				61AE7D32275BE53800B1C32A /* Recipe Detail Screen */,
@@ -234,7 +231,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				61B3D40E274A068000E54FA6 /* NoRecipesFoundCell.xib in Resources */,
-				61CECFD52739B421006E804E /* LaunchScreen.storyboard in Resources */,
 				614F6AAB275436DA00FEA336 /* LoadingCell.xib in Resources */,
 				61CECFD22739B421006E804E /* Assets.xcassets in Resources */,
 				61CECFD02739B40E006E804E /* Main.storyboard in Resources */,
@@ -284,14 +280,6 @@
 				61CECFCF2739B40E006E804E /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		61CECFD32739B421006E804E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				61CECFD42739B421006E804E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

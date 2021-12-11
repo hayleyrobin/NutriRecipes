@@ -49,9 +49,9 @@ class RecipeDetailViewController: UITableViewController {
         else if trendingResult != nil{
             nutritionViewController.trendingResult = trendingResult
         }
-//        else{
-//            nutritionViewController.recommendedResult = recommendedResult
-//        }
+        else{
+            nutritionViewController.recommendationResult = recommendedResult
+        }
       }
       else if segue.identifier == "favoritesSegue"{
           let favoritesViewController = segue.destination as! FavoriteRecipesViewController
@@ -129,8 +129,6 @@ class RecipeDetailViewController: UITableViewController {
             return 1
         }
     }
-
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeHeaderCell", for: indexPath) as! RecipeHeaderCell
@@ -182,8 +180,8 @@ class RecipeDetailViewController: UITableViewController {
             return cell3
         }
     }
-    
     // MARK: - Table View Delegates
+    
     // don't select row
     override func tableView(
       _ tableView: UITableView,
@@ -191,8 +189,6 @@ class RecipeDetailViewController: UITableViewController {
     ) -> IndexPath? {
       return nil
     }
-
-    
 
     /*
     // Override to support conditional editing of the table view.

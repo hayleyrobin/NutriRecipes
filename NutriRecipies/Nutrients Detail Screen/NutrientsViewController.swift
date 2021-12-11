@@ -10,23 +10,14 @@ import UIKit
 class NutrientsViewController: UIViewController {
     
     var searchResult: SearchRecipesResult!
-//    {didSet{
-//        updateUI()
-//    }}
     var trendingResult: TrendingResults!
-//    {didSet{
-//        updateUI()
-//    }}
-    
-    //didSet
+    var recommendationResult: RecommendationResults!
     
     @IBAction func closeButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-
     @IBOutlet weak var dailyValueLabel: UILabel!
-    
     @IBOutlet weak var servingsLabel: UILabel!
     @IBOutlet weak var caloriesLabel: UILabel!
     @IBOutlet weak var kcalsLabel: UILabel!
@@ -92,6 +83,9 @@ class NutrientsViewController: UIViewController {
         else if (searchResult != nil){
             updateUI()
         }
+        else if(recommendationResult != nil){
+            updateUI()
+        }
     }
     required init?(coder aDecoder: NSCoder) {
       super.init(coder: aDecoder)
@@ -107,7 +101,7 @@ class NutrientsViewController: UIViewController {
             let calories = searchResult.recipe.calories! / Double(searchResult.recipe.yield!)
 
             dailyValueLabel.text = String(format: "%.0f", searchResult.recipe.totalDaily.kcals!.quantity! / Double(servings)) + "%"
-            servingsLabel.text = String(servings)
+            servingsLabel.text = String(format: "%.0f", servings)
             caloriesLabel.text = String(format: "%.0f", calories)
             kcalsLabel.text = String (format: "%.0f", (searchResult.recipe.totalNutrients.kcals!.quantity! / Double(servings)))
             
@@ -224,12 +218,12 @@ class NutrientsViewController: UIViewController {
             vitKPercentLabel.text = String(format: "%.0f",searchResult.recipe.totalDaily.vitaminK!.quantity! / Double(servings)) + searchResult.recipe.totalDaily.vitaminK!.unit!
             
         }
-        else{
+        else if(trendingResult != nil){
             let servings = trendingResult.recipe.yield!
             let calories = trendingResult.recipe.calories! / Double(trendingResult.recipe.yield!)
 
             dailyValueLabel.text = String(format: "%.0f", trendingResult.recipe.totalDaily.kcals!.quantity! / Double(servings)) + "%"
-            servingsLabel.text = String(servings)
+            servingsLabel.text = String(format: "%.0f", servings)
             caloriesLabel.text = String(format: "%.0f", calories)
             kcalsLabel.text = String (format: "%.0f", (trendingResult.recipe.totalNutrients.kcals!.quantity! / Double(servings)))
             
@@ -280,8 +274,6 @@ class NutrientsViewController: UIViewController {
             else{
                 polySatPercentLabel.text = String(format: "%.0f",trendingResult.recipe.totalDaily.polyunFat!.quantity! / Double(servings)) + trendingResult.recipe.totalDaily.polyunFat!.unit!
             }
-
-
             carboGramsLabel.text = "Carbohydrates: " + String(format: "%.0f", trendingResult.recipe.totalNutrients.carbs!.quantity! / Double(servings)) + trendingResult.recipe.totalNutrients.carbs!.unit!
             carboPercentLabel.text = String(format: "%.0f",trendingResult.recipe.totalDaily.carbs!.quantity! / Double(servings)) + trendingResult.recipe.totalDaily.carbs!.unit!
 
@@ -345,19 +337,128 @@ class NutrientsViewController: UIViewController {
             vitKGramsLabel.text = "Vitamin K: " + String(format: "%.0f", trendingResult.recipe.totalNutrients.vitaminK!.quantity! / Double(servings)) + trendingResult.recipe.totalNutrients.vitaminK!.unit!
             vitKPercentLabel.text = String(format: "%.0f",trendingResult.recipe.totalDaily.vitaminK!.quantity! / Double(servings)) + trendingResult.recipe.totalDaily.vitaminK!.unit!
         }
+        else if(recommendationResult != nil){
+            let servings = recommendationResult.recipe.yield!
+            let calories = recommendationResult.recipe.calories! / Double(recommendationResult.recipe.yield!)
+
+            dailyValueLabel.text = String(format: "%.0f", recommendationResult.recipe.totalDaily.kcals!.quantity! / Double(servings)) + "%"
+            servingsLabel.text = String(format: "%.0f", servings)
+            caloriesLabel.text = String(format: "%.0f", calories)
+            kcalsLabel.text = String (format: "%.0f", (recommendationResult.recipe.totalNutrients.kcals!.quantity! / Double(servings)))
+            
+            fatGramsLabel.text = "Fat: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.fat!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.fat!.unit!
+            fatPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.fat!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.fat!.unit!
+            
+            satFatGramsLabel.text = "Saturated: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.satFat!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.satFat!.unit!
+            satFatPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.satFat!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.satFat!.unit!
+            
+            satFatGramsLabel.text = "Saturated: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.satFat!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.satFat!.unit!
+            satFatPercentLabel.text = String()
+            
+            if(recommendationResult.recipe.totalNutrients.transFat == nil){
+                transFatGramsLabel.text = "Trans: 0g"
+            }
+            else{
+                transFatGramsLabel.text = "Trans: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.transFat!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.transFat!.unit!
+            }
+            if(recommendationResult.recipe.totalDaily.transFat == nil )
+            {
+                transFatPercentLabel.text = "0%"
+            }
+            else{
+                transFatPercentLabel.text = String(format: "%.0f",(recommendationResult.recipe.totalDaily.transFat!.quantity! ) / Double(servings)) + recommendationResult.recipe.totalDaily.transFat!.unit!
+            }
+            
+            if(recommendationResult.recipe.totalNutrients.monoFat == nil){
+                monoSatGramsLabel.text = "Monounsaturated: 0g"
+            }
+            else{
+                monoSatGramsLabel.text = "Monounsaturated: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.monoFat!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.monoFat!.unit!
+            }
+            if(recommendationResult.recipe.totalDaily.monoFat == nil){
+                monoSatPercentLabel.text = "0%"
+            }
+            else{
+                monoSatPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.monoFat!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.monoFat!.unit!
+            }
+            if(recommendationResult.recipe.totalNutrients.polyunFat == nil){
+                polySatGramsLabel.text = "Polyunsaturated: 0g"
+            }
+            else{
+                polySatGramsLabel.text = "Polyunsaturated: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.polyunFat!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.polyunFat!.unit!
+            }
+            if(recommendationResult.recipe.totalDaily.polyunFat == nil){
+                polySatPercentLabel.text = "0%"
+            }
+            else{
+                polySatPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.polyunFat!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.polyunFat!.unit!
+            }
+
+
+            carboGramsLabel.text = "Carbohydrates: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.carbs!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.carbs!.unit!
+            carboPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.carbs!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.carbs!.unit!
+
+            fiberGramsLabel.text = "Dietary Fiber: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.fiber!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.fiber!.unit!
+            fiberPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.fiber!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.fiber!.unit!
+
+            sugarsGramsLabel.text = "Sugars: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.sugars!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.sugars!.unit!
+            if(recommendationResult.recipe.totalDaily.sugars == nil){
+                sugarsPercentLabel.text = "0%"
+            }
+            else{
+                sugarsPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.sugars!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.sugars!.unit!
+            }
+
+
+            proteinGramsLabel.text = "Protein: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.protein!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.protein!.unit!
+            proteinPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.protein!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.protein!.unit!
+
+            cholestGramsLabel.text = "Cholestorol: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.cholesterol!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.cholesterol!.unit!
+            cholestPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.cholesterol!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.cholesterol!.unit!
+
+            sodiumGramsLabel.text = "Sodium: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.NA!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.NA!.unit!
+            sodiumPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.NA!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.NA!.unit!
+
+            calciumGramsLabel.text = "Calcium: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.CA!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.CA!.unit!
+            calciumPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.CA!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.CA!.unit!
+
+            magnesiumGramsLabel.text = "Magnesium: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.MG!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.MG!.unit!
+            magnesiumPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.MG!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.MG!.unit!
+
+            potassiumGramsLabel.text = "Potassium: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.K!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.K!.unit!
+            potassiumPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.K!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.K!.unit!
+
+            ironGramsLabel.text = "Iron: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.FE!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.FE!.unit!
+            ironPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.FE!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.FE!.unit!
+
+            zincGramsLabel.text = "Zinc: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.ZN!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.ZN!.unit!
+            zincPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.ZN!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.ZN!.unit!
+
+            phosphorousGramsLabel.text = "Phosphorous: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.P!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.P!.unit!
+            phosphorousPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.P!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.P!.unit!
+
+            vitAGramsLabel.text = "Vitamin A: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.vitaminA!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.vitaminA!.unit!
+            vitAPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.vitaminA!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.vitaminA!.unit!
+
+            vitCGramsLabel.text = "Vitamin C: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.vitaminC!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.vitaminC!.unit!
+            vitCPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.vitaminC!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.vitaminC!.unit!
+
+            thiaminGramsLabel.text = "Thiamin: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.thiamin!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.thiamin!.unit!
+            thiaminPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.thiamin!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.thiamin!.unit!
+
+            niacinGramsLabel.text = "Niacin: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.niacin!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.niacin!.unit!
+            niacinPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.niacin!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.niacin!.unit!
+
+            vitB6GramsLabel.text = "Vitamin B6: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.vitaminB6!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.vitaminB6!.unit!
+            vitB6PercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.vitaminB6!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.vitaminB6!.unit!
+
+            vitB12GramsLabel.text = "VitaminB12: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.vitaminB12!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.vitaminB12!.unit!
+            vitB12PercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.vitaminB12!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.vitaminB12!.unit!
+
+            vitKGramsLabel.text = "Vitamin K: " + String(format: "%.0f", recommendationResult.recipe.totalNutrients.vitaminK!.quantity! / Double(servings)) + recommendationResult.recipe.totalNutrients.vitaminK!.unit!
+            vitKPercentLabel.text = String(format: "%.0f",recommendationResult.recipe.totalDaily.vitaminK!.quantity! / Double(servings)) + recommendationResult.recipe.totalDaily.vitaminK!.unit!
+        }
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 extension NutrientsViewController: UIViewControllerTransitioningDelegate {
   func animationController(

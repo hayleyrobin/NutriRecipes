@@ -132,5 +132,4 @@ class RecipeHeaderCell: UITableViewCell {
           downloadTask = recipeImg.loadImage(url: previewURL)
         }
     }
-
 }
