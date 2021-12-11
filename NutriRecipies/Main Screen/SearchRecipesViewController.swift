@@ -41,6 +41,7 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
 //        registerDefaults()
 
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -67,6 +68,48 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
             trendingResults = TrendingRecipes.trendingRecipies()
         }
     }
+    // MARK: - Navigation Controller Delegates
+    func registerDefaults() {
+      let dictionary = [ "RecipesIndex": -1 ]
+      UserDefaults.standard.register(defaults: dictionary)
+    }
+
+    func navigationController(
+      _ navigationController: UINavigationController,
+      willShow viewController: UIViewController,
+      animated: Bool
+    ) {
+      // Was the back button tapped?
+      if viewController === self {
+        UserDefaults.standard.set(-1, forKey: "RecipesIndex")
+      }
+    }
+    override func viewDidAppear(_ animated: Bool) {
+      super.viewDidAppear(animated)
+
+      navigationController?.delegate = self
+
+      let index = UserDefaults.standard.integer(
+        forKey: "RecipesIndex")
+        let indexPath = IndexPath(row: index, section: 0)
+      if index != -1 {
+        if !hasSearched && indexPath.section == 1{
+            let cell = tableView.cellForRow(at: indexPath)
+            self.performSegue(
+              withIdentifier: "recipeSegue",
+                sender: cell)
+        }
+//        else {
+//            let checklist = trendingResults[index]
+//            performSegue(
+//              withIdentifier: "recipeSegue",
+//              sender: checklist)
+//        }
+
+      }
+    }
+
+
     /*
         func registerDefaults() {
           let dictionary = [ "RecipeIndex": -1 ]
@@ -130,24 +173,24 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if(segue.identifier == "recipeSegue") {
          let recipeViewController = segue.destination as! RecipeDetailViewController
-
-          guard let selectedRow = self.tableView.indexPathForSelectedRow
-          else{
-              return
-          }
-          if let cell = self.tableView.cellForRow(at: selectedRow) {
-              let indexPath = tableView.indexPath(for: cell)
-              if hasSearched{
-                  let searchResult = searchResults[indexPath!.row]
-                  recipeViewController.searchResult = searchResult
-              }
-              else{
-                  let trendingResult = trendingResults[indexPath!.row]
-                  recipeViewController.trendingResult = trendingResult
-              }
-          }
+//
+//          guard let selectedRow = self.tableView.indexPathForSelectedRow
+//          else{
+//              return
+//          }
+//          if let cell = self.tableView.cellForRow(at: selectedRow) {
+//              let indexPath = tableView.indexPath(for: cell)
+//              if hasSearched{
+//                  let searchResult = searchResults[indexPath!.row]
+//                  recipeViewController.searchResult = searchResult
+//              }
+//              else{
+//                  let trendingResult = trendingResults[indexPath!.row]
+//                  recipeViewController.trendingResult = trendingResult
+//              }
+//          }
   //      Other method using UITableViewCell
-         /* let cell = sender as! UITableViewCell
+         let cell = sender as! UITableViewCell
           let indexPath = tableView.indexPath(for: cell)
           if hasSearched{
               let searchResult = searchResults[indexPath!.row]
@@ -156,7 +199,7 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
           else{
               let trendingResult = trendingResults[indexPath!.row]
               recipeViewController.trendingResult = trendingResult
-          }*/
+          }
        }
        else if(segue.identifier == "restrictionsSegue") {
           let nav = segue.destination as! UINavigationController
@@ -422,6 +465,9 @@ extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSourc
     ) {
         // user defaults
 //        indexOfSelectedChecklist = indexPath.row
+        UserDefaults.standard.set(
+           indexPath.row,
+           forKey: "RecipesIndex")
         if (!hasSearched && indexPath.section != 0 ) || hasSearched{
             let cell = tableView.cellForRow(at: indexPath)
 

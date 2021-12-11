@@ -20,12 +20,15 @@ class DirectionsViewCell: UITableViewCell {
 
     }
     func configure(for result: SearchRecipesResult) {
+        directionsButton.layer.cornerRadius = 5
         sourceLabel.text = result.recipe.source
     }
     func configure(for result: TrendingResults) {
+        directionsButton.layer.cornerRadius = 5
         sourceLabel.text = result.recipe.source
     }
     func configure(for result: RecommendationResults) {
+        directionsButton.layer.cornerRadius = 5
         sourceLabel.text = result.recipe.source
     }
 }
