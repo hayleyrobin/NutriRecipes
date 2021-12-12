@@ -8,10 +8,10 @@
     CollectionViewCell Inside a TableViewCell: https://www.youtube.com/watch?v=o5bNgjlp3zk
  */
 
-
 import UIKit
 
 typealias DidSelectRecipeClosure = ((_ index: Int?) -> Void)
+
 class RecommendedTableViewCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     

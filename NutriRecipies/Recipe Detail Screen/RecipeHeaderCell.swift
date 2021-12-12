@@ -54,7 +54,7 @@ class RecipeHeaderCell: UITableViewCell {
         caloriesLabel.text = String(format:"%.0f", cals) + " calories"
         mealTypeLabel.text = (result.recipe.mealType.first as? String)?.capitalizingFirstLetter()
         if result.recipe.dietLabels.isEmpty{
-            dishTypeLabel.text = "Unknown"
+            dishTypeLabel.text = ""
         }
         else{
             dishTypeLabel.text = (result.recipe.dishType.first as? String)?.capitalizingFirstLetter()
@@ -81,7 +81,7 @@ class RecipeHeaderCell: UITableViewCell {
         recipeNameLabel.text = result.recipe.label
 
         if ((result.recipe.label?.isEmpty) == nil) {
-            recipeNameLabel.text = "Unknown"
+            recipeNameLabel.text = ""
         }
         
         cookTimeLabel.text = String(format:"%.0f", result.recipe.totalTime!) + " min"

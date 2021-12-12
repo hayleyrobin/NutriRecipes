@@ -26,6 +26,7 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
     var searchResultText = ""
     var hasSearched = false
     var isLoading = false
+    var isTrending = false
     var restrictions = [ChecklistItem]()
 //    var favoriteItems = [FavoriteRecipe]()
     var dataTask: URLSessionDataTask?
@@ -94,16 +95,23 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
         
       if index != -1 {
 
-        if !hasSearched && (IndexPath(row: index, section: 1).section != 0){
-            let indexPath = IndexPath(row: index, section: 1)
-            let cell = tableView.cellForRow(at: indexPath)
-            self.performSegue(
-              withIdentifier: "recipeSegue",
-                sender: cell)
-        }
-        else if !hasSearched && (IndexPath(row: index, section: 0).section == 0){
+        if !hasSearched{
+            if isTrending{
+                
+                let indexPath = IndexPath(row: index, section: 1)
+                print(indexPath.row)
+                print(indexPath.section)
+                let cell = tableView.cellForRow(at: indexPath)
+                self.performSegue(
+                  withIdentifier: "recipeSegue",
+                    sender: cell)
+            }
+            else{
+                print("h")
                 self.moveOnRecipeDetail(index: index)
+            }
         }
+
 //        else {
 //            let checklist = trendingResults[index]
 //            performSegue(
@@ -135,16 +143,18 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
 //              }
 //          }
   //      Other method using UITableViewCell
-         let cell = sender as! UITableViewCell
-          let indexPath = tableView.indexPath(for: cell)
-          if hasSearched{
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPath(for: cell)
+            if hasSearched{
               let searchResult = searchResults[indexPath!.row]
               recipeViewController.searchResult = searchResult
-          }
-          else{
-              let trendingResult = trendingResults[indexPath!.row]
-              recipeViewController.trendingResult = trendingResult
-          }
+            }
+            else{
+                let trendingResult = trendingResults[indexPath!.row]
+                recipeViewController.trendingResult = trendingResult
+                isTrending = true
+                print(isTrending)
+            }
        }
        else if(segue.identifier == "restrictionsSegue") {
           let nav = segue.destination as! UINavigationController
@@ -162,6 +172,44 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
         detailViewController.recommendedResult = recommendedResults[index]
         navigationController?.pushViewController(detailViewController, animated: true)
     }
+//    // MARK:- Save
+//    func documentsDirectory() -> URL {
+//      let paths = FileManager.default.urls(
+//        for: .documentDirectory,
+//        in: .userDomainMask)
+//      return paths[0]
+//    }
+//
+//    func dataFilePath() -> URL {
+//      return documentsDirectory().appendingPathComponent("NutriRecipes.plist")
+//    }
+//    // save which restriction items the user picks
+//    func saveChecklistItems() {
+//      let encoder = PropertyListEncoder()
+//      do {
+//        let data = try encoder.encode(isTrending)
+//        try data.write(
+//          to: dataFilePath(),
+//          options: Data.WritingOptions.atomic)
+//      } catch {
+//        print("Error encoding item array: \(error.localizedDescription)")
+//      }
+//    }
+//    // load users' restriction items
+//    func loadChecklistItems() {
+//      let path = dataFilePath()
+//      if let data = try? Data(contentsOf: path) {
+//        let decoder = try! 
+//        let decoder = PropertyListDecoder()
+//        do {
+//            isTrending = try decoder.decode(
+//                Bool.self,
+//            from: data)
+//        } catch {
+//          print("Error decoding item array: \(error.localizedDescription)")
+//        }
+//      }
+//    }
     // MARK:- Helper Methods
     
     // URL object for API string
@@ -328,7 +376,7 @@ extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSourc
  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isLoading {
-          return 1
+            return 1
         }
         else if !hasSearched && section == 0{
             return 1
@@ -415,7 +463,6 @@ extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSourc
            forKey: "RecipesIndex")
         if (!hasSearched && indexPath.section != 0 ) || hasSearched{
             let cell = tableView.cellForRow(at: indexPath)
-
             performSegue(withIdentifier: "recipeSegue", sender: cell)
             // deselect row with animation
             tableView.deselectRow(at: indexPath, animated: true)
@@ -442,6 +489,7 @@ extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSourc
         }
         return "Trending Recipes"
     }
+    
 //    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
 //        view.tintColor = UIColor.systemGray5
 //        let header = view as! UITableViewHeaderFooterView
