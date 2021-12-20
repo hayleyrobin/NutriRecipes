@@ -61,7 +61,7 @@
 		61B3D4092749E78300E54FA6 /* SearchRecipesResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchRecipesResultCell.xib; sourceTree = "<group>"; };
 		61B3D40B2749EA9000E54FA6 /* SearchRecipesResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipesResultCell.swift; sourceTree = "<group>"; };
 		61B3D40D274A068000E54FA6 /* NoRecipesFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoRecipesFoundCell.xib; sourceTree = "<group>"; };
-		61CECFC52739B40E006E804E /* NutriRecipies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutriRecipies.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		61CECFC52739B40E006E804E /* NutriRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutriRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61CECFC82739B40E006E804E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61CECFCA2739B40E006E804E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		61CECFCC2739B40E006E804E /* SearchRecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipesViewController.swift; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 		61CECFC62739B40E006E804E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				61CECFC52739B40E006E804E /* NutriRecipies.app */,
+				61CECFC52739B40E006E804E /* NutriRecipes.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,9 +192,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		61CECFC42739B40E006E804E /* NutriRecipies */ = {
+		61CECFC42739B40E006E804E /* NutriRecipes */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 61CECFD92739B421006E804E /* Build configuration list for PBXNativeTarget "NutriRecipies" */;
+			buildConfigurationList = 61CECFD92739B421006E804E /* Build configuration list for PBXNativeTarget "NutriRecipes" */;
 			buildPhases = (
 				61CECFC12739B40E006E804E /* Sources */,
 				61CECFC22739B40E006E804E /* Frameworks */,
@@ -204,9 +204,9 @@
 			);
 			dependencies = (
 			);
-			name = NutriRecipies;
+			name = NutriRecipes;
 			productName = NutriRecipies;
-			productReference = 61CECFC52739B40E006E804E /* NutriRecipies.app */;
+			productReference = 61CECFC52739B40E006E804E /* NutriRecipes.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -223,7 +223,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 61CECFC02739B40E006E804E /* Build configuration list for PBXProject "NutriRecipies" */;
+			buildConfigurationList = 61CECFC02739B40E006E804E /* Build configuration list for PBXProject "NutriRecipes" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -236,7 +236,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				61CECFC42739B40E006E804E /* NutriRecipies */,
+				61CECFC42739B40E006E804E /* NutriRecipes */,
 			);
 		};
 /* End PBXProject section */
@@ -458,7 +458,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		61CECFC02739B40E006E804E /* Build configuration list for PBXProject "NutriRecipies" */ = {
+		61CECFC02739B40E006E804E /* Build configuration list for PBXProject "NutriRecipes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				61CECFD72739B421006E804E /* Debug */,
@@ -467,7 +467,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		61CECFD92739B421006E804E /* Build configuration list for PBXNativeTarget "NutriRecipies" */ = {
+		61CECFD92739B421006E804E /* Build configuration list for PBXNativeTarget "NutriRecipes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				61CECFDA2739B421006E804E /* Debug */,
