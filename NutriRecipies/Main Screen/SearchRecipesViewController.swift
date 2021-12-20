@@ -73,8 +73,8 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
       let dictionary = [ "RecipesIndex": -1 ]
       UserDefaults.standard.register(defaults: dictionary)
         
-        let section = [ "RecipesSection": -1 ]
-        UserDefaults.standard.register(defaults: section)
+        let dictionary2 = [ "RecipesSection": -1 ]
+        UserDefaults.standard.register(defaults: dictionary2)
     }
 
     func navigationController(
@@ -94,26 +94,29 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
       navigationController?.delegate = self
 
         let index = UserDefaults.standard.integer(
-        forKey: "RecipesIndex")
-        let section = UserDefaults.standard.integer(
+            forKey: "RecipesIndex")
+        let sections = UserDefaults.standard.integer(
             forKey: "RecipesSection")
         
-      if index != -1 {
+        
+//        if index >= 0 && index < trendingResults.count || index >= 0 && index < recommendedResults.count{
+        if index != -1{
+            if !hasSearched{
+                if sections == 1{
+                    let indexPath = IndexPath(row: index, section: sections)
+                    tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
+                    if let cell = tableView.cellForRow(at: indexPath) as? SearchRecipesResultCell {
+                        self.performSegue(
+                          withIdentifier: "recipeSegue",
+                            sender: cell)
+                    }
 
-        if !hasSearched{
-            
-            if section == 1{
-                let indexPath = IndexPath(row: index, section: 1)
-                let cell = tableView.cellForRow(at: indexPath) as! SearchRecipesResultCell
-                self.performSegue(
-                  withIdentifier: "recipeSegue",
-                    sender: cell)
-            }
+                }
 
-            else if section == 0{
-                    self.moveOnRecipeDetail(index: index)
+                else if sections == 0{
+                        self.moveOnRecipeDetail(index: index)
+                }
             }
-        }
 //        else {
 //            let checklist = trendingResults[index]
 //            performSegue(
@@ -145,7 +148,7 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
 //              }
 //          }
   //      Other method using UITableViewCell
-         let cell = sender as! UITableViewCell
+        if let cell = sender as? UITableViewCell{
           let indexPath = tableView.indexPath(for: cell)
           if hasSearched{
               let searchResult = searchResults[indexPath!.row]
@@ -155,6 +158,7 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
               let trendingResult = trendingResults[indexPath!.row]
               recipeViewController.trendingResult = trendingResult
           }
+        }
        }
        else if(segue.identifier == "restrictionsSegue") {
           let nav = segue.destination as! UINavigationController
