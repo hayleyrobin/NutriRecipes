@@ -10,7 +10,7 @@ A user can
   - [x] Set food restrictions of what type of recipes the search results need to exclude.
   - [x] Exit app and return back to app with restrictions selections remembered.
   - [x] Exit app and return back to app with last viewed recommended detail screen.
-- Click on results to see a detail recipe screen.
+- Click on results to see a detail recipe screen
   - [x] See calories, servings and time needed for recipe.
   - [x] Click on button to see nutritional facts for each serving.
   - [x] See ingredients for recipe.
