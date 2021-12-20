@@ -45,7 +45,7 @@ class RestrictionsTableViewController: UITableViewController {
                         "Mollusk-Free"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(documentsDirectory())
+
         for i in healthLabels{
             let rLabels = ChecklistItem()
             rLabels.text = i
