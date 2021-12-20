@@ -6,9 +6,10 @@ A user can
 - Land on home page
   - [x] See recommended and trending recipes.
   - [x] Search for recipes of any keyword.
+  - [x] See if no recipes of keyword exist
   - [x] Set food restrictions of what type of recipes the search results need to exclude.
-  - [x] Go to home screen and return back to app with restrictions selections remembered.
-  - [x] Go to home screen and return back to app with last viewed recommended detail screen.
+  - [x] Exit app and return back to app with restrictions selections remembered.
+  - [x] Exit app and return back to app with last viewed recommended detail screen.
 - Click on results to see a detail recipe screen.
   - [x] See calories, servings and time needed for recipe.
   - [x] Click on button to see nutritional facts for each serving.
