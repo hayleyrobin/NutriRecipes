@@ -55,6 +55,9 @@ extension RecommendedTableViewCell: UICollectionViewDelegate, UICollectionViewDa
         UserDefaults.standard.set(
             indexPath.row,
             forKey: "RecipesIndex")
+        UserDefaults.standard.set(
+           indexPath.section,
+           forKey: "RecipesSection")
         didSelectRecipeClosure?(indexPath.row)
     }
 }

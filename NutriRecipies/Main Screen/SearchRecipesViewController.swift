@@ -72,6 +72,9 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
     func registerDefaults() {
       let dictionary = [ "RecipesIndex": -1 ]
       UserDefaults.standard.register(defaults: dictionary)
+        
+        let section = [ "RecipesSection": -1 ]
+        UserDefaults.standard.register(defaults: section)
     }
 
     func navigationController(
@@ -82,6 +85,7 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
       // Was the back button tapped?
       if viewController === self {
         UserDefaults.standard.set(-1, forKey: "RecipesIndex")
+        UserDefaults.standard.set(-1, forKey: "RecipesSection")
       }
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -89,20 +93,26 @@ class SearchRecipesViewController: UIViewController, RestrictionsControllerDeleg
 
       navigationController?.delegate = self
 
-      let index = UserDefaults.standard.integer(
+        let index = UserDefaults.standard.integer(
         forKey: "RecipesIndex")
+        let section = UserDefaults.standard.integer(
+            forKey: "RecipesSection")
         
       if index != -1 {
 
-        if !hasSearched && (IndexPath(row: index, section: 1).section != 0){
-            let indexPath = IndexPath(row: index, section: 1)
-            let cell = tableView.cellForRow(at: indexPath) as! SearchRecipesResultCell
-            self.performSegue(
-              withIdentifier: "recipeSegue",
-                sender: cell)
-        }
-        else if !hasSearched && (IndexPath(row: index, section: 0).section == 0){
-                self.moveOnRecipeDetail(index: index)
+        if !hasSearched{
+            
+            if section == 1{
+                let indexPath = IndexPath(row: index, section: 1)
+                let cell = tableView.cellForRow(at: indexPath) as! SearchRecipesResultCell
+                self.performSegue(
+                  withIdentifier: "recipeSegue",
+                    sender: cell)
+            }
+
+            else if section == 0{
+                    self.moveOnRecipeDetail(index: index)
+            }
         }
 //        else {
 //            let checklist = trendingResults[index]
@@ -413,6 +423,9 @@ extension SearchRecipesViewController: UITableViewDelegate, UITableViewDataSourc
         UserDefaults.standard.set(
            indexPath.row,
            forKey: "RecipesIndex")
+        UserDefaults.standard.set(
+           indexPath.section,
+           forKey: "RecipesSection")
         if (!hasSearched && indexPath.section != 0 ) || hasSearched{
             let cell = tableView.cellForRow(at: indexPath)
 
